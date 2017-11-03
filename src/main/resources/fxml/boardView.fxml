@@ -1,12 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.gluonhq.charm.glisten.control.CardPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="BoardController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1200.0" prefWidth="1571.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <SplitPane layoutX="457.0" layoutY="268.0" orientation="VERTICAL" prefHeight="849.0" prefWidth="1143.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <items>
+            <SplitPane dividerPositions="0.29797979797979796" prefHeight="198.0" prefWidth="183.0">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="445.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="777.0" prefWidth="831.0">
+                     <children>
+                        <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="777.0" prefWidth="723.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                 <children>
+                                    <AnchorPane layoutX="-1.0" layoutY="235.0" prefHeight="184.0" prefWidth="874.0" AnchorPane.bottomAnchor="176.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    <AnchorPane prefHeight="242.0" prefWidth="872.0" AnchorPane.bottomAnchor="176.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <CardPane layoutY="-7.0" prefHeight="242.0" prefWidth="133.0">
+                                              <Label style="-fx-padding:10;" text="label1" />
+                                              <Label style="-fx-padding:10;" text="label2" />
+                                          </CardPane>
+                                          <CardPane layoutX="140.0" layoutY="-3.0" prefHeight="242.0" prefWidth="133.0">
+                                             <items>
+                                                <Label style="-fx-padding:10;" text="label1" />
+                                                <Label style="-fx-padding:10;" text="label2" />
+                                             </items>
+                                          </CardPane>
+                                          <CardPane layoutX="282.0" prefHeight="242.0" prefWidth="133.0">
+                                             <items>
+                                                <Label style="-fx-padding:10;" text="label1" />
+                                                <Label style="-fx-padding:10;" text="label2" />
+                                             </items>
+                                          </CardPane>
+                                          <CardPane layoutX="425.0" prefHeight="242.0" prefWidth="133.0">
+                                             <items>
+                                                <Label style="-fx-padding:10;" text="label1" />
+                                                <Label style="-fx-padding:10;" text="label2" />
+                                             </items>
+                                          </CardPane>
+                                          <CardPane layoutX="567.0" prefHeight="242.0" prefWidth="133.0">
+                                             <items>
+                                                <Label style="-fx-padding:10;" text="label1" />
+                                                <Label style="-fx-padding:10;" text="label2" />
+                                             </items>
+                                          </CardPane>
+                                          <CardPane layoutX="711.0" prefHeight="242.0" prefWidth="133.0">
+                                             <items>
+                                                <Label style="-fx-padding:10;" text="label1" />
+                                                <Label style="-fx-padding:10;" text="label2" />
+                                             </items>
+                                          </CardPane>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
+                          </items>
+                        </SplitPane>
+                     </children>
+                  </AnchorPane>
+              </items>
+            </SplitPane>
+         </items>
+      </SplitPane>
+   </children>
 </AnchorPane>
-
