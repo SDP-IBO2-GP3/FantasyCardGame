@@ -1,3 +1,5 @@
+package edu.insightr.fantasycardgame;
+
 import org.apache.log4j.Logger;
 
 public class Main {
