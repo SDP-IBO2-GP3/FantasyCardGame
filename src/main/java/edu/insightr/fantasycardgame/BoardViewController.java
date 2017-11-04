@@ -17,6 +17,7 @@ public class BoardViewController implements Initializable{
 
     public void initialize(URL arg0, ResourceBundle arg1) {
         // TODO Auto-generated method stu
+        // Reflechir sur quand on clique sur le deck, une carte sort aléatoirement
     }
 
     public void getACard(MouseEvent e)
