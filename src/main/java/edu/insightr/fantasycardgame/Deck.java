@@ -1,6 +1,7 @@
-import java.util.ArrayList;
-import java.util.List;
+package edu.insightr.fantasycardgame;
+
 import java.util.Stack;
+
 
 /**
  * <b>A deck present at the center of our board</b><br><br>
