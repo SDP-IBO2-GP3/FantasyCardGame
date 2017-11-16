@@ -1,3 +1,5 @@
+package edu.insightr.fantasycardgame;
+
 /**
  * <b>A card present in our game</b><br><br>
  *
