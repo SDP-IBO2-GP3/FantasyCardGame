@@ -14,7 +14,7 @@ public class Main extends Application{
     public void start(Stage primaryStage) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/boardView.fxml"));
-            Scene scene = new Scene(root,950,600);
+            Scene scene = new Scene(root,600,400);
             primaryStage.setScene(scene);
             primaryStage.setTitle("FantasyCard");
             primaryStage.show();

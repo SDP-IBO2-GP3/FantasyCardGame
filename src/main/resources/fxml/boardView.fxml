@@ -4,16 +4,12 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="275.0" prefWidth="529.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fitHeight="338.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="425.0" fitWidth="600.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../Desktop/Board.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="deck" fitHeight="150.0" fitWidth="75.0" layoutX="14.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../Desktop/back.jpg" />
+            <Image url="@../img/parchemin.jpg" />
          </image>
       </ImageView>
    </children>
