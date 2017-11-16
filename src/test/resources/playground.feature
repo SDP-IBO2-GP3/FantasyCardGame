@@ -35,4 +35,6 @@ Feature: Playground
 
   Scenario: Play a Troll
     Given Player1 plays a Troll
-    Then Player1 and Player2 switch their kingdom
+    Then Player1 and Player2 switch their kingdoms
+
+
