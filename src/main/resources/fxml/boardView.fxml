@@ -56,7 +56,7 @@
                <children>
                   <ImageView fitHeight="90.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../img/GNOME.png" />
+                        <Image url="@../img/DRYAD.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="90.0" fitWidth="72.0" layoutX="59.0" pickOnBounds="true" preserveRatio="true">
@@ -66,22 +66,22 @@
                   </ImageView>
                   <ImageView fitHeight="90.0" fitWidth="72.0" layoutX="118.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../img/GNOME.png" />
+                        <Image url="@../img/TROLL.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="90.0" fitWidth="72.0" layoutX="177.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../img/GNOME.png" />
+                        <Image url="@../img/KORRIGAN.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="90.0" fitWidth="72.0" layoutX="236.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../img/GNOME.png" />
+                        <Image url="@../img/GOBELIN.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="90.0" fitWidth="72.0" layoutX="295.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="90.0" fitWidth="72.0" layoutX="295.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="295.0">
                      <image>
-                        <Image url="@../img/GNOME.png" />
+                        <Image url="@../img/ELF.png" />
                      </image>
                   </ImageView>
                </children>
