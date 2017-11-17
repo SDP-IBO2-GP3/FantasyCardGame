@@ -19,7 +19,7 @@ public class Deck {
      */
     private Stack<Card> listCard;
 
-    
+
     /**
      * The highest number of cards our deck can contain.
      */
