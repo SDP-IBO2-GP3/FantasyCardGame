@@ -33,6 +33,7 @@ public class Deck {
         this.listCard = new Stack<Card>();
     }
 
+
     /**
      * Getter for the size of the deck.
      *
