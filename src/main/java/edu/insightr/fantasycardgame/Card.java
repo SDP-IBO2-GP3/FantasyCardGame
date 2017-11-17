@@ -38,7 +38,7 @@ public class Card {
     /**
      * Represents the race of the card
      */
-    private Race race;
+    public Race race;
 
     /**
      * Minimal constructor for the card : we only need to provide a race to the card
@@ -52,4 +52,9 @@ public class Card {
     public String toString() {
         return "Carte : " + this.race.name() + ", " + this.race.toString() +  " \n";
     }
+
+    public Race getRace(){
+        return this.race;
+    }
+
 }
