@@ -1,4 +1,5 @@
 package edu.insightr.fantasycardgame;
+
 import java.util.List;
 
 /**
@@ -87,7 +88,7 @@ public class BoardController {
      */
     public void applyEffect(Player player, Card card)
     {
-        // TODO : Create the method to apply effects
+
     }
 
     /**
@@ -102,6 +103,19 @@ public class BoardController {
      */
     public void initiliazeGame()
     {
-        // TODO Implement functionnalities (First thing to do)
+        this.deck.fillDeck();
+        this.deck.shuffleDeck();
+        for(int i = 0; i < 6; i++){
+            this.player1.addACard(this.deck.getACard());
+            this.player2.addACard(this.deck.getACard());
+        }
+    }
+
+    public Player getPlayer1() {
+        return player1;
+    }
+
+    public Player getPlayer2() {
+        return player2;
     }
 }
