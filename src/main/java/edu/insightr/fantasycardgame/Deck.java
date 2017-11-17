@@ -68,6 +68,7 @@ public class Deck {
             return "voici les cartes \n" + listCard;
         }
 
+
     /**
      * Gets the top card in the deck and discards it from it.
      *
