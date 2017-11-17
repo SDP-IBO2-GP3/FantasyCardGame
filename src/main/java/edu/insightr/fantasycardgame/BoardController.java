@@ -47,11 +47,6 @@ public class BoardController {
         this.deck = new Deck();
         this.player1 = new Player(true);
         this.player2 = new Player(false);
-
-        for(int i = 0; i < 6; i++){
-            this.player1.addACard(this.deck.getACard());
-            this.player2.addACard(this.deck.getACard());
-        }
     }
 
     /**
@@ -142,6 +137,19 @@ public class BoardController {
      */
     public void initiliazeGame()
     {
-        // TODO Implement functionnalities (First thing to do)
+        this.deck.fillDeck();
+        this.deck.shuffleDeck();
+        for(int i = 0; i < 6; i++){
+            this.player1.addACard(this.deck.getACard());
+            this.player2.addACard(this.deck.getACard());
+        }
+    }
+
+    public Player getPlayer1() {
+        return player1;
+    }
+
+    public Player getPlayer2() {
+        return player2;
     }
 }

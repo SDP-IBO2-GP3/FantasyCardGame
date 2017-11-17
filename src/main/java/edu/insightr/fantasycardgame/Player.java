@@ -66,4 +66,10 @@ public class Player {
     public void setListCardsInHand(ArrayList<Card> listCardsInHand) {
         this.listCardsInHand = listCardsInHand;
     }
+
+
+    @Override
+    public String toString() {
+        return "The player has the following cards in hand : " + listCardsInHand;
+    }
 }

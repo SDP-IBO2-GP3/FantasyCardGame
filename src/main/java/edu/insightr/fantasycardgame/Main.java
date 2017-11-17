@@ -32,6 +32,11 @@ public class Main extends Application{
         System.out.println(deck);
         deck.shuffleDeck();
         System.out.println(deck);
+
+        BoardController b = new BoardController();
+        b.initiliazeGame();
+        System.out.println(b.getPlayer1());
+        System.out.println(b.getPlayer2());
         LOGGER.error("Hello world it doesn't work for now .. ");
     }
 }
