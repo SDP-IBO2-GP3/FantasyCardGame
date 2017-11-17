@@ -7,13 +7,6 @@ import junit.framework.Assert;
 
 public class MyStepdefs {
 
-
-    /** Les différents assest :
-     *
-     *  Assert.assertEquals
-     *  Assert.assert
-     */
-
     /**
      * Scenario: Initialize Playground
      */
