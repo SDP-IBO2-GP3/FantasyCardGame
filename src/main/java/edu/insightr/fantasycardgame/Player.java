@@ -49,4 +49,10 @@ public class Player {
     {
         this.listCardsInHand.add(card);
     }
+
+
+    @Override
+    public String toString() {
+        return "The player has the following cards in hand : " + listCardsInHand;
+    }
 }
