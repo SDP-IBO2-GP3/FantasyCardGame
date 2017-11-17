@@ -1,7 +1,10 @@
 import com.sun.xml.internal.bind.v2.TODO;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
+import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
+import edu.insightr.fantasycardgame.BoardController;
+import edu.insightr.fantasycardgame.Deck;
 import edu.insightr.fantasycardgame.Player;
 import junit.framework.Assert;
 
@@ -11,7 +14,7 @@ public class MyStepdefs {
      * Scenario: Initialize Playground
      */
 
-    @Give("^Playground is initialized$")
+    @Given("^Playground is initialized$")
     public void PlaygroundIsInitialized(BoardController boardController) throws Throwable{
 
         // Write code allowing to load the playground
@@ -82,7 +85,7 @@ public class MyStepdefs {
      */
 
 
-    @Give("^Players1 plays a Korrigan$")
+    @Given("^Players1 plays a Korrigan$")
     public void PlayersOnePlaysAKorrigan() throws Throwable{
         // Write code allowing to load the playground
 
@@ -120,7 +123,7 @@ public class MyStepdefs {
      */
 
 
-    @Give("^Given Player1 plays a Goblin$")
+    @Given("^Given Player1 plays a Goblin$")
     public void GivenPlayerOnePlaysAGoblinn() throws Throwable{
         // Write code allowing to load the playground
     }
@@ -164,7 +167,7 @@ public class MyStepdefs {
      */
 
 
-    @Give("^Player1 plays a Dryad$")
+    @Given("^Player1 plays a Dryad$")
     public void PlayerOnePlaysaDryad() throws Throwable{
         // Write code allowing to load the playground
     }
@@ -200,7 +203,7 @@ public class MyStepdefs {
      */
 
 
-    @Give("^Given Player1 plays a Troll$")
+    @Given("^Given Player1 plays a Troll$")
     public void PlayerOnePlaysATroll() throws Throwable{
         // Write code allowing to load the playground
 
@@ -239,8 +242,4 @@ public class MyStepdefs {
 
         throw new PendingException();
     }
-
-
-
-
 }

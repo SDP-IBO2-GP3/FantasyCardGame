@@ -25,7 +25,7 @@ public class Main extends Application{
 
     public static void main(String[] args){
         launch(args);
-        System.out.println("Hello Wolrd ! This is our amazing card game  ");
+        System.out.println("Hello Wolrd ! This is our amazing card game");
 
         LOGGER.error("Hello world it doesn't work for now .. ");
     }
