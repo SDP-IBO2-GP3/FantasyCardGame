@@ -46,6 +46,11 @@ public class BoardController {
         this.deck = new Deck();
         this.player1 = new Player(true);
         this.player2 = new Player(false);
+
+        for(int i = 0; i < 6; i++){
+            this.player1.addACard(this.deck.getACard());
+            this.player2.addACard(this.deck.getACard());
+        }
     }
 
     /**
@@ -88,7 +93,7 @@ public class BoardController {
      */
     public void applyEffect(Player player, Card card)
     {
-        // TODO : Create the method to apply effects
+
     }
 
     /**
