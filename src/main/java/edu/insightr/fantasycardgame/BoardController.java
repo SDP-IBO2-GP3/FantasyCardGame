@@ -1,4 +1,5 @@
 package edu.insightr.fantasycardgame;
+
 import java.util.List;
 
 /**
