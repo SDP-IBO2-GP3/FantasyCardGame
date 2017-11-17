@@ -45,9 +45,26 @@ public class Player {
         this.score = 0;
     }
 
-    public void addACard(Card card)
-    {
+    public void addACard(Card card) {
         this.listCardsInHand.add(card);
+    }
+
+    //Getters
+    public ArrayList<Card> getListCardsKingdom() {
+        return this.listCardsKingdom;
+    }
+
+    public ArrayList<Card> getListCardsInHand() {
+        return listCardsInHand;
+    }
+
+    //Setters
+    public void setListCardsKingdom(ArrayList<Card> newKingdom) {
+        this.listCardsKingdom = newKingdom;
+    }
+
+    public void setListCardsInHand(ArrayList<Card> listCardsInHand) {
+        this.listCardsInHand = listCardsInHand;
     }
 
 

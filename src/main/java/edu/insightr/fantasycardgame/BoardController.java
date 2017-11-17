@@ -1,5 +1,6 @@
 package edu.insightr.fantasycardgame;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -84,11 +85,44 @@ public class BoardController {
     /**
      * Apply the effect of the card on the board
      * @param card The card which has been played
-     * @param player The player who has played the card
+     * @param playerP The player who has played the card
+     * @param player The other player
      */
-    public void applyEffect(Player player, Card card)
+    public void applyEffect(Player playerP, Player player, Card card)
     {
+        switch(card.getRace()){
+            case Troll:
+                ArrayList<Card> tempKingdom = playerP.getListCardsKingdom();
+                playerP.setListCardsKingdom(player.getListCardsKingdom());
+                player.setListCardsKingdom(tempKingdom);
+                break;
 
+            case Goblin:
+                ArrayList<Card> tempHand = playerP.getListCardsInHand();
+                playerP.setListCardsInHand(player.getListCardsInHand());
+                player.setListCardsInHand(tempHand);
+                break;
+
+            case Elf:
+
+                break;
+
+            case Dryad:
+
+                break;
+
+            case Gnome:
+                playerP.addACard(deck.getACard());
+                playerP.addACard(deck.getACard());
+                break;
+
+            case Korrigan:
+
+                break;
+
+            default:
+
+        }
     }
 
     /**
