@@ -19,6 +19,7 @@ public class Deck {
      */
     private Stack<Card> listCard;
 
+
     /**
      * The highest number of cards our deck can contain.
      */
@@ -58,6 +59,7 @@ public class Deck {
             }
         }
     }
+
     public void shuffleDeck(){
         Collections.shuffle(this.listCard);
     }
