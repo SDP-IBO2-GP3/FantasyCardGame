@@ -1,6 +1,7 @@
 package edu.insightr.fantasycardgame;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * <b>A class representing each of our players</b><br><br>
@@ -14,6 +15,8 @@ import java.util.ArrayList;
  * </ul>
  */
 public class Player {
+
+    Random random = new Random();
     /**
      * List of the cards in the hand of the player
      */
@@ -49,24 +52,56 @@ public class Player {
         this.listCardsInHand.add(card);
     }
 
+    public void addACardKingdom(Card card){
+        this.listCardsKingdom.add(card);
+        this.score += 1;
+    }
+
     //Getters
     public ArrayList<Card> getListCardsKingdom() {
         return this.listCardsKingdom;
     }
 
     public ArrayList<Card> getListCardsInHand() {
-        return listCardsInHand;
+        return this.listCardsInHand;
     }
 
+    public int getScore(){return this.score;}
+
+    public Card getRandomKingdomCard(boolean delete) {
+        int randomNumber = (int) (Math.random() * (this.listCardsKingdom.size()));
+
+        Card returnValue = listCardsKingdom.get(randomNumber);
+
+        if(delete){
+            this.listCardsKingdom.remove(randomNumber);
+            this.score -= 1;
+        }
+
+        return returnValue;
+    }
+
+
+    public Card getRandomHandCard(boolean delete) {
+        int randomNumber = (int) (Math.random() * (this.listCardsInHand.size()));
+
+        Card returnValue = listCardsInHand.get(randomNumber);
+
+        if(delete)
+            this.listCardsInHand.remove(randomNumber);
+
+        return returnValue;
+    }
     //Setters
     public void setListCardsKingdom(ArrayList<Card> newKingdom) {
         this.listCardsKingdom = newKingdom;
     }
 
-    public void setListCardsInHand(ArrayList<Card> listCardsInHand) {
-        this.listCardsInHand = listCardsInHand;
+    public void setListCardsInHand(ArrayList<Card> newListCardsInHand) {
+        this.listCardsInHand = newListCardsInHand;
     }
 
+    public void setScore(int newScore) { this.score = newScore; }
 
     @Override
     public String toString() {

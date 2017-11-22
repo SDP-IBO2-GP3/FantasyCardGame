@@ -1,5 +1,6 @@
 package edu.insightr.fantasycardgame;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,8 +57,12 @@ public class BoardController {
      *
      * @return True if the player could play, false else
      */
-    public boolean playATurn()
+    public boolean playATurn(Player playerP, Player playerO)
     {
+        playerP.addACard(deck.getACard());
+
+        // TODO: The player choose which card played
+
         return true;
     }
 
@@ -67,8 +72,10 @@ public class BoardController {
      *
      * @return True if the AI could play, false else
      */
-    public boolean playAITurn()
+    public boolean playAITurn(Player playerP, Player playerO)
     {
+        playerP.addACard(deck.getACard());
+        // TODO: Implement the AI
         return true;
     }
 
@@ -77,24 +84,33 @@ public class BoardController {
      * the turn, and this methods exits, giving the winner.
      * @return The instance of the player who has won
      */
-    public Player execute()
-    {
-        return new Player(true);
-    }
 
+    static void swapList(ArrayList<Card> x, ArrayList<Card> y)
+    {
+        ArrayList<Card> tempSwap = x;
+        x = y;
+        y = tempSwap;
+    }
     /**
      * Apply the effect of the card on the board
      * @param card The card which has been played
      * @param playerP The player who has played the card
      * @param player The other player
      */
+
     public void applyEffect(Player playerP, Player player, Card card)
     {
         switch(card.getRace()){
             case Troll:
+                //Swap kingdom
                 ArrayList<Card> tempKingdom = playerP.getListCardsKingdom();
                 playerP.setListCardsKingdom(player.getListCardsKingdom());
                 player.setListCardsKingdom(tempKingdom);
+
+                //Swap score
+                int tempScore = playerP.getScore();
+                playerP.setScore(player.getScore());
+                player.setScore(tempScore);
                 break;
 
             case Goblin:
@@ -104,11 +120,11 @@ public class BoardController {
                 break;
 
             case Elf:
-
+                this.applyEffect(playerP, player, player.getRandomKingdomCard(false));
                 break;
 
             case Dryad:
-
+                playerP.addACardKingdom(player.getRandomKingdomCard(true));
                 break;
 
             case Gnome:
@@ -117,7 +133,8 @@ public class BoardController {
                 break;
 
             case Korrigan:
-
+                playerP.addACard(player.getRandomHandCard(true));
+                playerP.addACard(player.getRandomHandCard(true));
                 break;
 
             default:
