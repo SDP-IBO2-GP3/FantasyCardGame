@@ -2,11 +2,11 @@ package edu.insightr.fantasycardgame;
 
 
 import javafx.fxml.FXML;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 
 public class BoardViewController implements Initializable{
@@ -19,8 +19,8 @@ public class BoardViewController implements Initializable{
         // Reflechir sur quand on clique sur le deck, une carte sort aléatoirement
     }
 
-    public void getACard(MouseEvent e)
+    public void getACard()
     {
-        deck.setRotate(43);
+        System.out.println("on clique");
     }
 }
