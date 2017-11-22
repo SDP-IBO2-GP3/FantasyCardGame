@@ -54,6 +54,7 @@ public class Player {
 
     public void addACardKingdom(Card card){
         this.listCardsKingdom.add(card);
+        this.score += 1;
     }
 
     //Getters
@@ -74,7 +75,7 @@ public class Player {
 
         if(delete){
             this.listCardsKingdom.remove(randomNumber);
-            this.score = this.score - 1;
+            this.score -= 1;
         }
 
         return returnValue;
