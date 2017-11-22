@@ -109,4 +109,8 @@ public class Player {
     public String toString() {
         return "The player has the following cards in hand : " + listCardsInHand;
     }
+
+    public int getSizeOfList() {
+        return listCardsInHand.size();
+    }
 }

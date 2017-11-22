@@ -1,8 +1,6 @@
 package edu.insightr.fantasycardgame;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * <b>The Board controller class is going to handle our whole game.</b><br><br>
@@ -26,14 +24,8 @@ public class BoardController {
      */
     private Deck deck;
 
-    /**
-     * First player
-     */
     private Player player1;
 
-    /**
-     * Second player
-     */
     private Player player2;
 
     /**
