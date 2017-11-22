@@ -33,7 +33,7 @@ public class MyStepdefs {
 
     @Then("^Player1 has 5 cards in his hand$")
     public void playerHasCardsInHisHand() throws Throwable {
-        //org.junit.Assert.assertEquals("dd",arg0);
+        // org.junit.Assert.assertEquals("dd",arg0);
 
         org.junit.Assert.assertEquals(60,board.getDeck().getSize());
         // Write code here that turns the phrase above into concrete actions
