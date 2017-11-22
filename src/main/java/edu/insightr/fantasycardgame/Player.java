@@ -52,6 +52,8 @@ public class Player {
 
     public int getSizeOfList() {return listCardsInHand.size(); }
 
+    public int getSizeOfKingdom() {return listCardsKingdom.size(); }
+
     @Override
     public String toString() {
         return "The player has the following cards in hand : " + listCardsInHand;
