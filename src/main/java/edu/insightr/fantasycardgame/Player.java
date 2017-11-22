@@ -103,6 +103,8 @@ public class Player {
 
     public void setScore(int newScore) { this.score = newScore; }
 
+    public int getSizeOfKingdom() {return listCardsKingdom.size(); }
+
     @Override
     public String toString() {
         return "The player has the following cards in hand : " + listCardsInHand;
