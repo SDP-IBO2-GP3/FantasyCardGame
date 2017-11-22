@@ -118,4 +118,6 @@ public class BoardController {
     public Player getPlayer2() {
         return player2;
     }
+
+    public Deck getDeck() { return deck; }
 }
