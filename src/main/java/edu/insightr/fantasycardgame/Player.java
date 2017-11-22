@@ -50,6 +50,7 @@ public class Player {
         this.listCardsInHand.add(card);
     }
 
+    public int getSizeOfList() {return listCardsInHand.size(); }
 
     @Override
     public String toString() {

@@ -2,4 +2,5 @@ Feature: Playground
 
   Scenario: Initialize Playground
     Given Playground is initialized
-    Then Player1 has 5 cards in his hand
+    Then Deck is filled
+    And Players have 6 cards in their hand

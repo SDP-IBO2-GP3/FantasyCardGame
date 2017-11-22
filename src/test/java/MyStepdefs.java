@@ -11,6 +11,7 @@ import junit.framework.Assert;
 public class MyStepdefs {
 
     private BoardController board;
+
     /**
      * Scenario: Initialize Playground
      */
@@ -18,13 +19,17 @@ public class MyStepdefs {
     @Given("^Playground is initialized$")
     public void PlaygroundIsInitialized() throws Throwable{
         board = new BoardController();
-        board.getDeck().fillDeck();
-        // Write code allowing to load the playground
+        board.initiliazeGame();
     }
 
-    @Then("^Player1 has 5 cards in his hand$")
+    @Then("^Deck is filled$")
+    public void deckIsFilled() throws Throwable {
+        org.junit.Assert.assertEquals(48, board.getDeck().getSize());
+    }
+
+    @And("^Players have 6 cards in their hand$")
     public void playerHasCardsInHisHand() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        org.junit.Assert.assertEquals(60, board.getDeck().getSize());
+        org.junit.Assert.assertEquals(6, board.getPlayer1().getSizeOfList());
+        org.junit.Assert.assertEquals(6, board.getPlayer2().getSizeOfList());
     }
 }
