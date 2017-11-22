@@ -72,8 +72,10 @@ public class Player {
 
         Card returnValue = listCardsKingdom.get(randomNumber);
 
-        if(delete)
+        if(delete){
             this.listCardsKingdom.remove(randomNumber);
+            this.score = this.score - 1;
+        }
 
         return returnValue;
     }
