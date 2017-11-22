@@ -26,17 +26,7 @@ public class Main extends Application{
     public static void main(String[] args){
         launch(args);
         System.out.println("Hello Wolrd ! This is our amazing card game  ");
-        System.out.println((new Card(Card.Race.Goblin).toString()));
-        Deck deck = new Deck();
-        deck.fillDeck();
-        System.out.println(deck);
-        deck.shuffleDeck();
-        System.out.println(deck);
 
-        BoardController b = new BoardController();
-        b.initiliazeGame();
-        System.out.println(b.getPlayer1());
-        System.out.println(b.getPlayer2());
         LOGGER.error("Hello world it doesn't work for now .. ");
     }
 }
