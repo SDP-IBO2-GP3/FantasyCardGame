@@ -92,6 +92,13 @@ public class Player {
 
         return returnValue;
     }
+
+    public Card getHandCard(Card toDelete){
+        Card returnValue = this.getListCardsInHand().get(this.listCardsInHand.lastIndexOf(toDelete));
+        this.getListCardsInHand().remove(this.listCardsInHand.lastIndexOf(toDelete));
+        return returnValue;
+    }
+
     //Setters
     public void setListCardsKingdom(ArrayList<Card> newKingdom) {
         this.listCardsKingdom = newKingdom;
