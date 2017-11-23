@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-            prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="edu.insightr.fantasycardgame.BoardViewController">
-      <AnchorPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <ImageView fitHeight="425.0" fitWidth="600.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.insightr.fantasycardgame.BoardViewController">
+      <AnchorPane prefHeight="661.0" prefWidth="1000.0" AnchorPane.bottomAnchor="39.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <ImageView fitHeight="700.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true">
             <Image url="@../img/parchemin.jpg" />
       </ImageView>
-   <AnchorPane layoutX="124.0" layoutY="1.0" prefHeight="203.0" prefWidth="475.0">
+   <AnchorPane layoutX="343.0" layoutY="6.0" prefHeight="203.0" prefWidth="475.0">
             <AnchorPane layoutX="15.0" prefHeight="90.0" prefWidth="446.0">
                   <ImageView fitHeight="90.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true">
                         <Image url="@../img/face_retournee.png" />
@@ -31,35 +32,78 @@
                   </ImageView>
             </AnchorPane>
       </AnchorPane>
-   <AnchorPane layoutX="124.0" layoutY="197.0" prefHeight="203.0" prefWidth="475.0">
-            <AnchorPane layoutX="15.0" layoutY="113.0" prefHeight="90.0" prefWidth="446.0">
-                  <ImageView fitHeight="90.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true">
-                        <Image url="@../img/DRYAD.png" />
-                  </ImageView>
-                  <ImageView fitHeight="90.0" fitWidth="72.0" layoutX="59.0" pickOnBounds="true" preserveRatio="true">
-                        <Image url="@../img/GNOME.png" />
-                  </ImageView>
-                  <ImageView fitHeight="90.0" fitWidth="72.0" layoutX="118.0" pickOnBounds="true" preserveRatio="true">
-                        <Image url="@../img/TROLL.png" />
-                  </ImageView>
-                  <ImageView fitHeight="90.0" fitWidth="72.0" layoutX="177.0" pickOnBounds="true" preserveRatio="true">
-                        <Image url="@../img/KORRIGAN.png" />
-                  </ImageView>
-                  <ImageView fitHeight="90.0" fitWidth="72.0" layoutX="236.0" pickOnBounds="true" preserveRatio="true">
-                        <Image url="@../img/GOBELIN.png" />
-                  </ImageView>
-                  <ImageView fitHeight="90.0" fitWidth="72.0" layoutX="295.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="295.0">
-                        <Image url="@../img/ELF.png" />
-                  </ImageView>
-            </AnchorPane>
-      </AnchorPane>
    <AnchorPane layoutX="14.0" layoutY="126.0" prefHeight="143.0" prefWidth="95.0">
-      <ImageView fx:id="deck" fitHeight="150.0" fitWidth="115.0" onMouseClicked="#getACard" layoutX="-7.0"
-                 pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="deck" fitHeight="211.0" fitWidth="119.0" layoutX="24.0" layoutY="83.0" onMouseClicked="#getACard" pickOnBounds="true" preserveRatio="true">
                   <Image url="@../img/face_retournee.png" />
             </ImageView>
       </AnchorPane>
-      <ImageView fitHeight="90.0" fitWidth="86.0" layoutX="24.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-            <Image url="@../img/sablier.png" />
-      </ImageView>
+   <AnchorPane layoutX="162.0" layoutY="320.0" prefHeight="120.0" prefWidth="680.0">
+      <children>
+         <ImageView fitHeight="176.0" fitWidth="126.0" layoutX="60.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../img/DRYAD.png" />
+            </image>
+         </ImageView>
+         <ImageView fitHeight="176.0" fitWidth="120.0" layoutX="180.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../img/GNOME.png" />
+            </image>
+         </ImageView>
+         <ImageView fitHeight="176.0" fitWidth="120.0" layoutX="300.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../img/TROLL.png" />
+            </image>
+         </ImageView>
+         <ImageView fitHeight="176.0" fitWidth="120.0" layoutX="420.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../img/KORRIGAN.png" />
+            </image>
+         </ImageView>
+         <ImageView fitHeight="176.0" fitWidth="120.0" layoutX="540.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../img/GOBELIN.png" />
+            </image>
+         </ImageView>
+         <ImageView fitHeight="176.0" fitWidth="120.0" layoutX="660.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../img/ELF.png" />
+            </image>
+         </ImageView>
+      </children>
+   </AnchorPane>
+   <Separator layoutX="165.0" layoutY="300.0" prefHeight="32.0" prefWidth="831.0" />
+   <AnchorPane layoutX="162.0" layoutY="135.0" prefHeight="120.0" prefWidth="680.0">
+      <children>
+         <ImageView fitHeight="176.0" fitWidth="126.0" layoutX="60.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../img/DRYAD.png" />
+            </image>
+         </ImageView>
+         <ImageView fitHeight="176.0" fitWidth="120.0" layoutX="180.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../img/GNOME.png" />
+            </image>
+         </ImageView>
+         <ImageView fitHeight="176.0" fitWidth="120.0" layoutX="300.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../img/TROLL.png" />
+            </image>
+         </ImageView>
+         <ImageView fitHeight="176.0" fitWidth="120.0" layoutX="420.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../img/KORRIGAN.png" />
+            </image>
+         </ImageView>
+         <ImageView fitHeight="176.0" fitWidth="120.0" layoutX="540.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../img/GOBELIN.png" />
+            </image>
+         </ImageView>
+         <ImageView fitHeight="176.0" fitWidth="120.0" layoutX="660.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../img/ELF.png" />
+            </image>
+         </ImageView>
+      </children>
+   </AnchorPane>
 </AnchorPane>
