@@ -28,9 +28,6 @@ public class BoardController {
 
     private Player player2;
 
-    /**
-     * Denotes if it is an AI turn or not
-     */
     private boolean isAITurn;
 
     /**
@@ -49,11 +46,9 @@ public class BoardController {
      *
      * @return True if the player could play, false else
      */
-    public boolean playATurn(Player playerP, Player playerO)
+    public boolean playHumanTurn(Player playerP, Player playerO)
     {
         playerP.addACard(deck.getACard());
-
-        // TODO: The player choose which card played
 
         return true;
     }
@@ -67,7 +62,7 @@ public class BoardController {
     public boolean playAITurn(Player playerP, Player playerO)
     {
         playerP.addACard(deck.getACard());
-        // TODO: Implement the AI
+
         return true;
     }
 
@@ -76,20 +71,19 @@ public class BoardController {
      * the turn, and this methods exits, giving the winner.
      * @return The instance of the player who has won
      */
-
     static void swapList(ArrayList<Card> x, ArrayList<Card> y)
     {
         ArrayList<Card> tempSwap = x;
         x = y;
         y = tempSwap;
     }
+
     /**
      * Apply the effect of the card on the board
      * @param card The card which has been played
      * @param playerP The player who has played the card
      * @param player The other player
      */
-
     public void applyEffect(Player playerP, Player player, Card card)
     {
         switch(card.getRace()){
