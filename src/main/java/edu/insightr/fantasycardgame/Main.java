@@ -23,6 +23,7 @@ public class Main extends Application{
             Scene scene = new Scene(root,1000,700);
 
 
+
             primaryStage.setScene(scene);
             primaryStage.setTitle("FantasyCard");
 
