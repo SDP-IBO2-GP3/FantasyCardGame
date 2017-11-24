@@ -51,7 +51,6 @@ public class PowerDefs {
     }
 
     private BoardController board;
-
     private int sizePlayer1BeforeEffect;
     private int sizePlayer2BeforeEffect;
     private int scorePlayer1BeforeEffect;
@@ -178,5 +177,22 @@ public class PowerDefs {
     @And("^Player2 has one card less in his kingdom$")
     public void playerHasOneCardLessInHisKingdom() throws Throwable {
         Assert.assertEquals(sizePlayer2BeforeEffect-1, board.getPlayer2().getSizeOfKingdom());
+    }
+
+    @When("^Player1 is playing the Gnome$")
+    public void playerIsPlayingTheGnome() throws Throwable {
+        Card gnome = new Card(Card.Race.Gnome);
+        board.getPlayer1().addACard(gnome);
+
+        numberOfCardsHandPlayer1 = board.getPlayer1().getListCardsInHand().size();
+        scorePlayer1BeforeEffect = board.getPlayer1().getScore();
+
+        board.playCard(board.getPlayer1(),board.getPlayer2(), gnome);
+    }
+
+    @Then("^The player1 draw 2 cards$")
+    public void thePlayerDrawCards() throws Throwable {
+        org.junit.Assert.assertEquals(scorePlayer1BeforeEffect + 1, board.getPlayer1().getScore());
+        org.junit.Assert.assertEquals(numberOfCardsHandPlayer1 + 1, board.getPlayer1().getListCardsInHand().size());
     }
 }

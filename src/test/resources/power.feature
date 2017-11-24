@@ -27,3 +27,7 @@ Scenario: Dryad Card Power
     When Player1 is playing a Dryad
     Then Player1 has one more card in his kingdom
     And Player2 has one card less in his kingdom
+
+Scenario: Gnome Card Power
+    When Player1 is playing the Gnome
+    Then The player1 draw 2 cards
