@@ -21,6 +21,29 @@ public class BoardViewController implements Initializable{
 
     public void getACard()
     {
-        System.out.println("on clique");
+        //System.out.println("on clique");
+        int cardId = (int) (Math.random() * 6 );
+        System.out.println(cardId);
+        Card card;
+        switch(cardId){
+            case 0:
+                card = new Card(Card.Race.Korrigan);
+                break;
+            case 1:
+                card = new Card(Card.Race.Troll);
+                break;
+            case 2:
+                card = new Card(Card.Race.Goblin);
+                break;
+            case 3:
+                card = new Card(Card.Race.Elf);
+                break;
+            case 4:
+                card = new Card(Card.Race.Dryad);
+                break;
+            case 5:
+                card = new Card(Card.Race.Gnome);
+                break;
+        }
     }
 }
