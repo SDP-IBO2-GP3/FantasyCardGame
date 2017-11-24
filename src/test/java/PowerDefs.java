@@ -15,8 +15,7 @@ import java.util.Random;
 
 public class PowerDefs {
 
-
-    public void createCardKingdom(Player player,int sizeRandom){
+    public void createCardKingdom(Player player, int sizeRandom){
 
         Random rand = new Random();
 
@@ -59,6 +58,8 @@ public class PowerDefs {
     private int scorePlayer2BeforeEffect;
     private ArrayList<Card> handPlayer1BeforeEffect;
     private ArrayList<Card> handPlayer2BeforeEffect;
+    private int numberOfCardsHandPlayer1;
+    private int numberOfCardsHandPlayer2;
 
     /**
      * Scenario: Troll Card Power
@@ -121,20 +122,61 @@ public class PowerDefs {
         Card korrigan = new Card(Card.Race.Korrigan);
         board.getPlayer1().addACardKingdom(korrigan);
 
-        handPlayer1BeforeEffect = board.getPlayer1().getListCardsInHand();
-        handPlayer2BeforeEffect = board.getPlayer2().getListCardsInHand();
-        System.out.println(handPlayer1BeforeEffect.size());
-        System.out.println(handPlayer2BeforeEffect.size());
+        numberOfCardsHandPlayer1 = board.getPlayer1().getListCardsInHand().size();
+        numberOfCardsHandPlayer2 = board.getPlayer2().getListCardsInHand().size();
         board.applyEffect(board.getPlayer1(), board.getPlayer2(), korrigan);
     }
 
     @Then("^Player2 has two cards less in his hand$")
     public void playerHasTwoCardsLessInHisHand() throws Throwable {
-        Assert.assertEquals(handPlayer2BeforeEffect.size()-2, board.getPlayer2().getListCardsInHand().size());
+        Assert.assertEquals(numberOfCardsHandPlayer2-2, board.getPlayer2().getListCardsInHand().size());
     }
 
     @And("^Player1 has two more cards in his hand$")
     public void playerHasTwoMoreCardsInHisHand() throws Throwable {
-        Assert.assertEquals(handPlayer1BeforeEffect.size()+2, board.getPlayer1().getListCardsInHand().size());
+        Assert.assertEquals(numberOfCardsHandPlayer1+2, board.getPlayer1().getListCardsInHand().size());
+    }
+
+    /**
+     * Scenario: Elf Card Power
+     */
+
+    /*@When("^Player1 is playing a Elf$")
+    public void playerIsPlayingAElf() throws Throwable {
+        Card elf = new Card(Card.Race.Elf);
+        board.applyEffect(board.getPlayer1(), board.getPlayer2(), elf);
+    }
+
+    @Then("^Player1 copies one card from the player2 kingdom$")
+    public void playerCopiesOneCardFromThePlayerKingdom() throws Throwable {
+
+    }
+
+    @And("^the player2 get the same kingdom size$")
+    public void thePlayerGetTheSameKingdomSize() throws Throwable {
+
+    }*/
+
+    /**
+     * Scenario: Dryad Card Power
+     */
+
+    @When("^Player1 is playing a Dryad$")
+    public void playerIsPlayingADryad() throws Throwable {
+        Card dryad = new Card(Card.Race.Dryad);
+        sizePlayer1BeforeEffect = board.getPlayer1().getSizeOfKingdom();
+        sizePlayer2BeforeEffect = board.getPlayer2().getSizeOfKingdom();
+        board.applyEffect(board.getPlayer1(), board.getPlayer2(), dryad);
+
+    }
+
+    @Then("^Player1 has one more card in his kingdom$")
+    public void playerHasOneMoreCardInHisKingdom() throws Throwable {
+        Assert.assertEquals(sizePlayer1BeforeEffect+1,board.getPlayer1().getSizeOfKingdom());
+    }
+
+    @And("^Player2 has one card less in his kingdom$")
+    public void playerHasOneCardLessInHisKingdom() throws Throwable {
+        Assert.assertEquals(sizePlayer2BeforeEffect-1, board.getPlayer2().getSizeOfKingdom());
     }
 }
