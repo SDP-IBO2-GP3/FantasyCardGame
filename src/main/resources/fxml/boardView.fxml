@@ -29,7 +29,7 @@
         </ImageView>
     </AnchorPane>
     <AnchorPane layoutX="22.0" layoutY="224.0" prefHeight="168.0" prefWidth="119.0">
-        <ImageView fx:id="deck" fitHeight="242.0" fitWidth="119.0" onMouseClicked="#getACard" pickOnBounds="true"
+        <ImageView fx:id="deck" fitHeight="242.0" fitWidth="119.0" onMouseClicked="#getCardFromDeck" pickOnBounds="true"
                    preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                   <Image url="@../img/face_retournee.png" />
             </ImageView>

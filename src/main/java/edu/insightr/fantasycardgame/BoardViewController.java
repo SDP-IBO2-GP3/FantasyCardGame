@@ -11,12 +11,24 @@ import java.util.ResourceBundle;
 
 public class BoardViewController implements Initializable{
 
+    private BoardController game;
+    private Player human;
+    private Player aiPlayer;
+
     @FXML
     private ImageView deck;
 
     public void initialize(URL arg0, ResourceBundle arg1) {
-        // TODO Auto-generated method stu
-        // Reflechir sur quand on clique sur le deck, une carte sort aléatoirement
+        game = new BoardController();
+        game.initiliazeGame();
+        human = new Player(true);
+        aiPlayer = new Player(false);
     }
 
+    public void getCardFromDeck() {
+        if (game.playHumanTurn(human, aiPlayer)) {
+            // Actualisation de l'image view des la main du joueur.
+
+        }
+    }
 }
