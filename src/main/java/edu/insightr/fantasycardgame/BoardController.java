@@ -78,6 +78,17 @@ public class BoardController {
         y = tempSwap;
     }
 
+    public boolean playCard(Player playerP, Player player, Card card){
+
+        if(playerP.getListCardsInHand().contains(card)){
+            playerP.getListCardsInHand().remove(playerP.getListCardsInHand().lastIndexOf(card));
+            playerP.addACardKingdom(card);
+            this.applyEffect(playerP, player, card);
+            return true;
+        }
+        return false;
+    }
+
     /**
      * Apply the effect of the card on the board
      * @param card The card which has been played
