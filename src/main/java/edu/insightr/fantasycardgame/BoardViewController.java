@@ -10,8 +10,6 @@ import javafx.scene.layout.AnchorPane;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static edu.insightr.fantasycardgame.Card.Race.Korrigan;
-
 
 public class BoardViewController implements Initializable{
 
@@ -38,9 +36,9 @@ public class BoardViewController implements Initializable{
         human = new Player(true);
         aiPlayer = new Player(false);
 
-        /*for(int i=0;i<10;i++){
+       for(int i=0;i<25;i++){
             game.getPlayer1().getListCardsInHand().add(new Card(Card.Race.Troll));
-        }*/
+        }
 
     }
 
@@ -48,15 +46,80 @@ public class BoardViewController implements Initializable{
         if (game.playHumanTurn(human, aiPlayer)) {
             int numberCard = game.getPlayer1().getListCardsInHand().size();
             int spaceCard = LENGTHXALL/numberCard;
+
+            double[] polynome = interpolationCoord(LENGTHXALL,numberCard*2);
+
             for(int i=0;i<numberCard;i++){
+
+                // ImageView can only apply Image
                 Image imageCurrent = createImage(game.getPlayer1().getListCardsInHand().get(i));
                 ImageView imageViewCurrent = createImageView(imageCurrent);
-                imageViewCurrent.setX(spaceCard*i);
+                imageViewCurrent.setX(spaceCard*i); // Position on the X axis
+                imageViewCurrent.setY(applyPolynome(polynome,spaceCard*i + LENGTHWIDTH/4)); // Position on the Y axis
+
+                // The first half is oriented toward left direction, secont toward right
+                double angle = -calculAngle(polynome,spaceCard*i);
+                System.out.println("Angle : "+angle);
+                if(i > numberCard / 2 && angle < 0){
+                    angle *= -1;
+                }
+
+
+                imageViewCurrent.setRotate(angle);
+                System.out.println("Angle Get : "+ imageViewCurrent.getRotate());
+                //imageViewCurrent.setRotate(31.9);
                 PlayerHand.getChildren().add(imageViewCurrent);
             }
             // Actualisation de l'image view des la main du joueur.
 
         }
+    }
+
+
+    /**
+     * In function of L and Yn this function create a polynomial
+     * @param L
+     * @param yn
+     * @return
+     */
+    private double[] interpolationCoord(int L,int yn){
+        double[] result = new double[2];
+        double a = yn*1.0 / (-(L*L)/4);
+        double b = -a*L;
+        result[0] = a;
+        result[1] = b;
+        return result;
+    }
+
+    /**
+     * Applicate a polynomial for a x given and return the y value corresponding
+     * @param poly
+     * @param x
+     * @return
+     */
+    private double applyPolynome(double[] poly,double x){
+        return -((x*x)*poly[0]+x*poly[1]);
+    }
+
+    /**
+     * Allow to calcul angle of each card based on arctan technical
+     * @param poly
+     * @param x
+     * @return
+     */
+    private double calculAngle(double[] poly,double x){
+
+        double a = x;
+        x += LENGTHWIDTH/4;
+
+        double yprime = (2*poly[0]*a+poly[1])*(x-a)+applyPolynome(poly,a);
+        double y = applyPolynome(poly,x);
+
+        double opposite = yprime-y;
+        double adjatent = x-a;
+
+        double delta = opposite/adjatent;
+        return Math.toDegrees(Math.atan(delta));
     }
 
     private String cardToRessource(Card card){

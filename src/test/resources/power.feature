@@ -16,3 +16,21 @@ Scenario: Korrigan Card Power
     When Player1 is playing a Korrigan
     Then Player2 has two cards less in his hand
     And Player1 has two more cards in his hand
+
+
+
+
+#Change random
+#Scenario: Elf Card Power
+ #   When Player1 is playing a Elf
+  #  Then Player1 copies one card from the player2 kingdom
+   # And the player2 get the same kingdom size
+
+Scenario: Dryad Card Power
+    When Player1 is playing a Dryad
+    Then Player1 has one more card in his kingdom
+    And Player2 has one card less in his kingdom
+
+Scenario: Gnome Card Power
+    When Player1 is playing the Gnome
+    Then The player1 draw 2 cards
