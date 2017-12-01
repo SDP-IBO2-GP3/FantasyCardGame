@@ -20,7 +20,8 @@ public class Main extends Application{
             Parent root = loader.load();*/
 
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/boardView.fxml"));
-            Scene scene = new Scene(root,600,400);
+            Scene scene = new Scene(root,1000,700);
+
 
 
             primaryStage.setScene(scene);
