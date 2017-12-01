@@ -1,3 +1,4 @@
+
 import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -6,7 +7,9 @@ import cucumber.api.java.en.When;
 import edu.insightr.fantasycardgame.BoardController;
 import edu.insightr.fantasycardgame.Card;
 import edu.insightr.fantasycardgame.Deck;
-import edu.insightr.fantasycardgame.Player;
+import org.junit.Assert;
+
+import java.util.ArrayList;
 
 public class PlaygroundDefs {
 
@@ -95,5 +98,27 @@ public class PlaygroundDefs {
     @Then("^the deck is empty$")
     public void theDeckIsEmpty() throws Throwable {
         org.junit.Assert.assertEquals(0,deck.getSize());
+    }
+
+    /**
+     * Scenario: Bonus score
+     */
+
+    @When("^Player1 has 6 different races in kingdom$")
+    public void playerHasDifferentRacesInKingdom() throws Throwable {
+        ArrayList<Card> listKingdom = new ArrayList<>();
+        listKingdom.add(new Card(Card.Race.Korrigan));
+        listKingdom.add(new Card(Card.Race.Elf));
+        listKingdom.add(new Card(Card.Race.Troll));
+        listKingdom.add(new Card(Card.Race.Gnome));
+        listKingdom.add(new Card(Card.Race.Dryad));
+        listKingdom.add(new Card(Card.Race.Goblin));
+
+        board.getPlayer1().setListCardsKingdom(listKingdom);
+    }
+
+    @Then("^Player has extra point$")
+    public void playerHasExtraPoint() throws Throwable {
+        Assert.assertEquals(3, board.getPlayer1().getScore());
     }
 }
