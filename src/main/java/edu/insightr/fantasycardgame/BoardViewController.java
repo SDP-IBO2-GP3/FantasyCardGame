@@ -1,10 +1,12 @@
 package edu.insightr.fantasycardgame;
 
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
@@ -16,6 +18,9 @@ public class BoardViewController implements Initializable{
     private BoardController game;
     private Player human;
     private Player aiPlayer;
+
+    @FXML
+    private ImageView displayCardBigger;
 
     @FXML
     private ImageView deck;
@@ -30,6 +35,7 @@ public class BoardViewController implements Initializable{
     private static final int LENGTHWIDTH = 76;
 
     private boolean firstDraw = true;
+
 
 
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -53,7 +59,10 @@ public class BoardViewController implements Initializable{
 
             // ImageView can only apply Image
             Image imageCurrent = createImage(game.getPlayer1().getListCardsInHand().get(i));
-            ImageView imageViewCurrent = createImageView(imageCurrent);
+            ImageView imageViewCurrent = createImageView(imageCurrent,LENGTHWIDTH,LENGTHHEIGHT);
+            imageViewCurrent.setId(""+i);
+            imageViewCurrent.setOnMouseEntered(handleDisplayCardBigger);
+            imageViewCurrent.setOnMouseExited(handleEmptyCardBigger);
             imageViewCurrent.setX(spaceCard*i); // Position on the X axis
             imageViewCurrent.setY(applyPolynome(polynome,spaceCard*i + LENGTHWIDTH/4)); // Position on the Y axis
 
@@ -67,6 +76,28 @@ public class BoardViewController implements Initializable{
             PlayerHand.getChildren().add(imageViewCurrent);
         }
     }
+
+    private EventHandler<? super MouseEvent> handleDisplayCardBigger = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+            ImageView imageViewCurrent = (ImageView)event.getSource();
+            displayCardBigger.setImage(imageViewCurrent.getImage());
+        }
+    };
+
+    private EventHandler<? super MouseEvent> handleEmptyCardBigger = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+            displayCardBigger.setImage(null);
+        }
+    };
+
+
+
+
+
+
+
 
     public void getCardFromDeck() {
         if (game.playHumanTurn(human, aiPlayer)) {
@@ -158,15 +189,14 @@ public class BoardViewController implements Initializable{
 
     private Image createImage(Card card){
         String ressource = cardToRessource(card);
-        System.out.print("Ressource : "+ressource);
         return new Image(getClass().getResourceAsStream(ressource));
     }
 
-    public ImageView createImageView(Image image){
+    public ImageView createImageView(Image image,int width,int height){
 //   <ImageView fitHeight="123.0" fitWidth="79.0" layoutX="59.0" pickOnBounds="true" preserveRatio="true">
         ImageView imageView = new ImageView(image);
-        imageView.setFitHeight(LENGTHHEIGHT);
-        imageView.setFitWidth(LENGTHWIDTH);
+        imageView.setFitHeight(height);
+        imageView.setFitWidth(width);
         return imageView;
        // PlayerHand.getChildren().add(imageView);
     }

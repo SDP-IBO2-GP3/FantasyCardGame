@@ -7,9 +7,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0"
             prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="edu.insightr.fantasycardgame.BoardViewController">
-    <ImageView fx:id="displayCardBigger" fitHeight="450.0" fitWidth="290.0" pickOnBounds="true" preserveRatio="true"
-               AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="355.0" AnchorPane.rightAnchor="355.0"
-               AnchorPane.topAnchor="50.0"/>
+
       <AnchorPane prefHeight="661.0" prefWidth="1000.0" AnchorPane.bottomAnchor="39.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <ImageView fitHeight="700.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true">
             <Image url="@../img/parchemin.jpg" />
@@ -339,5 +337,9 @@
                 </font>
             </Text>
         </children>
+
     </AnchorPane>
+    <ImageView fx:id="displayCardBigger" fitHeight="450.0" fitWidth="290.0" pickOnBounds="true" preserveRatio="true"
+               AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="355.0" AnchorPane.rightAnchor="355.0"
+               AnchorPane.topAnchor="50.0"/>
 </AnchorPane>
