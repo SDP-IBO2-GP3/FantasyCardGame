@@ -3,18 +3,17 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import edu.insightr.fantasycardgame.BoardController;
 import edu.insightr.fantasycardgame.Card;
 import edu.insightr.fantasycardgame.Deck;
-import edu.insightr.fantasycardgame.Player;
+import edu.insightr.fantasycardgame.Game;
 
 public class PlaygroundDefs {
 
-    private BoardController board;
+    private Game board;
     private Deck deck;
 
     @Before public void setUp(){
-        board = new BoardController();
+        board = new Game();
         board.initiliazeGame();
         deck = new Deck();
     }

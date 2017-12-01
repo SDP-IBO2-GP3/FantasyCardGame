@@ -15,9 +15,19 @@ import java.util.ResourceBundle;
 
 public class BoardViewController implements Initializable{
 
-    private BoardController game;
+    //region attributes
+    private Game game;
     private Player human;
     private Player aiPlayer;
+    private static final int LENGTHXALL = 560;
+    private static final int LENGTHHEIGHT = 123;
+    private static final int LENGTHWIDTH = 76;
+    private boolean firstDraw = true;
+
+
+    //endregion
+
+    //region FXML
 
     @FXML
     private ImageView displayCardBigger;
@@ -28,47 +38,41 @@ public class BoardViewController implements Initializable{
     @FXML
     private ImageView carte1;
 
-    @FXML private AnchorPane PlayerHand;
+    @FXML
+    private AnchorPane PlayerHand;
 
-    private static final int LENGTHXALL = 560;
-    private static final int LENGTHHEIGHT = 123;
-    private static final int LENGTHWIDTH = 76;
-
-    private boolean firstDraw = true;
+    //endregion
 
 
-
-    public void initialize(URL arg0, ResourceBundle arg1) {
-        game = new BoardController();
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        this.game = new Game();
+        this.human = game.getPlayer1();
+        this.aiPlayer = game.getPlayer2();
         game.initiliazeGame();
-        human = new Player(true);
-        aiPlayer = new Player(false);
-
-       //for(int i=0;i<25;i++){
-       //     game.getPlayer1().getListCardsInHand().add(new Card(Card.Race.Troll));
-       // }
-
+        displayCards();
     }
 
-    private void displayCards(){
+    private void displayCards() {
         int numberCard = game.getPlayer1().getListCardsInHand().size();
-        int spaceCard = LENGTHXALL/numberCard;
+        int spaceCard = LENGTHXALL / numberCard;
+        System.out.println("PlayerHand is Null ? : " + (PlayerHand == null));
         PlayerHand.getChildren().clear();
-        double[] polynome = interpolationCoord(LENGTHXALL,numberCard*2);
-        for(int i=0;i<numberCard;i++){
+        double[] polynome = interpolationCoord(LENGTHXALL, numberCard * 2);
+        for (int i = 0; i < numberCard; i++) {
 
             // ImageView can only apply Image
             Image imageCurrent = createImage(game.getPlayer1().getListCardsInHand().get(i));
-            ImageView imageViewCurrent = createImageView(imageCurrent,LENGTHWIDTH,LENGTHHEIGHT);
-            imageViewCurrent.setId(""+i);
+            ImageView imageViewCurrent = createImageView(imageCurrent, LENGTHWIDTH, LENGTHHEIGHT);
+            imageViewCurrent.setId("" + i);
             imageViewCurrent.setOnMouseEntered(handleDisplayCardBigger);
             imageViewCurrent.setOnMouseExited(handleEmptyCardBigger);
-            imageViewCurrent.setX(spaceCard*i); // Position on the X axis
-            imageViewCurrent.setY(applyPolynome(polynome,spaceCard*i + LENGTHWIDTH/4)); // Position on the Y axis
+            imageViewCurrent.setX(spaceCard * i); // Position on the X axis
+            imageViewCurrent.setY(applyPolynome(polynome, spaceCard * i + LENGTHWIDTH / 4)); // Position on the Y axis
 
             // The first half is oriented toward left direction, secont toward right
-            double angle = -calculAngle(polynome,spaceCard*i);
-            if(i > numberCard / 2 && angle < 0) {
+            double angle = -calculAngle(polynome, spaceCard * i);
+            if (i > numberCard / 2 && angle < 0) {
                 angle *= -1;
             }
 
@@ -80,7 +84,7 @@ public class BoardViewController implements Initializable{
     private EventHandler<? super MouseEvent> handleDisplayCardBigger = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
-            ImageView imageViewCurrent = (ImageView)event.getSource();
+            ImageView imageViewCurrent = (ImageView) event.getSource();
             displayCardBigger.setImage(imageViewCurrent.getImage());
         }
     };
@@ -92,21 +96,8 @@ public class BoardViewController implements Initializable{
         }
     };
 
-
-
-
-
-
-
-
     public void getCardFromDeck() {
-        if (game.playHumanTurn(human, aiPlayer)) {
-            if(!firstDraw){
-                Card card = game.getDeck().getACard();
-                game.getPlayer1().getListCardsInHand().add(card);
-            }else{
-                firstDraw = false;
-            }
+        if (game.playHumanTurn()) {
             displayCards();
 
         }
@@ -115,14 +106,15 @@ public class BoardViewController implements Initializable{
 
     /**
      * In function of L and Yn this function create a polynomial
+     *
      * @param L
      * @param yn
      * @return
      */
-    private double[] interpolationCoord(int L,int yn){
+    private double[] interpolationCoord(int L, int yn) {
         double[] result = new double[2];
-        double a = yn*1.0 / (-(L*L)/4);
-        double b = -a*L;
+        double a = yn * 1.0 / (-(L * L) / 4);
+        double b = -a * L;
         result[0] = a;
         result[1] = b;
         return result;
@@ -130,39 +122,41 @@ public class BoardViewController implements Initializable{
 
     /**
      * Applicate a polynomial for a x given and return the y value corresponding
+     *
      * @param poly
      * @param x
      * @return
      */
-    private double applyPolynome(double[] poly,double x){
-        return -((x*x)*poly[0]+x*poly[1]);
+    private double applyPolynome(double[] poly, double x) {
+        return -((x * x) * poly[0] + x * poly[1]);
     }
 
     /**
      * Allow to calcul angle of each card based on arctan technical
+     *
      * @param poly
      * @param x
      * @return
      */
-    private double calculAngle(double[] poly,double x){
+    private double calculAngle(double[] poly, double x) {
 
         double a = x;
-        x += LENGTHWIDTH/4;
+        x += LENGTHWIDTH / 4;
 
-        double yprime = (2*poly[0]*a+poly[1])*(x-a)+applyPolynome(poly,a);
-        double y = applyPolynome(poly,x);
+        double yprime = (2 * poly[0] * a + poly[1]) * (x - a) + applyPolynome(poly, a);
+        double y = applyPolynome(poly, x);
 
-        double opposite = yprime-y;
-        double adjatent = x-a;
+        double opposite = yprime - y;
+        double adjatent = x - a;
 
-        double delta = opposite/adjatent;
+        double delta = opposite / adjatent;
         return Math.toDegrees(Math.atan(delta));
     }
 
-    private String cardToRessource(Card card){
+    private String cardToRessource(Card card) {
         String result = "";
-        switch (card.race){
-            case Korrigan :
+        switch (card.race) {
+            case Korrigan:
                 result = "/img/KORRIGAN.png";
                 break;
             case Dryad:
@@ -187,17 +181,19 @@ public class BoardViewController implements Initializable{
     }
 
 
-    private Image createImage(Card card){
+    private Image createImage(Card card) {
         String ressource = cardToRessource(card);
         return new Image(getClass().getResourceAsStream(ressource));
     }
 
-    public ImageView createImageView(Image image,int width,int height){
+    public ImageView createImageView(Image image, int width, int height) {
 //   <ImageView fitHeight="123.0" fitWidth="79.0" layoutX="59.0" pickOnBounds="true" preserveRatio="true">
         ImageView imageView = new ImageView(image);
         imageView.setFitHeight(height);
         imageView.setFitWidth(width);
         return imageView;
-       // PlayerHand.getChildren().add(imageView);
+        // PlayerHand.getChildren().add(imageView);
     }
+
+
 }

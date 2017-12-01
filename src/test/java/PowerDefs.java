@@ -1,15 +1,12 @@
-import cucumber.api.PendingException;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import edu.insightr.fantasycardgame.BoardController;
 import edu.insightr.fantasycardgame.Card;
+import edu.insightr.fantasycardgame.Game;
 import edu.insightr.fantasycardgame.Player;
 import org.junit.Assert;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -40,7 +37,7 @@ public class PowerDefs {
     @Before
     public void setUp(){
 
-        board = new BoardController();
+        board = new Game();
         board.initiliazeGame();
 
         createCardKingdom(board.getPlayer1(),10);
@@ -50,7 +47,7 @@ public class PowerDefs {
 
     }
 
-    private BoardController board;
+    private Game board;
     private int sizePlayer1BeforeEffect;
     private int sizePlayer2BeforeEffect;
     private int scorePlayer1BeforeEffect;
@@ -187,7 +184,7 @@ public class PowerDefs {
         numberOfCardsHandPlayer1 = board.getPlayer1().getListCardsInHand().size();
         scorePlayer1BeforeEffect = board.getPlayer1().getScore();
 
-        board.playCard(board.getPlayer1(),board.getPlayer2(), gnome);
+        board.playCard(board.getPlayer1(), board.getPlayer2(), 6);
     }
 
     @Then("^The player1 draw 2 cards$")

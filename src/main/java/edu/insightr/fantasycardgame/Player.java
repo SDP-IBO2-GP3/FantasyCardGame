@@ -93,9 +93,9 @@ public class Player {
         return returnValue;
     }
 
-    public Card getHandCard(Card toDelete){
-        Card returnValue = this.getListCardsInHand().get(this.listCardsInHand.lastIndexOf(toDelete));
-        this.getListCardsInHand().remove(this.listCardsInHand.lastIndexOf(toDelete));
+    public Card getHandCard(int cardIndextoDelete) {
+        Card returnValue = this.getListCardsInHand().get(cardIndextoDelete);
+        this.getListCardsInHand().remove(cardIndextoDelete);
         return returnValue;
     }
 

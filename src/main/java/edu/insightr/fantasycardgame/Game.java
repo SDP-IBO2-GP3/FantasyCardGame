@@ -18,7 +18,7 @@ import java.util.ArrayList;
  * whose turn it is, and ask/wait for instructions. <br><br>When given the instructions (and especially when a player plays a
  * card), it is going to apply the card's power in the game (either on the board, on the other player, on the player himself).
  */
-public class BoardController {
+public class Game {
     /**
      * The deck represents the space where the players are going to draw their cards from
      */
@@ -33,7 +33,7 @@ public class BoardController {
     /**
      * Default constructor for our board. By default the first player is human.
      */
-    public BoardController() {
+    public Game() {
         this.deck = new Deck();
         this.player1 = new Player(true);
         this.player2 = new Player(false);
@@ -46,9 +46,9 @@ public class BoardController {
      *
      * @return True if the player could play, false else
      */
-    public boolean playHumanTurn(Player playerP, Player playerO)
+    public boolean playHumanTurn()
     {
-        playerP.addACard(deck.getACard());
+        player1.addACard(deck.getACard());
 
         return true;
     }
@@ -59,34 +59,18 @@ public class BoardController {
      *
      * @return True if the AI could play, false else
      */
-    public boolean playAITurn(Player playerP, Player playerO)
+    public boolean playAITurn()
     {
-        playerP.addACard(deck.getACard());
+        player2.addACard(deck.getACard());
 
         return true;
     }
 
-    /**
-     * This methods executes the game while it is possible to do so. After a player couldn't play, the other ones finish
-     * the turn, and this methods exits, giving the winner.
-     * @return The instance of the player who has won
-     */
-    static void swapList(ArrayList<Card> x, ArrayList<Card> y)
-    {
-        ArrayList<Card> tempSwap = x;
-        x = y;
-        y = tempSwap;
-    }
+    public void playCard(Player playerP, Player player, int cardIndex) {
 
-    public boolean playCard(Player playerP, Player player, Card card){
-
-        if(playerP.getListCardsInHand().contains(card)){
-            playerP.getListCardsInHand().remove(playerP.getListCardsInHand().lastIndexOf(card));
-            playerP.addACardKingdom(card);
-            this.applyEffect(playerP, player, card);
-            return true;
-        }
-        return false;
+        Card cardToPlay = playerP.getHandCard(cardIndex);
+        playerP.addACardKingdom(cardToPlay);
+        this.applyEffect(playerP, player, cardToPlay);
     }
 
     /**
@@ -149,8 +133,7 @@ public class BoardController {
      *     <li>"Flip a coin" to know if the AI should start or not</li>
      * </ul>
      */
-    public void initiliazeGame()
-    {
+    public void initiliazeGame() {
         this.deck.fillDeck();
         this.deck.shuffleDeck();
         for(int i = 0; i < 6; i++){
