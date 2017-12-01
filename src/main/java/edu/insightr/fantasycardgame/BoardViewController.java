@@ -29,6 +29,8 @@ public class BoardViewController implements Initializable{
     private static final int LENGTHHEIGHT = 123;
     private static final int LENGTHWIDTH = 76;
 
+    private boolean firstDraw = true;
+
 
     public void initialize(URL arg0, ResourceBundle arg1) {
         game = new BoardController();
@@ -36,41 +38,45 @@ public class BoardViewController implements Initializable{
         human = new Player(true);
         aiPlayer = new Player(false);
 
-       for(int i=0;i<25;i++){
-            game.getPlayer1().getListCardsInHand().add(new Card(Card.Race.Troll));
-        }
+       //for(int i=0;i<25;i++){
+       //     game.getPlayer1().getListCardsInHand().add(new Card(Card.Race.Troll));
+       // }
 
+    }
+
+    private void displayCards(){
+        int numberCard = game.getPlayer1().getListCardsInHand().size();
+        int spaceCard = LENGTHXALL/numberCard;
+        PlayerHand.getChildren().clear();
+        double[] polynome = interpolationCoord(LENGTHXALL,numberCard*2);
+        for(int i=0;i<numberCard;i++){
+
+            // ImageView can only apply Image
+            Image imageCurrent = createImage(game.getPlayer1().getListCardsInHand().get(i));
+            ImageView imageViewCurrent = createImageView(imageCurrent);
+            imageViewCurrent.setX(spaceCard*i); // Position on the X axis
+            imageViewCurrent.setY(applyPolynome(polynome,spaceCard*i + LENGTHWIDTH/4)); // Position on the Y axis
+
+            // The first half is oriented toward left direction, secont toward right
+            double angle = -calculAngle(polynome,spaceCard*i);
+            if(i > numberCard / 2 && angle < 0) {
+                angle *= -1;
+            }
+
+            imageViewCurrent.setRotate(angle);
+            PlayerHand.getChildren().add(imageViewCurrent);
+        }
     }
 
     public void getCardFromDeck() {
         if (game.playHumanTurn(human, aiPlayer)) {
-            int numberCard = game.getPlayer1().getListCardsInHand().size();
-            int spaceCard = LENGTHXALL/numberCard;
-
-            double[] polynome = interpolationCoord(LENGTHXALL,numberCard*2);
-
-            for(int i=0;i<numberCard;i++){
-
-                // ImageView can only apply Image
-                Image imageCurrent = createImage(game.getPlayer1().getListCardsInHand().get(i));
-                ImageView imageViewCurrent = createImageView(imageCurrent);
-                imageViewCurrent.setX(spaceCard*i); // Position on the X axis
-                imageViewCurrent.setY(applyPolynome(polynome,spaceCard*i + LENGTHWIDTH/4)); // Position on the Y axis
-
-                // The first half is oriented toward left direction, secont toward right
-                double angle = -calculAngle(polynome,spaceCard*i);
-                System.out.println("Angle : "+angle);
-                if(i > numberCard / 2 && angle < 0){
-                    angle *= -1;
-                }
-
-
-                imageViewCurrent.setRotate(angle);
-                System.out.println("Angle Get : "+ imageViewCurrent.getRotate());
-                //imageViewCurrent.setRotate(31.9);
-                PlayerHand.getChildren().add(imageViewCurrent);
+            if(!firstDraw){
+                Card card = game.getDeck().getACard();
+                game.getPlayer1().getListCardsInHand().add(card);
+            }else{
+                firstDraw = false;
             }
-            // Actualisation de l'image view des la main du joueur.
+            displayCards();
 
         }
     }
