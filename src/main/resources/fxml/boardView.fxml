@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
-
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.insightr.fantasycardgame.BoardViewController">
       <AnchorPane prefHeight="661.0" prefWidth="1000.0" AnchorPane.bottomAnchor="39.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <ImageView fitHeight="700.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true">
@@ -163,6 +160,48 @@
                     <Image url="@../img/face_retournee.png" />
                 </image>
             </ImageView>-->
+        </children>
+    </AnchorPane>
+    <AnchorPane layoutX="25.0" layoutY="22.0" prefHeight="79.0" prefWidth="156.0">
+        <children>
+            <ImageView fitHeight="82.0" fitWidth="158.0">
+                <image>
+                    <Image url="@../img/fond_score.png"/>
+                </image>
+            </ImageView>
+            <Text fill="#730505" layoutX="33.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="15"
+                  wrappingWidth="87.40001225471497">
+                <font>
+                    <Font name="System Bold" size="54.0"/>
+                </font>
+            </Text>
+            <Text fill="#490505" layoutX="97.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="pts"
+                  textAlignment="RIGHT" wrappingWidth="29.935150146484375">
+                <font>
+                    <Font name="System Bold" size="19.0"/>
+                </font>
+            </Text>
+        </children>
+    </AnchorPane>
+    <AnchorPane layoutX="25.0" layoutY="584.0" prefHeight="79.0" prefWidth="156.0">
+        <children>
+            <ImageView fitHeight="82.0" fitWidth="158.0">
+                <image>
+                    <Image url="@../img/fond_score.png"/>
+                </image>
+            </ImageView>
+            <Text fill="#730505" layoutX="33.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="15"
+                  wrappingWidth="87.40001225471497">
+                <font>
+                    <Font name="System Bold" size="54.0"/>
+                </font>
+            </Text>
+            <Text fill="#490505" layoutX="97.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="pts"
+                  textAlignment="RIGHT" wrappingWidth="29.935150146484375">
+                <font>
+                    <Font name="System Bold" size="19.0"/>
+                </font>
+            </Text>
         </children>
     </AnchorPane>
 </AnchorPane>
