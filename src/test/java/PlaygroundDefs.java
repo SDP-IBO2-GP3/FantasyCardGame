@@ -106,19 +106,13 @@ public class PlaygroundDefs {
 
     @When("^Player1 has 6 different races in kingdom$")
     public void playerHasDifferentRacesInKingdom() throws Throwable {
-        ArrayList<Card> listKingdom = new ArrayList<>();
-        listKingdom.add(new Card(Card.Race.Korrigan));
-        listKingdom.add(new Card(Card.Race.Elf));
-        listKingdom.add(new Card(Card.Race.Troll));
-        listKingdom.add(new Card(Card.Race.Gnome));
-        listKingdom.add(new Card(Card.Race.Dryad));
-        listKingdom.add(new Card(Card.Race.Goblin));
-
-        board.getPlayer1().setListCardsKingdom(listKingdom);
+        for(Card.Race race : Card.Race.values()){
+            board.getPlayer1().addACardKingdom(new Card(race));
+        }
     }
 
     @Then("^Player has extra point$")
     public void playerHasExtraPoint() throws Throwable {
-        Assert.assertEquals(3, board.getPlayer1().getScore());
+        Assert.assertEquals(9, board.getPlayer1().getScore());
     }
 }
