@@ -14,10 +14,11 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/boardView.fxml"));
-            Scene scene = new Scene(root, 1000, 700);
+            Scene scene = new Scene(root, 989, 690);
 
             primaryStage.setScene(scene);
             primaryStage.setTitle("FantasyCard");
+            primaryStage.setResizable(false);
             primaryStage.show();
 
         } catch (Exception e) {
