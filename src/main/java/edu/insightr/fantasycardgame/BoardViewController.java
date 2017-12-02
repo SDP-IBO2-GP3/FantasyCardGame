@@ -1,6 +1,7 @@
 package edu.insightr.fantasycardgame;
 
 
+import javafx.animation.TranslateTransition;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -8,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -64,23 +66,45 @@ public class BoardViewController implements Initializable{
             // ImageView can only apply Image
             Image imageCurrent = createImage(game.getPlayer1().getListCardsInHand().get(i));
             ImageView imageViewCurrent = createImageView(imageCurrent, LENGTHWIDTH, LENGTHHEIGHT);
+            ImageView animation = createImageView(imageCurrent,LENGTHWIDTH,LENGTHHEIGHT);
             imageViewCurrent.setId("" + i);
             imageViewCurrent.setOnMouseEntered(handleDisplayCardBigger);
             imageViewCurrent.setOnMouseExited(handleEmptyCardBigger);
             imageViewCurrent.setX(spaceCard * i); // Position on the X axis
             imageViewCurrent.setY(applyPolynome(polynome, spaceCard * i + LENGTHWIDTH / 4)); // Position on the Y axis
-
+            animation.setX(spaceCard*i); // Position on the X axis
+            animation.setY(applyPolynome(polynome,spaceCard*i + LENGTHWIDTH/4));
             // The first half is oriented toward left direction, secont toward right
             double angle = -calculAngle(polynome, spaceCard * i);
             if (i > numberCard / 2 && angle < 0) {
                 angle *= -1;
             }
+            AnchorPane dad = (AnchorPane)PlayerHand.getParent();
+            imageViewCurrent.setRotate(angle);
+            animation.setRotate(angle);
+
+            TranslateTransition anim = new TranslateTransition();
+            anim.setDuration(Duration.millis(i*300 + 200));
+
+            anim.setToX(306);
+            anim.setToY(563);
+            anim.setOnFinished(e -> SwitchFromAnim(dad,animation,imageViewCurrent));
+            anim.setNode(animation);
+            anim.play();
+
+            dad.getChildren().add(animation);
 
             imageViewCurrent.setRotate(angle);
-            PlayerHand.getChildren().add(imageViewCurrent);
+           // PlayerHand.getChildren().add(imageViewCurrent);
         }
     }
 
+    public void SwitchFromAnim(AnchorPane dad,ImageView tmp,ImageView imageViewCurrent)
+    {
+        dad.getChildren().remove(tmp);
+        PlayerHand.getChildren().add(imageViewCurrent);
+
+    }
     private EventHandler<? super MouseEvent> handleDisplayCardBigger = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
