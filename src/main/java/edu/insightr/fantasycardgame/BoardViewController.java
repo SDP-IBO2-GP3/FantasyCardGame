@@ -1,15 +1,15 @@
 package edu.insightr.fantasycardgame;
 
 
-import javafx.animation.TranslateTransition;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.util.Duration;
+import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -43,6 +43,46 @@ public class BoardViewController implements Initializable{
     @FXML
     private AnchorPane PlayerHand;
 
+    @FXML
+    private ImageView KorriganPlace;
+
+    @FXML
+    private Text NbKorrigan;
+
+
+    @FXML
+    private ImageView GobelinPlace;
+
+    @FXML
+    private Text NbGoblin;
+
+    @FXML
+    private ImageView ElfPlace;
+
+    @FXML
+    private Text NbElf;
+
+    @FXML
+    private  ImageView GnomePlace;
+
+    @FXML
+    private Text NbGnome;
+
+    @FXML
+    private  ImageView DryadPlace;
+
+    @FXML
+    private Text NbDryad;
+
+    @FXML
+    private ImageView TrollPlace;
+
+    @FXML
+    private Text NbTroll;
+
+    @FXML
+    private Text ScorePlayer;
+
     //endregion
 
 
@@ -53,6 +93,8 @@ public class BoardViewController implements Initializable{
         this.aiPlayer = game.getPlayer2();
         game.initiliazeGame();
         displayCards();
+        ScorePlayer.setText(Integer.toString(game.getPlayer1().getScore()));
+
     }
 
     private void displayCards() {
@@ -66,45 +108,24 @@ public class BoardViewController implements Initializable{
             // ImageView can only apply Image
             Image imageCurrent = createImage(game.getPlayer1().getListCardsInHand().get(i));
             ImageView imageViewCurrent = createImageView(imageCurrent, LENGTHWIDTH, LENGTHHEIGHT);
-            ImageView animation = createImageView(imageCurrent,LENGTHWIDTH,LENGTHHEIGHT);
             imageViewCurrent.setId("" + i);
             imageViewCurrent.setOnMouseEntered(handleDisplayCardBigger);
             imageViewCurrent.setOnMouseExited(handleEmptyCardBigger);
+            imageViewCurrent.setOnMouseClicked(handleAddCardKing);
             imageViewCurrent.setX(spaceCard * i); // Position on the X axis
             imageViewCurrent.setY(applyPolynome(polynome, spaceCard * i + LENGTHWIDTH / 4)); // Position on the Y axis
-            animation.setX(spaceCard*i); // Position on the X axis
-            animation.setY(applyPolynome(polynome,spaceCard*i + LENGTHWIDTH/4));
+
             // The first half is oriented toward left direction, secont toward right
             double angle = -calculAngle(polynome, spaceCard * i);
             if (i > numberCard / 2 && angle < 0) {
                 angle *= -1;
             }
-            AnchorPane dad = (AnchorPane)PlayerHand.getParent();
-            imageViewCurrent.setRotate(angle);
-            animation.setRotate(angle);
-
-            TranslateTransition anim = new TranslateTransition();
-            anim.setDuration(Duration.millis(i*300 + 200));
-
-            anim.setToX(306);
-            anim.setToY(563);
-            anim.setOnFinished(e -> SwitchFromAnim(dad,animation,imageViewCurrent));
-            anim.setNode(animation);
-            anim.play();
-
-            dad.getChildren().add(animation);
 
             imageViewCurrent.setRotate(angle);
-           // PlayerHand.getChildren().add(imageViewCurrent);
+            PlayerHand.getChildren().add(imageViewCurrent);
         }
     }
 
-    public void SwitchFromAnim(AnchorPane dad,ImageView tmp,ImageView imageViewCurrent)
-    {
-        dad.getChildren().remove(tmp);
-        PlayerHand.getChildren().add(imageViewCurrent);
-
-    }
     private EventHandler<? super MouseEvent> handleDisplayCardBigger = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
@@ -119,6 +140,57 @@ public class BoardViewController implements Initializable{
             displayCardBigger.setImage(null);
         }
     };
+
+    private EventHandler<? super MouseEvent> handleAddCardKing = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+            int id = Integer.parseInt(((ImageView)event.getSource()).getId());
+            System.out.println("Id : "+id);
+            Card cardRemove = human.getListCardsInHand().remove(id);
+            human.getListCardsKingdom().add(cardRemove);
+            displayCards();
+            ImageView imageViewPlace = (ImageView) placeRaceKingdom(cardRemove.race)[0];
+            Text textNb = (Text) placeRaceKingdom(cardRemove.race)[1];
+            imageViewPlace.setImage(((ImageView)event.getSource()).getImage());
+            int nbCard = Integer.parseInt(textNb.getText())+1;
+            textNb.setText(nbCard+"");
+            game.getPlayer1().addACardKingdom(cardRemove);
+            ScorePlayer.setText(Integer.toString(game.getPlayer1().getScore()));
+        }
+    };
+
+    private Node[] placeRaceKingdom(Card.Race race){
+        ImageView imageView  = null;
+        Text text = null;
+        switch (race){
+            case Korrigan:
+                imageView = KorriganPlace;
+                text = NbKorrigan;
+                break;
+            case Dryad:
+                imageView = DryadPlace;
+                text = NbDryad;
+                break;
+            case Elf:
+                imageView = ElfPlace;
+                text = NbElf;
+                break;
+            case Goblin:
+                imageView = GobelinPlace;
+                text = NbGoblin;
+                break;
+            case Gnome:
+                imageView = GnomePlace;
+                text = NbGnome;
+                break;
+            case Troll:
+                imageView = TrollPlace;
+                text = NbTroll;
+                break;
+        }
+
+        return new Node[]{imageView,text};
+    }
 
     public void getCardFromDeck() {
         if (game.playHumanTurn()) {
