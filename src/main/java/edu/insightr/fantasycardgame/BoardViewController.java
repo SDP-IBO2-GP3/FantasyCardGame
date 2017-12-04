@@ -12,7 +12,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 
 import java.net.URL;
+import java.sql.Time;
 import java.util.ResourceBundle;
+import java.util.concurrent.TimeUnit;
 
 
 public class BoardViewController implements Initializable{
@@ -25,7 +27,7 @@ public class BoardViewController implements Initializable{
     private static final int LENGTHHEIGHT = 123;
     private static final int LENGTHWIDTH = 76;
     private boolean firstDraw = true;
-
+    private boolean firstAnimation = true;
 
     //endregion
 
@@ -61,6 +63,7 @@ public class BoardViewController implements Initializable{
         System.out.println("PlayerHand is Null ? : " + (PlayerHand == null));
         PlayerHand.getChildren().clear();
         double[] polynome = interpolationCoord(LENGTHXALL, numberCard * 2);
+
         for (int i = 0; i < numberCard; i++) {
 
             // ImageView can only apply Image
@@ -72,31 +75,44 @@ public class BoardViewController implements Initializable{
             imageViewCurrent.setOnMouseExited(handleEmptyCardBigger);
             imageViewCurrent.setX(spaceCard * i); // Position on the X axis
             imageViewCurrent.setY(applyPolynome(polynome, spaceCard * i + LENGTHWIDTH / 4)); // Position on the Y axis
-            animation.setX(spaceCard*i); // Position on the X axis
-            animation.setY(applyPolynome(polynome,spaceCard*i + LENGTHWIDTH/4));
+            animation.setX(22); // Position on the X axis
+            animation.setY(224);
+
             // The first half is oriented toward left direction, secont toward right
             double angle = -calculAngle(polynome, spaceCard * i);
             if (i > numberCard / 2 && angle < 0) {
                 angle *= -1;
             }
-            AnchorPane dad = (AnchorPane)PlayerHand.getParent();
             imageViewCurrent.setRotate(angle);
-            animation.setRotate(angle);
+            if(firstAnimation || i == numberCard - 1)
+            {
 
-            TranslateTransition anim = new TranslateTransition();
-            anim.setDuration(Duration.millis(i*300 + 200));
+                AnchorPane dad = (AnchorPane)PlayerHand.getParent();
+                imageViewCurrent.setRotate(angle);
+                animation.setRotate(angle);
 
-            anim.setToX(306);
-            anim.setToY(563);
-            anim.setOnFinished(e -> SwitchFromAnim(dad,animation,imageViewCurrent));
-            anim.setNode(animation);
-            anim.play();
+                TranslateTransition anim = new TranslateTransition();
+                anim.setDuration(Duration.millis(i*150 + 500));
 
-            dad.getChildren().add(animation);
+                anim.setToX(284 + spaceCard*i);
+                anim.setToY(339 + applyPolynome(polynome,spaceCard*i + LENGTHWIDTH/4));
 
-            imageViewCurrent.setRotate(angle);
-           // PlayerHand.getChildren().add(imageViewCurrent);
+                anim.setOnFinished(e -> SwitchFromAnim(dad,animation,imageViewCurrent));
+                anim.setNode(animation);
+                anim.play();
+
+                dad.getChildren().add(animation);
+
+                imageViewCurrent.setRotate(angle);
+            }
+            else
+            {
+                PlayerHand.getChildren().add(imageViewCurrent);
+            }
+
+
         }
+        firstAnimation = false;
     }
 
     public void SwitchFromAnim(AnchorPane dad,ImageView tmp,ImageView imageViewCurrent)
