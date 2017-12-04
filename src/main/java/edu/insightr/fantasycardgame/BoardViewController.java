@@ -99,7 +99,8 @@ public class BoardViewController implements Initializable{
 
     private void displayCards() {
         int numberCard = game.getPlayer1().getListCardsInHand().size();
-        int spaceCard = LENGTHXALL / numberCard;
+
+        int spaceCard = LENGTHXALL / (numberCard+1);
         System.out.println("PlayerHand is Null ? : " + (PlayerHand == null));
         PlayerHand.getChildren().clear();
         double[] polynome = interpolationCoord(LENGTHXALL, numberCard * 2);
