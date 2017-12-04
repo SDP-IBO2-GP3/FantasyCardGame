@@ -5,6 +5,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import edu.insightr.fantasycardgame.Card;
 import edu.insightr.fantasycardgame.Deck;
+import org.junit.Assert;
 import edu.insightr.fantasycardgame.Game;
 
 public class PlaygroundDefs {
@@ -94,5 +95,21 @@ public class PlaygroundDefs {
     @Then("^the deck is empty$")
     public void theDeckIsEmpty() throws Throwable {
         org.junit.Assert.assertEquals(0,deck.getSize());
+    }
+
+    /**
+     * Scenario: Bonus score
+     */
+
+    @When("^Player1 has 6 different races in kingdom$")
+    public void playerHasDifferentRacesInKingdom() throws Throwable {
+        for(Card.Race race : Card.Race.values()){
+            board.getPlayer1().addACardKingdom(new Card(race));
+        }
+    }
+
+    @Then("^Player has extra point$")
+    public void playerHasExtraPoint() throws Throwable {
+        Assert.assertEquals(9, board.getPlayer1().getScore());
     }
 }
