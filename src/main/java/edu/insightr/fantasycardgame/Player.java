@@ -38,6 +38,11 @@ public class Player {
     private int score;
 
     /**
+     * A boolean telling if the player has a bonus +3 on his score
+     */
+    private boolean has_bonus;
+
+    /**
      * Basic constructor for the player. By default, he got a score of 0
      * @param isHuman Attributes given to know if the player is human or not
      */
@@ -46,6 +51,7 @@ public class Player {
         this.listCardsInHand = new ArrayList<Card>();
         this.listCardsKingdom = new ArrayList<Card>();
         this.score = 0;
+        this.has_bonus = false;
     }
 
     public void addACard(Card card) {
@@ -55,6 +61,22 @@ public class Player {
     public void addACardKingdom(Card card){
         this.listCardsKingdom.add(card);
         this.score += 1;
+        int different_cards = 1;
+        Card cardRace = listCardsKingdom.get(0);
+
+        if(!this.has_bonus){
+            for(int i=1; i<listCardsKingdom.size(); i++){
+                if(!listCardsKingdom.get(i).toString().equals(cardRace.toString())){
+                    different_cards += 1;
+                    System.out.println((different_cards));
+                }
+                cardRace = listCardsKingdom.get(i);
+            }
+            if(different_cards == 6){
+                this.score += 3;
+                this.has_bonus = true;
+            }
+        }
     }
 
     //Getters

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0"
-            prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="edu.insightr.fantasycardgame.BoardViewController">
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.insightr.fantasycardgame.BoardViewController">
 
       <AnchorPane prefHeight="661.0" prefWidth="1000.0" AnchorPane.bottomAnchor="39.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <ImageView fitHeight="700.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true">
@@ -70,80 +71,56 @@
                <Image url="@../img/ELF.png" />
             </image>
          </ImageView>
-          <AnchorPane maxHeight="38.0" minHeight="38.0" minWidth="24.0" prefHeight="38.0" prefWidth="24.0"
-                      style="-fx-background-color: #dddddd61; -fx-background-radius: 7px;"
-                      AnchorPane.rightAnchor="612.0" AnchorPane.topAnchor="13.0">
+          <AnchorPane maxHeight="38.0" minHeight="38.0" minWidth="24.0" prefHeight="38.0" prefWidth="24.0" style="-fx-background-color: #dddddd61; -fx-background-radius: 7px;" AnchorPane.rightAnchor="612.0" AnchorPane.topAnchor="13.0">
               <children>
-                  <Text fx:id="NbDryad2" fill="#fcefef" layoutX="4.0" layoutY="28.056640625" strokeType="OUTSIDE"
-                        strokeWidth="0.0" text="3" textAlignment="CENTER" wrappingWidth="14.955078125"
-                        AnchorPane.topAnchor="0.0">
+                  <Text fx:id="NbDryad2" fill="#fcefef" layoutX="4.0" layoutY="28.056640625" strokeType="OUTSIDE" strokeWidth="0.0" text="3" textAlignment="CENTER" wrappingWidth="14.955078125" AnchorPane.topAnchor="0.0">
                       <font>
-                          <Font name="System Bold" size="26.0"/>
+                          <Font name="System Bold" size="26.0" />
                       </font>
                   </Text>
               </children>
           </AnchorPane>
-          <AnchorPane maxHeight="38.0" minHeight="38.0" minWidth="24.0" prefHeight="38.0" prefWidth="24.0"
-                      style="-fx-background-color: #dddddd61; -fx-background-radius: 7px;"
-                      AnchorPane.rightAnchor="493.0" AnchorPane.topAnchor="13.0">
+          <AnchorPane maxHeight="38.0" minHeight="38.0" minWidth="24.0" prefHeight="38.0" prefWidth="24.0" style="-fx-background-color: #dddddd61; -fx-background-radius: 7px;" AnchorPane.rightAnchor="493.0" AnchorPane.topAnchor="13.0">
               <children>
-                  <Text fx:id="NbDryad12" fill="#fcefef" layoutX="4.0" layoutY="28.056640625" strokeType="OUTSIDE"
-                        strokeWidth="0.0" text="3" textAlignment="CENTER" wrappingWidth="14.955078125"
-                        AnchorPane.topAnchor="0.0">
+                  <Text fx:id="NbDryad12" fill="#fcefef" layoutX="4.0" layoutY="28.056640625" strokeType="OUTSIDE" strokeWidth="0.0" text="3" textAlignment="CENTER" wrappingWidth="14.955078125" AnchorPane.topAnchor="0.0">
                       <font>
-                          <Font name="System Bold" size="26.0"/>
+                          <Font name="System Bold" size="26.0" />
                       </font>
                   </Text>
               </children>
           </AnchorPane>
-          <AnchorPane maxHeight="38.0" minHeight="38.0" minWidth="24.0" prefHeight="38.0" prefWidth="24.0"
-                      style="-fx-background-color: #dddddd61; -fx-background-radius: 7px;"
-                      AnchorPane.rightAnchor="374.0" AnchorPane.topAnchor="13.0">
+          <AnchorPane maxHeight="38.0" minHeight="38.0" minWidth="24.0" prefHeight="38.0" prefWidth="24.0" style="-fx-background-color: #dddddd61; -fx-background-radius: 7px;" AnchorPane.rightAnchor="374.0" AnchorPane.topAnchor="13.0">
               <children>
-                  <Text fx:id="NbDryad112" fill="#fcefef" layoutX="4.0" layoutY="28.056640625" strokeType="OUTSIDE"
-                        strokeWidth="0.0" text="3" textAlignment="CENTER" wrappingWidth="14.955078125"
-                        AnchorPane.topAnchor="0.0">
+                  <Text fx:id="NbDryad112" fill="#fcefef" layoutX="4.0" layoutY="28.056640625" strokeType="OUTSIDE" strokeWidth="0.0" text="3" textAlignment="CENTER" wrappingWidth="14.955078125" AnchorPane.topAnchor="0.0">
                       <font>
-                          <Font name="System Bold" size="26.0"/>
+                          <Font name="System Bold" size="26.0" />
                       </font>
                   </Text>
               </children>
           </AnchorPane>
-          <AnchorPane maxHeight="38.0" minHeight="38.0" minWidth="24.0" prefHeight="38.0" prefWidth="24.0"
-                      style="-fx-background-color: #dddddd61; -fx-background-radius: 7px;"
-                      AnchorPane.rightAnchor="255.0" AnchorPane.topAnchor="13.0">
+          <AnchorPane maxHeight="38.0" minHeight="38.0" minWidth="24.0" prefHeight="38.0" prefWidth="24.0" style="-fx-background-color: #dddddd61; -fx-background-radius: 7px;" AnchorPane.rightAnchor="255.0" AnchorPane.topAnchor="13.0">
               <children>
-                  <Text fx:id="NbDryad1112" fill="#fcefef" layoutX="4.0" layoutY="28.056640625" strokeType="OUTSIDE"
-                        strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="14.955078125"
-                        AnchorPane.topAnchor="0.0">
+                  <Text fx:id="NbDryad1112" fill="#fcefef" layoutX="4.0" layoutY="28.056640625" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="14.955078125" AnchorPane.topAnchor="0.0">
                       <font>
-                          <Font name="System Bold" size="26.0"/>
+                          <Font name="System Bold" size="26.0" />
                       </font>
                   </Text>
               </children>
           </AnchorPane>
-          <AnchorPane maxHeight="38.0" minHeight="38.0" minWidth="24.0" prefHeight="38.0" prefWidth="24.0"
-                      style="-fx-background-color: #dddddd61; -fx-background-radius: 7px;"
-                      AnchorPane.rightAnchor="133.0" AnchorPane.topAnchor="13.0">
+          <AnchorPane maxHeight="38.0" minHeight="38.0" minWidth="24.0" prefHeight="38.0" prefWidth="24.0" style="-fx-background-color: #dddddd61; -fx-background-radius: 7px;" AnchorPane.rightAnchor="133.0" AnchorPane.topAnchor="13.0">
               <children>
-                  <Text fx:id="NbDryad11112" fill="#fcefef" layoutX="4.0" layoutY="28.056640625" strokeType="OUTSIDE"
-                        strokeWidth="0.0" text="3" textAlignment="CENTER" wrappingWidth="14.955078125"
-                        AnchorPane.topAnchor="0.0">
+                  <Text fx:id="NbDryad11112" fill="#fcefef" layoutX="4.0" layoutY="28.056640625" strokeType="OUTSIDE" strokeWidth="0.0" text="3" textAlignment="CENTER" wrappingWidth="14.955078125" AnchorPane.topAnchor="0.0">
                       <font>
-                          <Font name="System Bold" size="26.0"/>
+                          <Font name="System Bold" size="26.0" />
                       </font>
                   </Text>
               </children>
           </AnchorPane>
-          <AnchorPane maxHeight="38.0" minHeight="38.0" minWidth="24.0" prefHeight="38.0" prefWidth="24.0"
-                      style="-fx-background-color: #dddddd61; -fx-background-radius: 7px;" AnchorPane.rightAnchor="13.0"
-                      AnchorPane.topAnchor="13.0">
+          <AnchorPane maxHeight="38.0" minHeight="38.0" minWidth="24.0" prefHeight="38.0" prefWidth="24.0" style="-fx-background-color: #dddddd61; -fx-background-radius: 7px;" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="13.0">
               <children>
-                  <Text fx:id="NbDryad111111" fill="#fcefef" layoutX="4.0" layoutY="28.056640625" strokeType="OUTSIDE"
-                        strokeWidth="0.0" text="3" textAlignment="CENTER" wrappingWidth="14.955078125"
-                        AnchorPane.topAnchor="0.0">
+                  <Text fx:id="NbDryad111111" fill="#fcefef" layoutX="4.0" layoutY="28.056640625" strokeType="OUTSIDE" strokeWidth="0.0" text="3" textAlignment="CENTER" wrappingWidth="14.955078125" AnchorPane.topAnchor="0.0">
                       <font>
-                          <Font name="System Bold" size="26.0"/>
+                          <Font name="System Bold" size="26.0" />
                       </font>
                   </Text>
               </children>
@@ -152,110 +129,86 @@
    </AnchorPane>
     <AnchorPane layoutX="224.0" layoutY="332.0" prefHeight="176.0" prefWidth="710.0">
       <children>
-          <ImageView fitHeight="176.0" fitWidth="126.0" layoutX="60.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0">
+          <ImageView fx:id="KorriganPlace" fitHeight="176.0" fitWidth="126.0" layoutX="60.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0">
             <image>
-               <Image url="@../img/DRYAD.png" />
+               <Image url="@../img/empty.png" />
             </image>
          </ImageView>
-          <ImageView fitHeight="176.0" fitWidth="120.0" layoutX="180.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="120.0">
+          <ImageView fx:id="ElfPlace" fitHeight="176.0" fitWidth="120.0" layoutX="180.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="120.0">
             <image>
-               <Image url="@../img/GNOME.png" />
+               <Image url="@../img/empty.png" />
             </image>
          </ImageView>
-          <ImageView fitHeight="176.0" fitWidth="120.0" layoutX="300.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="240.0">
+          <ImageView fx:id="TrollPlace" fitHeight="176.0" fitWidth="120.0" layoutX="300.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="240.0">
             <image>
-               <Image url="@../img/TROLL.png" />
+               <Image url="@../img/empty.png" />
             </image>
          </ImageView>
-          <ImageView fitHeight="176.0" fitWidth="120.0" layoutX="420.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="360.0">
+          <ImageView fx:id="GobelinPlace" fitHeight="176.0" fitWidth="120.0" layoutX="420.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="360.0">
             <image>
                 <Image url="@../img/empty.png" />
             </image>
          </ImageView>
-          <ImageView fitHeight="176.0" fitWidth="120.0" layoutX="540.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="480.0">
+          <ImageView fx:id="DryadPlace" fitHeight="176.0" fitWidth="120.0" layoutX="540.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="480.0">
             <image>
-               <Image url="@../img/GOBELIN.png" />
+               <Image url="@../img/empty.png" />
             </image>
          </ImageView>
-          <ImageView fitHeight="176.0" fitWidth="120.0" layoutX="660.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="600.0">
+          <ImageView fx:id="GnomePlace" fitHeight="176.0" fitWidth="120.0" layoutX="660.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="600.0">
             <image>
-               <Image url="@../img/ELF.png" />
+               <Image url="@../img/empty.png" />
             </image>
           </ImageView>
-          <AnchorPane layoutX="77.0" layoutY="14.0" maxHeight="38.0" minHeight="38.0" minWidth="24.0" prefHeight="38.0"
-                      prefWidth="24.0" style="-fx-background-color: #dddddd61; -fx-background-radius: 7px;"
-                      AnchorPane.rightAnchor="612.0" AnchorPane.topAnchor="13.0">
+          <AnchorPane layoutX="77.0" layoutY="14.0" maxHeight="38.0" minHeight="38.0" minWidth="24.0" prefHeight="38.0" prefWidth="24.0" style="-fx-background-color: #dddddd61; -fx-background-radius: 7px;" AnchorPane.rightAnchor="612.0" AnchorPane.topAnchor="13.0">
               <children>
-                  <Text fx:id="NbDryad" fill="#fcefef" layoutX="4.0" layoutY="28.056640625" strokeType="OUTSIDE"
-                        strokeWidth="0.0" text="3" textAlignment="CENTER" wrappingWidth="14.955078125"
-                        AnchorPane.topAnchor="0.0">
+                  <Text fx:id="NbKorrigan" fill="#fcefef" layoutX="4.0" layoutY="28.056640625" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="14.955078125" AnchorPane.topAnchor="0.0">
                       <font>
-                          <Font name="System Bold" size="26.0"/>
+                          <Font name="System Bold" size="26.0" />
                       </font>
                   </Text>
               </children>
           </AnchorPane>
-          <AnchorPane layoutX="87.0" layoutY="24.0" maxHeight="38.0" minHeight="38.0" minWidth="24.0" prefHeight="38.0"
-                      prefWidth="24.0" style="-fx-background-color: #dddddd61; -fx-background-radius: 7px;"
-                      AnchorPane.rightAnchor="493.0" AnchorPane.topAnchor="13.0">
+          <AnchorPane layoutX="87.0" layoutY="24.0" maxHeight="38.0" minHeight="38.0" minWidth="24.0" prefHeight="38.0" prefWidth="24.0" style="-fx-background-color: #dddddd61; -fx-background-radius: 7px;" AnchorPane.rightAnchor="493.0" AnchorPane.topAnchor="13.0">
               <children>
-                  <Text fx:id="NbDryad1" fill="#fcefef" layoutX="4.0" layoutY="28.056640625" strokeType="OUTSIDE"
-                        strokeWidth="0.0" text="3" textAlignment="CENTER" wrappingWidth="14.955078125"
-                        AnchorPane.topAnchor="0.0">
+                  <Text fx:id="NbElf" fill="#fcefef" layoutX="4.0" layoutY="28.056640625" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="14.955078125" AnchorPane.topAnchor="0.0">
                       <font>
-                          <Font name="System Bold" size="26.0"/>
+                          <Font name="System Bold" size="26.0" />
                       </font>
                   </Text>
               </children>
           </AnchorPane>
-          <AnchorPane layoutX="316.0" layoutY="14.0" maxHeight="38.0" minHeight="38.0" minWidth="24.0" prefHeight="38.0"
-                      prefWidth="24.0" style="-fx-background-color: #dddddd61; -fx-background-radius: 7px;"
-                      AnchorPane.rightAnchor="374.0" AnchorPane.topAnchor="14.0">
+          <AnchorPane layoutX="316.0" layoutY="14.0" maxHeight="38.0" minHeight="38.0" minWidth="24.0" prefHeight="38.0" prefWidth="24.0" style="-fx-background-color: #dddddd61; -fx-background-radius: 7px;" AnchorPane.rightAnchor="374.0" AnchorPane.topAnchor="14.0">
               <children>
-                  <Text fx:id="NbDryad11" fill="#fcefef" layoutX="4.0" layoutY="28.056640625" strokeType="OUTSIDE"
-                        strokeWidth="0.0" text="3" textAlignment="CENTER" wrappingWidth="14.955078125"
-                        AnchorPane.topAnchor="0.0">
+                  <Text fx:id="NbTroll" fill="#fcefef" layoutX="4.0" layoutY="28.056640625" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="14.955078125" AnchorPane.topAnchor="0.0">
                       <font>
-                          <Font name="System Bold" size="26.0"/>
+                          <Font name="System Bold" size="26.0" />
                       </font>
                   </Text>
               </children>
           </AnchorPane>
-          <AnchorPane layoutX="325.0" layoutY="24.0" maxHeight="38.0" minHeight="38.0" minWidth="24.0" prefHeight="38.0"
-                      prefWidth="24.0" style="-fx-background-color: #dddddd61; -fx-background-radius: 7px;"
-                      AnchorPane.rightAnchor="255.0" AnchorPane.topAnchor="13.0">
+          <AnchorPane layoutX="325.0" layoutY="24.0" maxHeight="38.0" minHeight="38.0" minWidth="24.0" prefHeight="38.0" prefWidth="24.0" style="-fx-background-color: #dddddd61; -fx-background-radius: 7px;" AnchorPane.rightAnchor="255.0" AnchorPane.topAnchor="13.0">
               <children>
-                  <Text fx:id="NbDryad111" fill="#fcefef" layoutX="4.0" layoutY="28.056640625" strokeType="OUTSIDE"
-                        strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="14.955078125"
-                        AnchorPane.topAnchor="0.0">
+                  <Text fx:id="NbGoblin" fill="#fcefef" layoutX="4.0" layoutY="28.056640625" text="0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="14.955078125" AnchorPane.topAnchor="0.0">
                       <font>
-                          <Font name="System Bold" size="26.0"/>
+                          <Font name="System Bold" size="26.0" />
                       </font>
                   </Text>
               </children>
           </AnchorPane>
-          <AnchorPane layoutX="335.0" layoutY="34.0" maxHeight="38.0" minHeight="38.0" minWidth="24.0" prefHeight="38.0"
-                      prefWidth="24.0" style="-fx-background-color: #dddddd61; -fx-background-radius: 7px;"
-                      AnchorPane.rightAnchor="133.0" AnchorPane.topAnchor="13.0">
+          <AnchorPane layoutX="335.0" layoutY="34.0" maxHeight="38.0" minHeight="38.0" minWidth="24.0" prefHeight="38.0" prefWidth="24.0" style="-fx-background-color: #dddddd61; -fx-background-radius: 7px;" AnchorPane.rightAnchor="133.0" AnchorPane.topAnchor="13.0">
               <children>
-                  <Text fx:id="NbDryad1111" fill="#fcefef" layoutX="4.0" layoutY="28.056640625" strokeType="OUTSIDE"
-                        strokeWidth="0.0" text="3" textAlignment="CENTER" wrappingWidth="14.955078125"
-                        AnchorPane.topAnchor="0.0">
+                  <Text fx:id="NbDryad" fill="#fcefef" layoutX="4.0" layoutY="28.056640625" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="14.955078125" AnchorPane.topAnchor="0.0">
                       <font>
-                          <Font name="System Bold" size="26.0"/>
+                          <Font name="System Bold" size="26.0" />
                       </font>
                   </Text>
               </children>
           </AnchorPane>
-          <AnchorPane layoutX="345.0" layoutY="44.0" maxHeight="38.0" minHeight="38.0" minWidth="24.0" prefHeight="38.0"
-                      prefWidth="24.0" style="-fx-background-color: #dddddd61; -fx-background-radius: 7px;"
-                      AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="13.0">
+          <AnchorPane layoutX="345.0" layoutY="44.0" maxHeight="38.0" minHeight="38.0" minWidth="24.0" prefHeight="38.0" prefWidth="24.0" style="-fx-background-color: #dddddd61; -fx-background-radius: 7px;" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="13.0">
               <children>
-                  <Text fx:id="NbDryad11111" fill="#fcefef" layoutX="4.0" layoutY="28.056640625" strokeType="OUTSIDE"
-                        strokeWidth="0.0" text="3" textAlignment="CENTER" wrappingWidth="14.955078125"
-                        AnchorPane.topAnchor="0.0">
+                  <Text fx:id="NbGnome" fill="#fcefef" layoutX="4.0" layoutY="28.056640625" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="14.955078125" AnchorPane.topAnchor="0.0">
                       <font>
-                          <Font name="System Bold" size="26.0"/>
+                          <Font name="System Bold" size="26.0" />
                       </font>
                   </Text>
               </children>
@@ -300,19 +253,17 @@
         <children>
             <ImageView fitHeight="82.0" fitWidth="158.0">
                 <image>
-                    <Image url="@../img/fond_score.png"/>
+                    <Image url="@../img/fond_score.png" />
                 </image>
             </ImageView>
-            <Text fill="#730505" layoutX="33.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="15"
-                  wrappingWidth="87.40001225471497">
+            <Text fx:id="ScoreOpponnent" fill="#730505" layoutX="33.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="15" wrappingWidth="87.40001225471497">
                 <font>
-                    <Font name="System Bold" size="54.0"/>
+                    <Font name="System Bold" size="54.0" />
                 </font>
             </Text>
-            <Text fill="#490505" layoutX="97.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="pts"
-                  textAlignment="RIGHT" wrappingWidth="29.935150146484375">
+            <Text fill="#490505" layoutX="97.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="pts" textAlignment="RIGHT" wrappingWidth="29.935150146484375">
                 <font>
-                    <Font name="System Bold" size="19.0"/>
+                    <Font name="System Bold" size="19.0" />
                 </font>
             </Text>
         </children>
@@ -321,25 +272,21 @@
         <children>
             <ImageView fitHeight="82.0" fitWidth="158.0">
                 <image>
-                    <Image url="@../img/fond_score.png"/>
+                    <Image url="@../img/fond_score.png" />
                 </image>
             </ImageView>
-            <Text fill="#730505" layoutX="33.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="15"
-                  wrappingWidth="87.40001225471497">
+            <Text fx:id="ScorePlayer" fill="#730505" layoutX="33.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="15" wrappingWidth="87.40001225471497">
                 <font>
-                    <Font name="System Bold" size="54.0"/>
+                    <Font name="System Bold" size="54.0" />
                 </font>
             </Text>
-            <Text fill="#490505" layoutX="97.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="pts"
-                  textAlignment="RIGHT" wrappingWidth="29.935150146484375">
+            <Text fill="#490505" layoutX="97.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="pts" textAlignment="RIGHT" wrappingWidth="29.935150146484375">
                 <font>
-                    <Font name="System Bold" size="19.0"/>
+                    <Font name="System Bold" size="19.0" />
                 </font>
             </Text>
         </children>
 
     </AnchorPane>
-    <ImageView fx:id="displayCardBigger" fitHeight="450.0" fitWidth="290.0" pickOnBounds="true" preserveRatio="true"
-               AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="355.0" AnchorPane.rightAnchor="355.0"
-               AnchorPane.topAnchor="50.0"/>
+    <ImageView fx:id="displayCardBigger" fitHeight="450.0" fitWidth="290.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="355.0" AnchorPane.rightAnchor="355.0" AnchorPane.topAnchor="50.0" />
 </AnchorPane>
