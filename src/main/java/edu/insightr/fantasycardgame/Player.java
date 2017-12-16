@@ -153,4 +153,5 @@ public class Player {
     public int getSizeOfList() {
         return listCardsInHand.size();
     }
+
 }

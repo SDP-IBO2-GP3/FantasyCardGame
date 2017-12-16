@@ -57,4 +57,8 @@ public class Card {
         return this.race;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        return ((Card)obj).race == this.race;
+    }
 }

@@ -12,6 +12,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
 import java.net.URL;
+import java.util.Collections;
 import java.util.ResourceBundle;
 
 
@@ -51,7 +52,6 @@ public class BoardViewController implements Initializable{
 
     @FXML
     private Text NbKorrigan;
-
 
     @FXML
     private ImageView GobelinPlace;
@@ -141,9 +141,8 @@ public class BoardViewController implements Initializable{
 
     private void displayPlayerCards() {
         int numberCard = game.getPlayer1().getListCardsInHand().size();
-
         int spaceCard = LENGTHXALL / (numberCard+1);
-        System.out.println("PlayerHand is Null ? : " + (PlayerHand == null));
+
         PlayerHand.getChildren().clear();
         double[] polynome = interpolationCoord(LENGTHXALL, numberCard * 2);
         for (int i = 0; i < numberCard; i++) {
@@ -191,7 +190,7 @@ public class BoardViewController implements Initializable{
     };
 
     /**
-     * When the player chooses a card in her desk, this card is deleted and add on the kingdom
+     * When the player chooses a card in her desk, this card is deleted and added on the kingdom
      */
     private EventHandler<? super MouseEvent> handleAddCardKing = new EventHandler<MouseEvent>() {
         @Override
@@ -201,27 +200,38 @@ public class BoardViewController implements Initializable{
             Card cardRemove = game.playCard(human,aiPlayer,id);
 
             displayPlayerCards();
-
-            // get information for displaying card on the kingdom
-            Node[] InformCard = placeRaceKingdom(cardRemove.race);
-            ImageView imageViewPlace = (ImageView) InformCard[0];
-            Text textNb = (Text) InformCard[1];
-            imageViewPlace.setImage(((ImageView)event.getSource()).getImage());
-
-            // refresh the current number of kind race put
-            int nbCard = Integer.parseInt(textNb.getText())+1;
-            textNb.setText(nbCard+"");
-
-            // add the card removed on the kingdom list
-            human.addACardKingdom(cardRemove);
+            displayPlayerKingdom();
 
             // refresh score player
             ScorePlayer.setText(Integer.toString(human.getScore()));
         }
     };
 
-    private void displayKingdom(){
 
+    private void displayPlayerKingdom(){
+        for (Card.Race race : Card.Race.values()) {
+            int freq = Collections.frequency(human.getListCardsKingdom(), new Card(race));
+            Node[] informationCard = placeRacePlayerKingdom(race);
+            Image imageDisplay = new Image(getClass().getResourceAsStream(cardToRessource(new Card(race))));
+            if(freq == 0){
+                imageDisplay = new Image(getClass().getResourceAsStream("/img/empty.png"));
+            }
+            ((ImageView)informationCard[0]).setImage(imageDisplay);
+            ((Text)informationCard[1]).setText(freq+"");
+        }
+    }
+
+    private void displayIAKingdom(){
+        for (Card.Race race : Card.Race.values()) {
+            int freq = Collections.frequency(aiPlayer.getListCardsKingdom(), new Card(race));
+            Node[] informationCard = placeRaceAIKingdom(race);
+            Image imageDisplay = new Image(getClass().getResourceAsStream(cardToRessource(new Card(race))));
+            if(freq == 0){
+                imageDisplay = new Image(getClass().getResourceAsStream("/img/empty.png"));
+            }
+            ((ImageView)informationCard[0]).setImage(imageDisplay);
+            ((Text)informationCard[1]).setText(freq+"");
+        }
     }
 
     private void displayIACards(){
@@ -229,7 +239,7 @@ public class BoardViewController implements Initializable{
         int sizeCardsList = aiPlayer.getSizeOfList();
         OpponentHand.getChildren().clear();
         for(int i=0;i<sizeCardsList;i++){
-            ImageView imageViewIA = createImageView(imageIA,72,90);
+            ImageView imageViewIA = createImageView(imageIA,72,100);
             imageViewIA.setX(450/sizeCardsList * i);
             OpponentHand.getChildren().add(imageViewIA);
         }
@@ -242,7 +252,7 @@ public class BoardViewController implements Initializable{
 
    /* private void playCardFromDeck(Player player,Card card){
         // get information for displaying card on the kingdom
-        Node[] InformCard = placeRaceKingdom(card.race);
+        Node[] InformCard = placeRacePlayerKingdom(card.race);
         ImageView imageViewPlace = (ImageView) InformCard[0];
         Text textNb = (Text) InformCard[1];
         imageViewPlace.setImage(((ImageView)event.getSource()).getImage());
@@ -259,7 +269,7 @@ public class BoardViewController implements Initializable{
     }*/
 
 
-    private Node[] placeRaceKingdom(Card.Race race){
+    private Node[] placeRacePlayerKingdom(Card.Race race){
         ImageView imageView  = null;
         Text text = null;
         switch (race){
