@@ -122,6 +122,9 @@ public class BoardViewController implements Initializable{
     @FXML
     private Text NbGnomeOpponent;
 
+    @FXML
+    private  Text ScoreOpponnent;
+
     //endregion
 
 
@@ -136,6 +139,8 @@ public class BoardViewController implements Initializable{
         displayIACards();
 
         ScorePlayer.setText(Integer.toString(human.getScore()));
+        ScoreOpponnent.setText(Integer.toString(aiPlayer.getScore()));
+
 
     }
 
@@ -206,7 +211,7 @@ public class BoardViewController implements Initializable{
             ScorePlayer.setText(Integer.toString(human.getScore()));
 
             game.playAITurn();
-
+            ScoreOpponnent.setText(Integer.toString(aiPlayer.getScore()));
             displayIACards();
             displayIAKingdom();
         }
