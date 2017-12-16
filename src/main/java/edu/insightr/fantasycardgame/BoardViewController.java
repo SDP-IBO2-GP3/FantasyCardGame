@@ -86,6 +86,42 @@ public class BoardViewController implements Initializable{
     @FXML
     private Text ScorePlayer;
 
+    @FXML
+    private ImageView KorriganOpponent;
+
+    @FXML
+    private  Text NbKorriganOpponent;
+
+    @FXML
+    private ImageView ElfOpponent;
+
+    @FXML
+    private Text NbElfOpponent;
+
+    @FXML
+    private ImageView TrollOpponent;
+
+    @FXML
+    private Text NbTrollOpponent;
+
+    @FXML
+    private ImageView GobelinOpponent;
+
+    @FXML
+    private Text NbGobelinOpponent;
+
+    @FXML
+    private ImageView DryadOpponent;
+
+    @FXML
+    private Text NbDryadOpponent;
+
+    @FXML
+    private ImageView GnomeOpponent;
+
+    @FXML
+    private Text NbGnomeOpponent;
+
     //endregion
 
 
@@ -253,6 +289,40 @@ public class BoardViewController implements Initializable{
                 break;
         }
 
+        return new Node[]{imageView,text};
+    }
+
+    private Node[] placeRaceAIKingdom(Card.Race race)
+    {
+        ImageView imageView  = null;
+        Text text = null;
+        switch(race)
+        {
+            case Korrigan:
+                imageView = KorriganOpponent;
+                text = NbKorriganOpponent;
+                break;
+            case Dryad:
+                imageView = DryadOpponent;
+                text = NbDryadOpponent;
+                break;
+            case Elf:
+                imageView = ElfOpponent;
+                text = NbElfOpponent;
+                break;
+            case Goblin:
+                imageView = GobelinOpponent;
+                text = NbGobelinOpponent;
+                break;
+            case Gnome:
+                imageView = GnomeOpponent;
+                text = NbGnomeOpponent;
+                break;
+            case Troll:
+                imageView = TrollOpponent;
+                text = NbTrollOpponent;
+                break;
+        }
         return new Node[]{imageView,text};
     }
 
