@@ -204,6 +204,11 @@ public class BoardViewController implements Initializable{
 
             // refresh score player
             ScorePlayer.setText(Integer.toString(human.getScore()));
+
+            game.playAITurn();
+
+            displayIACards();
+            displayIAKingdom();
         }
     };
 
@@ -245,10 +250,6 @@ public class BoardViewController implements Initializable{
         }
     }
 
-    private void roundIA(){
-
-
-    }
 
    /* private void playCardFromDeck(Player player,Card card){
         // get information for displaying card on the kingdom
@@ -341,9 +342,8 @@ public class BoardViewController implements Initializable{
         if (game.getDeck().getSize() > 0) {
             if (game.playHumanTurn()) {
                 displayPlayerCards();
-
-
             }
+
         }
         //if the deck is empty we hide the imageview of the deck
         else {

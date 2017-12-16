@@ -61,7 +61,12 @@ public class Game {
      */
     public boolean playAITurn()
     {
-        player2.addACard(deck.getACard());
+        if(deck.getSize() > 0){
+            player2.addACardKingdom(deck.getACard());
+        }else{
+            player2.addACardKingdom(player2.getListCardsInHand().get(0));
+        }
+
 
         return true;
     }
@@ -69,7 +74,7 @@ public class Game {
     public Card playCard(Player playerP, Player player, int cardIndex) {
         Card cardToPlay = playerP.getHandCard(cardIndex);
         playerP.addACardKingdom(cardToPlay);
-       // this.applyEffect(playerP, player, cardToPlay);
+        this.applyEffect(playerP, player, cardToPlay);
         return cardToPlay;
     }
 
