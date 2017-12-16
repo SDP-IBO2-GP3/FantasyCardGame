@@ -10,3 +10,19 @@
   
 
 ## 3 November 2017 
+
+## 4/12/17
+1) Vider les emplacements du kingdom et y attriber des places pour chaque race
+2) Fonction pour vider la main, et remplir le kingdom
+3) compteur sur l'emplacement pour savoir combien il y a de cartes similaires empilées
+4) IA/Random qui pioche/joue pour l'adversaire
+5) Condidtions de fin de jeu : Quand un joueur n'a plus de cartes
+6) Bloquer les "multiples" piochage : chaque joueur peut piocher une fois, jouer une fois, 
+ensuite c'est au tour de l'adversaire, ie coder la trame de jeu
+6) score qui varie en fonction des effets de chaque carte et si le joueur possède toutes les races différentes sur son kingdom
+
+## 12/12/17
+1) erreur de points : + 3 lorsqu'on a 5 cartes différentes sur le kingdom au lieu de 6 
+2) utiliser la trame de jeu : Chaque joueur piche une fois, joue, active l'effet de sa carte, puis l'IA joue aléatoirement
+3) activer le pouvoir de chaque race lorsqu'elle est jouée (piocher 2 cartes, échanger de main,...)
+4) vérifier les conditions de fin de jeu
