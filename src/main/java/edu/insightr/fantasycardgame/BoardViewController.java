@@ -44,6 +44,9 @@ public class BoardViewController implements Initializable{
     private AnchorPane PlayerHand;
 
     @FXML
+    private AnchorPane OpponentHand;
+
+    @FXML
     private ImageView KorriganPlace;
 
     @FXML
@@ -92,12 +95,15 @@ public class BoardViewController implements Initializable{
         this.human = game.getPlayer1();
         this.aiPlayer = game.getPlayer2();
         game.initiliazeGame();
-        displayCards();
-        ScorePlayer.setText(Integer.toString(game.getPlayer1().getScore()));
+
+        displayPlayerCards();
+        displayIACards();
+
+        ScorePlayer.setText(Integer.toString(human.getScore()));
 
     }
 
-    private void displayCards() {
+    private void displayPlayerCards() {
         int numberCard = game.getPlayer1().getListCardsInHand().size();
 
         int spaceCard = LENGTHXALL / (numberCard+1);
@@ -127,6 +133,9 @@ public class BoardViewController implements Initializable{
         }
     }
 
+    /**
+     * When the player over past a card, the card is displayed in big on the center of the game
+     */
     private EventHandler<? super MouseEvent> handleDisplayCardBigger = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
@@ -135,6 +144,9 @@ public class BoardViewController implements Initializable{
         }
     };
 
+    /**
+     * When the player leaves the card currently over past the displayed card it's removed
+     */
     private EventHandler<? super MouseEvent> handleEmptyCardBigger = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
@@ -142,23 +154,74 @@ public class BoardViewController implements Initializable{
         }
     };
 
+    /**
+     * When the player chooses a card in her desk, this card is deleted and add on the kingdom
+     */
     private EventHandler<? super MouseEvent> handleAddCardKing = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
-            int id = Integer.parseInt(((ImageView)event.getSource()).getId());
-            System.out.println("Id : "+id);
-            Card cardRemove = human.getListCardsInHand().remove(id);
-            human.getListCardsKingdom().add(cardRemove);
-            displayCards();
-            ImageView imageViewPlace = (ImageView) placeRaceKingdom(cardRemove.race)[0];
-            Text textNb = (Text) placeRaceKingdom(cardRemove.race)[1];
+            // get information about the current card
+            int id = Integer.parseInt(((ImageView)event.getSource()).getId()); // get the card id
+            Card cardRemove = game.playCard(human,aiPlayer,id);
+
+            displayPlayerCards();
+
+            // get information for displaying card on the kingdom
+            Node[] InformCard = placeRaceKingdom(cardRemove.race);
+            ImageView imageViewPlace = (ImageView) InformCard[0];
+            Text textNb = (Text) InformCard[1];
             imageViewPlace.setImage(((ImageView)event.getSource()).getImage());
+
+            // refresh the current number of kind race put
             int nbCard = Integer.parseInt(textNb.getText())+1;
             textNb.setText(nbCard+"");
-            game.getPlayer1().addACardKingdom(cardRemove);
-            ScorePlayer.setText(Integer.toString(game.getPlayer1().getScore()));
+
+            // add the card removed on the kingdom list
+            human.addACardKingdom(cardRemove);
+
+            // refresh score player
+            ScorePlayer.setText(Integer.toString(human.getScore()));
         }
     };
+
+    private void displayKingdom(){
+
+    }
+
+    private void displayIACards(){
+        Image imageIA = new Image(getClass().getResourceAsStream("/img/face_retournee.png"));
+        int sizeCardsList = aiPlayer.getSizeOfList();
+        OpponentHand.getChildren().clear();
+        for(int i=0;i<sizeCardsList;i++){
+            ImageView imageViewIA = createImageView(imageIA,72,90);
+            imageViewIA.setX(450/sizeCardsList * i);
+            OpponentHand.getChildren().add(imageViewIA);
+        }
+    }
+
+    private void roundIA(){
+
+
+    }
+
+   /* private void playCardFromDeck(Player player,Card card){
+        // get information for displaying card on the kingdom
+        Node[] InformCard = placeRaceKingdom(card.race);
+        ImageView imageViewPlace = (ImageView) InformCard[0];
+        Text textNb = (Text) InformCard[1];
+        imageViewPlace.setImage(((ImageView)event.getSource()).getImage());
+
+        // refresh the current number of kind race put
+        int nbCard = Integer.parseInt(textNb.getText())+1;
+        textNb.setText(nbCard+"");
+
+        // add the card removed on the kingdom list
+        human.addACardKingdom(card);
+
+        // refresh score player
+        ScorePlayer.setText(Integer.toString(player.getScore()));
+    }*/
+
 
     private Node[] placeRaceKingdom(Card.Race race){
         ImageView imageView  = null;
@@ -197,7 +260,7 @@ public class BoardViewController implements Initializable{
         //if the deck still has a card
         if (game.getDeck().getSize() > 0) {
             if (game.playHumanTurn()) {
-                displayCards();
+                displayPlayerCards();
 
 
             }

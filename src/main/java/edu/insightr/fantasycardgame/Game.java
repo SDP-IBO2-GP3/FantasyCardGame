@@ -66,11 +66,11 @@ public class Game {
         return true;
     }
 
-    public void playCard(Player playerP, Player player, int cardIndex) {
-
+    public Card playCard(Player playerP, Player player, int cardIndex) {
         Card cardToPlay = playerP.getHandCard(cardIndex);
         playerP.addACardKingdom(cardToPlay);
-        this.applyEffect(playerP, player, cardToPlay);
+       // this.applyEffect(playerP, player, cardToPlay);
+        return cardToPlay;
     }
 
     /**
