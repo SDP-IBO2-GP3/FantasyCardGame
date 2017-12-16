@@ -194,9 +194,17 @@ public class BoardViewController implements Initializable{
     }
 
     public void getCardFromDeck() {
-        if (game.playHumanTurn()) {
-            displayCards();
+        //if the deck still has a card
+        if (game.getDeck().getSize() > 0) {
+            if (game.playHumanTurn()) {
+                displayCards();
 
+
+            }
+        }
+        //if the deck is empty we hide the imageview of the deck
+        else {
+            deck.setVisible(false);
         }
     }
 
