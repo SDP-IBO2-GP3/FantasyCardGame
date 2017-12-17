@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <AnchorPane prefHeight="250.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.141"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.insightr.fantasycardgame.setupController">
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.insightr.fantasycardgame.setupController" fx:id="ap">
     <children>
         <ImageView fitHeight="250.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
             <image>

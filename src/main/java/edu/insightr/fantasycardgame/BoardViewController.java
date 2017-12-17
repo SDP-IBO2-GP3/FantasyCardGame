@@ -11,7 +11,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
-import sun.plugin.javascript.navig4.Anchor;
 
 import java.net.URL;
 import java.util.Collections;
@@ -59,9 +58,6 @@ public class BoardViewController implements Initializable{
     private  Text ScoreOpponnent;
 
     //endregion
-
-
-
 
 
     @Override
