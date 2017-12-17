@@ -508,6 +508,7 @@ public class BoardViewController implements Initializable{
             //if the deck is empty we hide the imageview of the deck
             else {
                 deck.setVisible(false);
+                Instruction.setText("");
             }
         }
     }
