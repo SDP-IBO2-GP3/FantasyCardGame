@@ -101,13 +101,9 @@ public class BoardViewController implements Initializable{
 
         if (game.getDeck().getSize() == 0) {
             deck.setVisible(false);
-            Instruction.setVisible(false);
-
-            if(game.getCurrentState() == Game.DRAW_CARD_FROM_DECK){
+            if (game.getCurrentState() == Game.DRAW_CARD_FROM_DECK) {
                 game.setCurrentState(Game.CHOOSE_CARD_HAND);
             }
-
-
         }
 
         switch (game.getCurrentState()){
@@ -282,14 +278,13 @@ public class BoardViewController implements Initializable{
                 int index = Integer.parseInt(((ImageView) event.getSource()).getId());
                 if(game.getCurrentState() == Game.TAKE_CARD_ADVERSE_KINGDOM){
                     game.TakeCardOnAdverseKingdom(human, aiPlayer, positionToRaceKingdom(index));
+                    changeStateGame(Game.IA_PLAY);
                 }else{
                     game.applyEffect(human,aiPlayer,new Card(positionToRaceKingdom(index)));
+                    changeStateGame(-1);
                 }
 
-                displayKingdom(human);
-                displayKingdom(aiPlayer);
 
-                changeStateGame(Game.IA_PLAY);
             }
         }
     };
@@ -380,8 +375,6 @@ public class BoardViewController implements Initializable{
         if(game.getCurrentState() == Game.DRAW_CARD_FROM_DECK) {
             //if the deck still has a card
             if (game.playHumanTurn()) {
-
-
 
                 displayPlayerCards();
                 changeStateGame(Game.CHOOSE_CARD_HAND);
