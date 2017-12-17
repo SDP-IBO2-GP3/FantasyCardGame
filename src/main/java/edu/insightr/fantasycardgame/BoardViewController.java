@@ -144,20 +144,27 @@ public class BoardViewController implements Initializable{
     }
 
     private void changeStateGame(int state){
-        if(state != -1) {
-            game.setCurrentState(state);
-        }
-
-        if (game.getDeck().getSize() == 0) {
-            deck.setVisible(false);
-            if (game.getCurrentState() == Game.DRAW_CARD_FROM_DECK) {
-                game.setCurrentState(Game.CHOOSE_CARD_HAND);
+        System.out.println(game.endOfGame());
+        if(!game.endOfGame())
+        {
+            if (state != -1) {
+                game.setCurrentState(state);
             }
-        }
-        currentStateGame();
-        ScorePlayer.setText(Integer.toString(human.getScore()));
-        ScoreOpponnent.setText(Integer.toString(aiPlayer.getScore()));
 
+            if (game.getDeck().getSize() == 0) {
+                deck.setVisible(false);
+                if (game.getCurrentState() == Game.DRAW_CARD_FROM_DECK) {
+                    game.setCurrentState(Game.CHOOSE_CARD_HAND);
+                }
+            }
+            currentStateGame();
+            ScorePlayer.setText(Integer.toString(human.getScore()));
+            ScoreOpponnent.setText(Integer.toString(aiPlayer.getScore()));
+        }
+        else{
+            System.out.println("winner");
+            int winner = game.winner(); // 1 = human, -1 = IA, 0 = draw
+        }
     }
 
 
