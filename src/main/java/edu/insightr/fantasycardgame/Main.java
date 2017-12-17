@@ -12,11 +12,13 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/boardView.fxml"));
-            Scene scene = new Scene(root, 989, 690);
 
-            primaryStage.setScene(scene);
+
+        try {
+            Parent setupDisplay = FXMLLoader.load(getClass().getResource("/fxml/setupDisplay.fxml"));
+            Scene start = new Scene(setupDisplay, 389, 239.0);
+
+            primaryStage.setScene(start);
             primaryStage.setTitle("FantasyCard");
             primaryStage.setResizable(false);
             primaryStage.show();
@@ -29,6 +31,5 @@ public class Main extends Application {
     public static void main(String[] args){
         launch(args);
     }
-
 
 }
