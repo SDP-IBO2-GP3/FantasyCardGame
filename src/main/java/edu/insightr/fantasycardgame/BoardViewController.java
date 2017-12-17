@@ -93,19 +93,8 @@ public class BoardViewController implements Initializable{
 
     }
 
-
-    private void changeStateGame(int state){
-        if(state != -1) {
-            game.setCurrentState(state);
-        }
-
-        if (game.getDeck().getSize() == 0) {
-            deck.setVisible(false);
-            if (game.getCurrentState() == Game.DRAW_CARD_FROM_DECK) {
-                game.setCurrentState(Game.CHOOSE_CARD_HAND);
-            }
-        }
-
+    private void currentStateGame()
+    {
         switch (game.getCurrentState()){
 
             case Game.IA_PLAY:
@@ -152,7 +141,20 @@ public class BoardViewController implements Initializable{
                 Instruction.setText("Take a card \n in the opponent's kingdom");
                 break;
         }
+    }
 
+    private void changeStateGame(int state){
+        if(state != -1) {
+            game.setCurrentState(state);
+        }
+
+        if (game.getDeck().getSize() == 0) {
+            deck.setVisible(false);
+            if (game.getCurrentState() == Game.DRAW_CARD_FROM_DECK) {
+                game.setCurrentState(Game.CHOOSE_CARD_HAND);
+            }
+        }
+        currentStateGame();
         ScorePlayer.setText(Integer.toString(human.getScore()));
         ScoreOpponnent.setText(Integer.toString(aiPlayer.getScore()));
 
