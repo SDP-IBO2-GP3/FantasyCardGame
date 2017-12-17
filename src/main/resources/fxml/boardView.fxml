@@ -55,7 +55,7 @@
          </ImageView>
           <AnchorPane maxHeight="38.0" minHeight="38.0" minWidth="24.0" prefHeight="38.0" prefWidth="24.0" style="-fx-background-color: #dddddd61; -fx-background-radius: 7px;" AnchorPane.rightAnchor="612.0" AnchorPane.topAnchor="13.0">
               <children>
-                  <Text fx:id="NbKorriganOpponent" fill="#fcefef" layoutX="4.0" layoutY="28.056640625" strokeType="OUTSIDE" strokeWidth="0.0" text="1" textAlignment="CENTER" wrappingWidth="14.955078125" AnchorPane.topAnchor="0.0">
+                  <Text fx:id="NbKorriganOpponent" fill="#fcefef" layoutX="4.0" layoutY="28.056640625" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="14.955078125" AnchorPane.topAnchor="0.0">
                       <font>
                           <Font name="System Bold" size="26.0" />
                       </font>

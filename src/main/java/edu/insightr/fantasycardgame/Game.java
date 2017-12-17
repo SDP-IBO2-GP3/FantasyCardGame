@@ -36,6 +36,7 @@ public class Game {
     public static final int TAKE_CARD_ADVERSE_HAND = 3;
     public static final int TAKE_CARD_ADVERSE_KINGDOM = 4;
     public static final int APPLY_POWER_ADVERSE_KINGDOM = 5;
+    public static final int ALMOST_END = 6;
 
     private int currentState = -1;
 
@@ -234,15 +235,25 @@ public class Game {
         }
      }
 
-    public boolean gameContinues(){
+    public boolean endOfGame(){
         if(this.getDeck().getSize() == 0){
             if(player1.getListCardsInHand().size() == 0 || player2.getListCardsInHand().size() == 0){
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
-
+    public int winner(){
+        if(player1.getScore() > player2.getScore()){
+            return 1;
+        }
+        else{
+            if(player2.getScore() > player1.getScore()){
+                return -1;
+            }
+        }
+        return 0;
+    }
 
 }
