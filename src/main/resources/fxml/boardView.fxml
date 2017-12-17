@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -22,32 +23,32 @@
     <Separator layoutX="165.0" layoutY="300.0" prefHeight="32.0" prefWidth="831.0" />
     <AnchorPane fx:id="KingdomAI" layoutX="224.0" layoutY="121.0" prefHeight="176.0" prefWidth="710.0">
       <children>
-          <ImageView fx:id="KorriganOpponent" id="0" fitHeight="176.0" fitWidth="126.0" layoutX="60.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0">
+          <ImageView id="0" fx:id="KorriganOpponent" fitHeight="176.0" fitWidth="126.0" layoutX="60.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0">
             <image>
                <Image url="@../img/empty.png" />
             </image>
          </ImageView>
-          <ImageView fx:id="ElfOpponent" id="1" fitHeight="176.0" fitWidth="120.0" layoutX="180.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="120.0">
+          <ImageView id="1" fx:id="ElfOpponent" fitHeight="176.0" fitWidth="120.0" layoutX="180.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="120.0">
             <image>
                 <Image url="@../img/empty.png" />
             </image>
          </ImageView>
-          <ImageView fx:id="TrollOpponent" id="2" fitHeight="176.0" fitWidth="120.0" layoutX="300.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="240.0">
+          <ImageView id="2" fx:id="TrollOpponent" fitHeight="176.0" fitWidth="120.0" layoutX="300.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="240.0">
             <image>
                <Image url="@../img/empty.png" />
             </image>
          </ImageView>
-          <ImageView fx:id="GobelinOpponent" id="3" fitHeight="176.0" fitWidth="120.0" layoutX="420.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="360.0">
+          <ImageView id="3" fx:id="GobelinOpponent" fitHeight="176.0" fitWidth="120.0" layoutX="420.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="360.0">
             <image>
                 <Image url="@../img/empty.png" />
             </image>
          </ImageView>
-          <ImageView fx:id="DryadOpponent" id="4" fitHeight="176.0" fitWidth="120.0" layoutX="540.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="480.0">
+          <ImageView id="4" fx:id="DryadOpponent" fitHeight="176.0" fitWidth="120.0" layoutX="540.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="480.0">
             <image>
                <Image url="@../img/empty.png" />
             </image>
          </ImageView>
-          <ImageView fx:id="GnomeOpponent" id="5" fitHeight="176.0" fitWidth="120.0" layoutX="660.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="600.0">
+          <ImageView id="5" fx:id="GnomeOpponent" fitHeight="176.0" fitWidth="120.0" layoutX="660.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="600.0">
             <image>
                <Image url="@../img/empty.png" />
             </image>
@@ -269,5 +270,17 @@
         </children>
 
     </AnchorPane>
-    <ImageView fx:id="displayCardBigger" visible="false" fitHeight="450.0" fitWidth="290.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="355.0" AnchorPane.rightAnchor="355.0" AnchorPane.topAnchor="50.0" />
+    <ImageView fx:id="displayCardBigger" fitHeight="450.0" fitWidth="290.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="355.0" AnchorPane.rightAnchor="355.0" AnchorPane.topAnchor="50.0" />
+   <AnchorPane layoutX="20.0" layoutY="450.0" prefHeight="46.0" prefWidth="195.0">
+      <children>
+         <Label fx:id="Instruction" layoutY="22.0" prefHeight="47.0" prefWidth="215.0" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-7.0" AnchorPane.topAnchor="0.0">
+            <font>
+               <Font name="System Bold" size="14.0" />
+            </font></Label>
+      </children></AnchorPane>
+   <Label layoutX="37.0" layoutY="420.0" prefHeight="32.0" prefWidth="134.0" text="Instruction : " textAlignment="CENTER">
+      <font>
+         <Font name="System Bold Italic" size="20.0" />
+      </font>
+   </Label>
 </AnchorPane>

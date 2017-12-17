@@ -5,6 +5,8 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -59,6 +61,9 @@ public class BoardViewController implements Initializable{
     @FXML
     private  Text ScoreOpponnent;
 
+    @FXML
+    private Label Instruction;
+
     //endregion
 
 
@@ -112,16 +117,19 @@ public class BoardViewController implements Initializable{
 
             case Game.DRAW_CARD_FROM_DECK:
                 effectSelected(true,deck);
+                Instruction.setText("Pick a card from the deck");
                 break;
 
             case Game.CHOOSE_CARD_HAND:
                 effectSelected(false,deck);
                 effectSelected(true,PlayerHand);
+                Instruction.setText("Choose a card from  \n your hand");
                 break;
 
             case Game.TAKE_CARD_ADVERSE_HAND:
                 effectSelected(false,PlayerHand);
                 effectSelected(true,OpponentHand);
+                Instruction.setText("Take two cards  \n in the opponent's hand");
                 break;
 
             case Game.APPLY_POWER_ADVERSE_KINGDOM:
@@ -132,6 +140,7 @@ public class BoardViewController implements Initializable{
             case Game.TAKE_CARD_ADVERSE_KINGDOM:
                 effectSelected(false,PlayerHand);
                 effectSelected(true,KingdomAI);
+                Instruction.setText("Take a card \n in the opponent's kingdom");
                 break;
         }
 
