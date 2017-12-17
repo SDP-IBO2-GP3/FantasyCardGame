@@ -125,13 +125,13 @@ public class BoardViewController implements Initializable{
             case Game.CHOOSE_CARD_HAND:
                 effectSelected(false,deck);
                 effectSelected(true,PlayerHand);
-                Instruction.setText("Choose a card from  \n your hand");
+                Instruction.setText("Choose a card from your hand");
                 break;
 
             case Game.TAKE_CARD_ADVERSE_HAND:
                 effectSelected(false,PlayerHand);
                 effectSelected(true,OpponentHand);
-                Instruction.setText("Take two cards  \n in the opponent's hand");
+                Instruction.setText("Take two cards in the opponent's hand");
                 break;
 
             case Game.APPLY_POWER_ADVERSE_KINGDOM:
@@ -142,7 +142,7 @@ public class BoardViewController implements Initializable{
             case Game.TAKE_CARD_ADVERSE_KINGDOM:
                 effectSelected(false,PlayerHand);
                 effectSelected(true,KingdomAI);
-                Instruction.setText("Take a card \n in the opponent's kingdom");
+                Instruction.setText("Take a card in the opponent's kingdom");
                 break;
         }
 
