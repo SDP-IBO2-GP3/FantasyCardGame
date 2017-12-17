@@ -86,13 +86,11 @@ public class Player {
             }
         }
 
-        System.out.println("different races: " + uniques.size());
 
         if(!this.has_bonus){
             if(uniques.size() == 6){
                 this.score += 3;
                 this.has_bonus = true;
-                System.out.println("Bonus");
             }
         }
         else
@@ -100,7 +98,6 @@ public class Player {
             if(uniques.size() < 6){
                 this.score -= 3;
                 this.has_bonus = false;
-                System.out.println("Malus");
             }
         }
     }

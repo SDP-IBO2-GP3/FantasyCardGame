@@ -194,7 +194,7 @@ public class Game {
     public void initiliazeGame() {
         this.deck.fillDeck();
         this.deck.shuffleDeck();
-        for(int i = 0; i < 6; i++){
+        for(int i = 0; i < 5; i++){
             this.player1.addACard(this.deck.getACard());
             this.player2.addACard(this.deck.getACard());
         }
@@ -227,7 +227,14 @@ public class Game {
         }
      }
 
-
+    public boolean gameContinues(){
+        if(this.getDeck().getSize() == 0){
+            if(player1.getListCardsInHand().size() == 0 || player2.getListCardsInHand().size() == 0){
+                return false;
+            }
+        }
+        return true;
+    }
 
 
 

@@ -102,6 +102,7 @@ public class BoardViewController implements Initializable{
         if(state != -1) {
             game.setCurrentState(state);
         }
+
         switch (game.getCurrentState()){
 
             case Game.IA_PLAY:
