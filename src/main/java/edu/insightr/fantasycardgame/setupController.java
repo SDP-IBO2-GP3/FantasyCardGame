@@ -37,7 +37,7 @@ public class setupController implements Initializable {
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/boardView.fxml"));
             Scene scene = new Scene(root, 989, 690);
 
-            primaryStage.setX(primaryScreenBounds.getMinX() + primaryScreenBounds.getWidth() - 1189);
+            primaryStage.setX(primaryScreenBounds.getMinX() + primaryScreenBounds.getWidth() - 1250);
             primaryStage.setY(primaryScreenBounds.getMinY() + primaryScreenBounds.getHeight() - 815);
 
 
