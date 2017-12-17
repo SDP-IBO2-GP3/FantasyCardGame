@@ -114,6 +114,12 @@ public class Game {
                 int tempScore = playerP.getScore();
                 playerP.setScore(player.getScore());
                 player.setScore(tempScore);
+
+                //Swap bonus
+                boolean temp_bonus = playerP.getBonus();
+                playerP.setBonus(player.getBonus());
+                player.setBonus(temp_bonus);
+
                 currentState = IA_PLAY;
                 break;
 

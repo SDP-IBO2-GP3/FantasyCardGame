@@ -66,31 +66,41 @@ public class Player {
 
     public void addACardKingdom(Card card){
         this.listCardsKingdom.add(card);
-        updateScore(listCardsKingdom);
+        updateScore(this.listCardsKingdom);
     }
 
     public void updateScore(ArrayList<Card> kingdom)
     {
-        score = kingdom.size();
+        if(this.has_bonus){
+            this.score = kingdom.size() + 3;
+        }
+        else
+        {
+            this.score = kingdom.size();
+        }
 
-        List<Card> uniques = new ArrayList<>();
+        ArrayList<String> uniques = new ArrayList<>();
         for (Card element : kingdom) {
-            if (!uniques.contains(element)) {
-                uniques.add(element);
+            if (!uniques.contains(element.getRace().toString())) {
+                uniques.add(element.getRace().toString());
             }
         }
 
+        System.out.println("different races: " + uniques.size());
+
         if(!this.has_bonus){
             if(uniques.size() == 6){
-                score += 3;
-                has_bonus = true;
+                this.score += 3;
+                this.has_bonus = true;
+                System.out.println("Bonus");
             }
         }
         else
         {
             if(uniques.size() < 6){
-                score -= 3;
-                has_bonus = false;
+                this.score -= 3;
+                this.has_bonus = false;
+                System.out.println("Malus");
             }
         }
     }
@@ -109,6 +119,8 @@ public class Player {
     }
 
     public int getScore(){return this.score;}
+
+    public  boolean getBonus() {return this.has_bonus;}
 
     public Card getRandomKingdomCard(boolean delete) {
         int randomNumber = (int) (Math.random() * (this.listCardsKingdom.size()));
@@ -162,6 +174,8 @@ public class Player {
 
     public void setScore(int newScore) { this.score = newScore; }
 
+    public void setBonus(boolean bonus) { this.has_bonus = bonus; }
+
     public void setNumberCardSelectedKingdomAdverve(int numberCardSelectedKingdomAdverve) {
         this.numberCardSelectedKingdomAdverve = numberCardSelectedKingdomAdverve;
     }
@@ -176,5 +190,4 @@ public class Player {
     public int getSizeOfList() {
         return listCardsInHand.size();
     }
-
 }
