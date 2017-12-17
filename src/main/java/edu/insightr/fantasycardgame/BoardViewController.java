@@ -281,7 +281,7 @@ public class BoardViewController implements Initializable{
                 int id = Integer.parseInt(((ImageView)event.getSource()).getId()); // get the card id
                 String cardName = human.getListCardsInHand().get(id).getRace().name();
 
-                ImageView animation = createImageView(((ImageView)event.getSource()).getImage(),LENGTHWIDTH,LENGTHHEIGHT);
+                ImageView animation = createImageView(((ImageView)event.getSource()).getImage(),110,176);
                 AnchorPane dad = (AnchorPane)PlayerHand.getParent();
 
                 game.playCard(human,aiPlayer,id);
@@ -299,33 +299,33 @@ public class BoardViewController implements Initializable{
 
                 if(cardName == "Korrigan")
                 {
-                    anim.setToX(224 - 500 + 20 );
-                    anim.setToY(332 - 663 + 30);
+                    anim.setToX(224 - 500 );
+                    anim.setToY(332 - 663);
                 }
                 else if(cardName == "Gnome")
                 {
-                    anim.setToX(224 - 500 + 500);
-                    anim.setToY(332 - 663 + 30);
+                    anim.setToX(224 - 500 + 480);
+                    anim.setToY(332 - 663);
                 }
                 else if(cardName == "Goblin")
                 {
-                    anim.setToX(224 - 500 + 380);
-                    anim.setToY(332 - 663 + 30);
+                    anim.setToX(224 - 500 + 360);
+                    anim.setToY(332 - 663);
                 }
                 else if(cardName == "Elf")
                 {
-                    anim.setToX(224 - 500 + 260);
-                    anim.setToY(332 - 663 + 30);
+                    anim.setToX(224 - 500 + 240);
+                    anim.setToY(332 - 663);
                 }
                 else if(cardName == "Dryad")
                 {
-                    anim.setToX(224 - 500 + 140);
-                    anim.setToY(332 - 663 + 30);
+                    anim.setToX(224 - 500 + 120);
+                    anim.setToY(332 - 663);
                 }
                 else if(cardName == "Troll")
                 {
-                    anim.setToX(224 - 500 + 620);
-                    anim.setToY(332 - 663 + 30);
+                    anim.setToX(224 - 500 + 600);
+                    anim.setToY(332 - 663);
                 }
 
                 anim.setNode(animation);
