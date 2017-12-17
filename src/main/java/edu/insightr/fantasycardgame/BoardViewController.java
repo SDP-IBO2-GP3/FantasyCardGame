@@ -111,7 +111,6 @@ public class BoardViewController implements Initializable{
 
             case Game.IA_PLAY:
                 game.playAITurn();
-
                 displayIACards();
                 onylDisplay = true;
                 displayPlayerCards();
@@ -348,6 +347,7 @@ public class BoardViewController implements Initializable{
             if(game.getCurrentState() == Game.TAKE_CARD_ADVERSE_HAND) {
                 int id = Integer.parseInt(((ImageView) event.getSource()).getId()); // get the card id
                 game.TakeCardOnAdverseHand(human, aiPlayer, id);
+                onylDisplay = true;
                 displayIACards();
                 onylDisplay = true;
                 displayPlayerCards();
