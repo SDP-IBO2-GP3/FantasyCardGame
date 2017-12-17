@@ -36,6 +36,7 @@ public class Game {
     public static final int TAKE_CARD_ADVERSE_HAND = 3;
     public static final int TAKE_CARD_ADVERSE_KINGDOM = 4;
     public static final int APPLY_POWER_ADVERSE_KINGDOM = 5;
+    public static final int ALMOST_END = 6;
 
     private int currentState = -1;
 
@@ -80,11 +81,13 @@ public class Game {
     public boolean playAITurn()
     {
         if(deck.getSize() > 0){
+            currentState = DRAW_CARD_FROM_DECK;
             player2.addACardKingdom(deck.getACard());
         }else{
+            currentState = CHOOSE_CARD_HAND;
             player2.addACardKingdom(player2.getListCardsInHand().get(0));
         }
-        currentState = DRAW_CARD_FROM_DECK;
+
         return true;
     }
 
@@ -114,6 +117,12 @@ public class Game {
                 int tempScore = playerP.getScore();
                 playerP.setScore(player.getScore());
                 player.setScore(tempScore);
+
+                //Swap bonus
+                boolean temp_bonus = playerP.getBonus();
+                playerP.setBonus(player.getBonus());
+                player.setBonus(temp_bonus);
+
                 currentState = IA_PLAY;
                 break;
 
@@ -152,8 +161,13 @@ public class Game {
                 break;
 
             case Gnome:
-                playerP.addACard(deck.getACard());
-                playerP.addACard(deck.getACard());
+                if(deck.getSize() > 1){
+                    playerP.addACard(deck.getACard());
+                }
+                if(deck.getSize() > 1) {
+                    playerP.addACard(deck.getACard());
+                }
+
                 currentState = IA_PLAY;
                 break;
 
@@ -188,7 +202,7 @@ public class Game {
     public void initiliazeGame() {
         this.deck.fillDeck();
         this.deck.shuffleDeck();
-        for(int i = 0; i < 6; i++){
+        for(int i = 0; i < 5; i++){
             this.player1.addACard(this.deck.getACard());
             this.player2.addACard(this.deck.getACard());
         }
@@ -221,8 +235,24 @@ public class Game {
         }
      }
 
+    public boolean endOfGame(){
+        if(this.getDeck().getSize() == 0){
+            if(player1.getListCardsInHand().size() == 0 || player2.getListCardsInHand().size() == 0){
+                return true;
+            }
+        }
+        return false;
+    }
 
-
-
-
+    public int winner(){
+        if(player1.getScore() > player2.getScore()){
+            return 1;
+        }
+        else{
+            if(player2.getScore() > player1.getScore()){
+                return -1;
+            }
+        }
+        return 0;
+    }
 }

@@ -67,10 +67,6 @@ public class BoardViewController implements Initializable{
 
     //endregion
 
-
-
-
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.game = new Game();
@@ -98,14 +94,12 @@ public class BoardViewController implements Initializable{
 
     }
 
-
-    private void changeStateGame(int state){
-        if(state != -1) {
-            game.setCurrentState(state);
-        }
+    private void currentStateGame()
+    {
         switch (game.getCurrentState()){
 
             case Game.IA_PLAY:
+
                 game.playAITurn();
                 displayIACards();
                 onylDisplay = true;
@@ -116,6 +110,8 @@ public class BoardViewController implements Initializable{
                 effectSelected(false,OpponentHand);
                 effectSelected(false,KingdomAI);
                 effectSelected(false,PlayerHand);
+
+                changeStateGame(-1);
 
             case Game.DRAW_CARD_FROM_DECK:
                 effectSelected(true,deck);
@@ -137,6 +133,7 @@ public class BoardViewController implements Initializable{
             case Game.APPLY_POWER_ADVERSE_KINGDOM:
                 effectSelected(false,PlayerHand);
                 effectSelected(true,KingdomAI);
+                Instruction.setText("Choose a card just \n to apply its power");
                 break;
 
             case Game.TAKE_CARD_ADVERSE_KINGDOM:
@@ -145,10 +142,30 @@ public class BoardViewController implements Initializable{
                 Instruction.setText("Take a card in the opponent's kingdom");
                 break;
         }
+    }
 
-        ScorePlayer.setText(Integer.toString(human.getScore()));
-        ScoreOpponnent.setText(Integer.toString(aiPlayer.getScore()));
+    private void changeStateGame(int state){
+        System.out.println(game.endOfGame());
+        if(!game.endOfGame())
+        {
+            if (state != -1) {
+                game.setCurrentState(state);
+            }
 
+            if (game.getDeck().getSize() == 0) {
+                deck.setVisible(false);
+                if (game.getCurrentState() == Game.DRAW_CARD_FROM_DECK) {
+                    game.setCurrentState(Game.CHOOSE_CARD_HAND);
+                }
+            }
+            currentStateGame();
+            ScorePlayer.setText(Integer.toString(human.getScore()));
+            ScoreOpponnent.setText(Integer.toString(aiPlayer.getScore()));
+        }
+        else{
+            System.out.println("winner");
+            int winner = game.winner(); // 1 = human, -1 = IA, 0 = draw
+        }
     }
 
 
@@ -331,6 +348,9 @@ public class BoardViewController implements Initializable{
                 anim.play();
                 // refresh score player
 
+                displayKingdom(human);
+
+                changeStateGame(-1);
 
             }
         }
@@ -341,7 +361,9 @@ public class BoardViewController implements Initializable{
         public void handle(MouseEvent event) {
             // get information about the current card
             if(game.getCurrentState() == Game.TAKE_CARD_ADVERSE_HAND) {
-                int id = Integer.parseInt(((ImageView) event.getSource()).getId()); // get the card id
+                ImageView imageView = (ImageView) event.getSource();
+                imageView.setVisible(false);
+                int id = Integer.parseInt((imageView).getId()); // get the card id
                 game.TakeCardOnAdverseHand(human, aiPlayer, id);
                 onylDisplay = true;
                 displayIACards();
@@ -363,17 +385,22 @@ public class BoardViewController implements Initializable{
         @Override
         public void handle(MouseEvent event) {
             if(game.getCurrentState() == Game.TAKE_CARD_ADVERSE_KINGDOM  || game.getCurrentState() == Game.APPLY_POWER_ADVERSE_KINGDOM  ) {
+
                 int index = Integer.parseInt(((ImageView) event.getSource()).getId());
-                if(game.getCurrentState() == Game.TAKE_CARD_ADVERSE_KINGDOM){
-                    game.TakeCardOnAdverseKingdom(human, aiPlayer, positionToRaceKingdom(index));
-                }else{
-                    game.applyEffect(human,aiPlayer,new Card(positionToRaceKingdom(index)));
+                Text textViewNumber = (Text)((AnchorPane)KingdomAI.getChildren().get(index+6)).getChildren().get(0);
+                int textNumber = Integer.parseInt((textViewNumber).getText());
+
+                if(textNumber !=0) {
+                    if (game.getCurrentState() == Game.TAKE_CARD_ADVERSE_KINGDOM) {
+                        game.TakeCardOnAdverseKingdom(human, aiPlayer, positionToRaceKingdom(index));
+                        changeStateGame(Game.IA_PLAY);
+                    } else {
+                        game.applyEffect(human, aiPlayer, new Card(positionToRaceKingdom(index)));
+                        changeStateGame(-1);
+                    }
                 }
 
-                displayKingdom(human);
-                displayKingdom(aiPlayer);
 
-                changeStateGame(Game.IA_PLAY);
             }
         }
     };
@@ -499,11 +526,10 @@ public class BoardViewController implements Initializable{
     public void getCardFromDeck() {
         if(game.getCurrentState() == Game.DRAW_CARD_FROM_DECK) {
             //if the deck still has a card
-            if (game.getDeck().getSize() > 0) {
-                if (game.playHumanTurn()) {
-                    displayPlayerCards();
-                    changeStateGame(Game.CHOOSE_CARD_HAND);
-                }
+            if (game.playHumanTurn()) {
+
+                displayPlayerCards();
+                changeStateGame(Game.CHOOSE_CARD_HAND);
             }
             //if the deck is empty we hide the imageview of the deck
             else {
