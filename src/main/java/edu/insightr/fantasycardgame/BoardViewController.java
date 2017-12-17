@@ -343,14 +343,14 @@ public class BoardViewController implements Initializable{
     }
 
 
-    private void displayIACards(){
+    private void displayIACards() {
         Image imageIA = new Image(getClass().getResourceAsStream("/img/face_retournee.png"));
         int sizeCardsList = aiPlayer.getSizeOfList();
         OpponentHand.getChildren().clear();
-        for(int i=0;i<sizeCardsList;i++){
-            ImageView imageViewIA = createImageView(imageIA,72,100);
+        for (int i = 0; i < sizeCardsList; i++) {
+            ImageView imageViewIA = createImageView(imageIA, 72, 100);
             imageViewIA.setOnMouseClicked(handleChooseCardHandAI);
-            imageViewIA.setX(450/sizeCardsList * i);
+            imageViewIA.setX(450 / sizeCardsList * i);
             imageViewIA.setId("" + i);
             OpponentHand.getChildren().add(imageViewIA);
         }
