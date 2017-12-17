@@ -42,6 +42,8 @@ public class Player {
      */
     private boolean has_bonus;
 
+    private int numberCardSelectedKingdomAdverve;
+
     private ArrayList<Card.Race> races_in_kingdom = new ArrayList<>();
 
     /**
@@ -53,6 +55,7 @@ public class Player {
         this.listCardsInHand = new ArrayList<Card>();
         this.listCardsKingdom = new ArrayList<Card>();
         this.score = 0;
+        this.numberCardSelectedKingdomAdverve = 0;
         this.has_bonus = false;
     }
 
@@ -99,6 +102,10 @@ public class Player {
         return this.listCardsInHand;
     }
 
+    public int getNumberCardSelectedKingdomAdverve() {
+        return numberCardSelectedKingdomAdverve;
+    }
+
     public int getScore(){return this.score;}
 
     public Card getRandomKingdomCard(boolean delete) {
@@ -114,6 +121,9 @@ public class Player {
         return returnValue;
     }
 
+    public boolean isHuman() {
+        return isHuman;
+    }
 
     public Card getRandomHandCard(boolean delete) {
         int randomNumber = (int) (Math.random() * (this.listCardsInHand.size()));
@@ -148,6 +158,10 @@ public class Player {
     }
 
     public void setScore(int newScore) { this.score = newScore; }
+
+    public void setNumberCardSelectedKingdomAdverve(int numberCardSelectedKingdomAdverve) {
+        this.numberCardSelectedKingdomAdverve = numberCardSelectedKingdomAdverve;
+    }
 
     public int getSizeOfKingdom() {return listCardsKingdom.size(); }
 

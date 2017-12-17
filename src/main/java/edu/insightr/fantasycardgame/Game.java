@@ -30,10 +30,13 @@ public class Game {
 
     private boolean isAITurn;
 
-    public static final int CHOOSE_CARD_DECK = 0;
+    public static final int DRAW_CARD_FROM_DECK = 0;
     public static final int CHOOSE_CARD_HAND = 1;
-    public static final int TAKE_CARD_ADVERSE_HAND = 2;
-    public static final int TAKE_CARD_ADVERSE_KINGDOM = 3;
+    public static final int IA_PLAY = 2;
+    public static final int TAKE_CARD_ADVERSE_HAND = 3;
+    public static final int TAKE_CARD_ADVERSE_KINGDOM = 4;
+
+    private int currentState = -1;
 
     /**
      * Default constructor for our board. By default the first player is human.
@@ -42,6 +45,15 @@ public class Game {
         this.deck = new Deck();
         this.player1 = new Player(true);
         this.player2 = new Player(false);
+    }
+
+
+    public int getCurrentState() {
+        return currentState;
+    }
+
+    public void setCurrentState(int currentState) {
+        this.currentState = currentState;
     }
 
     /**
@@ -71,8 +83,7 @@ public class Game {
         }else{
             player2.addACardKingdom(player2.getListCardsInHand().get(0));
         }
-
-
+        currentState = DRAW_CARD_FROM_DECK;
         return true;
     }
 
@@ -102,30 +113,42 @@ public class Game {
                 int tempScore = playerP.getScore();
                 playerP.setScore(player.getScore());
                 player.setScore(tempScore);
+                currentState = IA_PLAY;
                 break;
 
             case Goblin:
                 ArrayList<Card> tempHand = playerP.getListCardsInHand();
                 playerP.setListCardsInHand(player.getListCardsInHand());
                 player.setListCardsInHand(tempHand);
+                currentState = IA_PLAY;
                 break;
 
             case Elf:
                 this.applyEffect(playerP, player, player.getRandomKingdomCard(false));
+                currentState = IA_PLAY;
                 break;
 
             case Dryad:
-                playerP.addACardKingdom(player.getRandomKingdomCard(true));
+                if(playerP.isHuman()){
+                    currentState = TAKE_CARD_ADVERSE_KINGDOM;
+                }else{
+                    playerP.addACardKingdom(player.getRandomKingdomCard(true));
+                }
                 break;
 
             case Gnome:
                 playerP.addACard(deck.getACard());
                 playerP.addACard(deck.getACard());
+                currentState = IA_PLAY;
                 break;
 
             case Korrigan:
-                playerP.addACard(player.getRandomHandCard(true));
-                playerP.addACard(player.getRandomHandCard(true));
+                if(playerP.isHuman()){
+                    currentState = TAKE_CARD_ADVERSE_HAND;
+                }else{
+                    playerP.addACard(player.getRandomHandCard(true));
+                    playerP.addACard(player.getRandomHandCard(true));
+                }
                 break;
 
             default:
@@ -150,6 +173,7 @@ public class Game {
             this.player1.addACard(this.deck.getACard());
             this.player2.addACard(this.deck.getACard());
         }
+        this.currentState = DRAW_CARD_FROM_DECK;
     }
 
     public Player getPlayer1() {

@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import sun.plugin.javascript.navig4.Anchor;
 
@@ -77,16 +78,9 @@ public class BoardViewController implements Initializable{
         ScorePlayer.setText(Integer.toString(human.getScore()));
         ScoreOpponnent.setText(Integer.toString(aiPlayer.getScore()));
 
-
-
         attributeEventKindomIA();
 
-        ScoreOpponnent.setText(Integer.toString(aiPlayer.getScore()));
-
-
-        effectSelected(true,OpponentHand);
-        effectSelected(true,PlayerHand);
-        effectSelected(true,KingdomAI);
+        changeStateGame(0);
 
     }
 
@@ -98,31 +92,57 @@ public class BoardViewController implements Initializable{
     }
 
 
-    private void effectSelected(boolean select,Node node){
-        if(select){
-            node.setEffect(new DropShadow());
-        }else{
-            node.setEffect(null);
+    private void changeStateGame(int state){
+        if(state != -1) {
+            game.setCurrentState(state);
         }
+        switch (game.getCurrentState()){
+
+            case Game.IA_PLAY:
+                game.playAITurn();
+
+                displayIACards();
+                displayPlayerCards();
+                displayKingdom(human);
+                displayKingdom(aiPlayer);
+
+                effectSelected(false,OpponentHand);
+                effectSelected(false,KingdomAI);
+                effectSelected(false,PlayerHand);
+
+            case Game.DRAW_CARD_FROM_DECK:
+                effectSelected(true,deck);
+                break;
+
+            case Game.CHOOSE_CARD_HAND:
+                effectSelected(false,deck);
+                effectSelected(true,PlayerHand);
+                break;
+
+            case Game.TAKE_CARD_ADVERSE_HAND :
+                effectSelected(false,PlayerHand);
+                effectSelected(true,OpponentHand);
+                break;
+
+            case Game.TAKE_CARD_ADVERSE_KINGDOM:
+                effectSelected(false,PlayerHand);
+                effectSelected(true,KingdomAI);
+                break;
+        }
+
     }
 
 
-    // to do : faire dans game un etat de la game
-    private void stateGame(int state){
-        switch (state){
-            case 0 : // IA plays
-                game.playAITurn();
-                displayIACards();
-                //displayIAKingdom();
-                break;
-            case 1 :
-                // chose in hand card AI
-                break;
-
-            case 2 :
-                // chose in kingdom card AI
-                break;
-
+    private void effectSelected(boolean select,Node node){
+        if(select){
+            DropShadow dropShadow = new DropShadow();
+            dropShadow.setRadius(5.0);
+            dropShadow.setOffsetX(10.0);
+            dropShadow.setOffsetY(10.0);
+            dropShadow.setColor(Color.color(0.4, 0.5, 0.5));
+            node.setEffect(dropShadow);
+        }else{
+            node.setEffect(null);
         }
     }
 
@@ -163,9 +183,11 @@ public class BoardViewController implements Initializable{
     private EventHandler<? super MouseEvent> handleDisplayCardBigger = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
-            ImageView imageViewCurrent = (ImageView) event.getSource();
-            displayCardBigger.setVisible(true);
-            displayCardBigger.setImage(imageViewCurrent.getImage());
+            if(game.getCurrentState() == Game.CHOOSE_CARD_HAND){
+                ImageView imageViewCurrent = (ImageView) event.getSource();
+                displayCardBigger.setVisible(true);
+                displayCardBigger.setImage(imageViewCurrent.getImage());
+            }
         }
     };
 
@@ -186,20 +208,21 @@ public class BoardViewController implements Initializable{
     private EventHandler<? super MouseEvent> handleAddCardKing = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
-            // get information about the current card
-            int id = Integer.parseInt(((ImageView)event.getSource()).getId()); // get the card id
-            game.playCard(human,aiPlayer,id);
+            if(game.getCurrentState() == Game.CHOOSE_CARD_HAND){
+                // get information about the current card
+                int id = Integer.parseInt(((ImageView)event.getSource()).getId()); // get the card id
+                game.playCard(human,aiPlayer,id);
 
-            displayPlayerCards();
-            displayKingdom(human);
+                displayPlayerCards();
+                displayKingdom(human);
 
-            // refresh score player
-            ScorePlayer.setText(Integer.toString(human.getScore()));
+                // refresh score player
+                ScorePlayer.setText(Integer.toString(human.getScore()));
+                ScoreOpponnent.setText(Integer.toString(aiPlayer.getScore()));
 
-            game.playAITurn();
-            ScoreOpponnent.setText(Integer.toString(aiPlayer.getScore()));
-            displayIACards();
-            displayKingdom(aiPlayer);
+                changeStateGame(-1);
+
+            }
         }
     };
 
@@ -207,20 +230,35 @@ public class BoardViewController implements Initializable{
         @Override
         public void handle(MouseEvent event) {
             // get information about the current card
-            int id = Integer.parseInt(((ImageView)event.getSource()).getId()); // get the card id
-            game.TakeCardOnAdverseHand(human,aiPlayer,id);
-            displayIACards();
-            displayPlayerCards();
+            if(game.getCurrentState() == Game.TAKE_CARD_ADVERSE_HAND) {
+                int id = Integer.parseInt(((ImageView) event.getSource()).getId()); // get the card id
+                game.TakeCardOnAdverseHand(human, aiPlayer, id);
+                displayIACards();
+                displayPlayerCards();
+
+                int numberCard = human.getNumberCardSelectedKingdomAdverve();
+                numberCard++;
+                if(numberCard == 2){
+                    numberCard = 0;
+                    changeStateGame(Game.IA_PLAY);
+                }
+                human.setNumberCardSelectedKingdomAdverve(numberCard);
+
+            }
         }
     };
 
     private EventHandler<? super MouseEvent> handleChooseCardKingdomAI = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
-            int index = Integer.parseInt(((ImageView)event.getSource()).getId());
-            game.TakeCardOnAdverseKingdom(human,aiPlayer,positionToRaceKingdom(index));
-            displayKingdom(human);
-            displayKingdom(aiPlayer);
+            if(game.getCurrentState() == Game.TAKE_CARD_ADVERSE_KINGDOM) {
+                int index = Integer.parseInt(((ImageView) event.getSource()).getId());
+                game.TakeCardOnAdverseKingdom(human, aiPlayer, positionToRaceKingdom(index));
+                displayKingdom(human);
+                displayKingdom(aiPlayer);
+
+                changeStateGame(Game.IA_PLAY);
+            }
         }
     };
 
@@ -307,15 +345,18 @@ public class BoardViewController implements Initializable{
 
 
     public void getCardFromDeck() {
-        //if the deck still has a card
-        if (game.getDeck().getSize() > 0) {
-            if (game.playHumanTurn()) {
-                displayPlayerCards();
+        if(game.getCurrentState() == Game.DRAW_CARD_FROM_DECK) {
+            //if the deck still has a card
+            if (game.getDeck().getSize() > 0) {
+                if (game.playHumanTurn()) {
+                    displayPlayerCards();
+                    changeStateGame(Game.CHOOSE_CARD_HAND);
+                }
             }
-        }
-        //if the deck is empty we hide the imageview of the deck
-        else {
-            deck.setVisible(false);
+            //if the deck is empty we hide the imageview of the deck
+            else {
+                deck.setVisible(false);
+            }
         }
     }
 
