@@ -37,7 +37,7 @@ public class BoardViewController implements Initializable{
 
     private boolean firstDraw = true;
     private boolean firstAnimation = true;
-
+    private  boolean onylDisplay = false;
     //endregion
 
     //region FXML
@@ -112,6 +112,7 @@ public class BoardViewController implements Initializable{
                 game.playAITurn();
 
                 displayIACards();
+                onylDisplay = true;
                 displayPlayerCards();
                 displayKingdom(human);
                 displayKingdom(aiPlayer);
@@ -198,7 +199,7 @@ public class BoardViewController implements Initializable{
             }
 
             imageViewCurrent.setRotate(angle);
-            if(firstAnimation || i == numberCard - 1)
+            if(firstAnimation || (i == numberCard - 1 && onylDisplay == false) )
             {
 
                 AnchorPane dad = (AnchorPane)PlayerHand.getParent();
@@ -227,11 +228,22 @@ public class BoardViewController implements Initializable{
 
         }
         firstAnimation = false;
+        onylDisplay = false;
     }
 
     public void SwitchFromAnim(AnchorPane dad,ImageView tmp,ImageView imageViewCurrent) {
         dad.getChildren().remove(tmp);
         PlayerHand.getChildren().add(imageViewCurrent);
+    }
+    public void SwitchFromAnim(AnchorPane dad,ImageView tmp,int id) {
+        dad.getChildren().remove(tmp);
+        onylDisplay = true;
+        displayPlayerCards();
+        displayKingdom(human);
+        ScorePlayer.setText(Integer.toString(human.getScore()));
+        ScoreOpponnent.setText(Integer.toString(aiPlayer.getScore()));
+
+        changeStateGame(-1);
     }
     /**
      * When the player over past a card, the card is displayed in big on the center of the game
@@ -267,16 +279,63 @@ public class BoardViewController implements Initializable{
             if(game.getCurrentState() == Game.CHOOSE_CARD_HAND){
                 // get information about the current card
                 int id = Integer.parseInt(((ImageView)event.getSource()).getId()); // get the card id
+                String cardName = human.getListCardsInHand().get(id).getRace().name();
+
+                ImageView animation = createImageView(((ImageView)event.getSource()).getImage(),LENGTHWIDTH,LENGTHHEIGHT);
+                AnchorPane dad = (AnchorPane)PlayerHand.getParent();
+
                 game.playCard(human,aiPlayer,id);
 
-                displayPlayerCards();
-                displayKingdom(human);
 
+
+                TranslateTransition anim = new TranslateTransition();
+                anim.setDuration(Duration.millis(750));
+
+                animation.setX(500);
+                animation.setY(663);
+
+                System.out.print(id);
+                System.out.print(cardName);
+
+                if(cardName == "Korrigan")
+                {
+                    anim.setToX(224 - 500 + 20 );
+                    anim.setToY(332 - 663 + 30);
+                }
+                else if(cardName == "Gnome")
+                {
+                    anim.setToX(224 - 500 + 500);
+                    anim.setToY(332 - 663 + 30);
+                }
+                else if(cardName == "Goblin")
+                {
+                    anim.setToX(224 - 500 + 380);
+                    anim.setToY(332 - 663 + 30);
+                }
+                else if(cardName == "Elf")
+                {
+                    anim.setToX(224 - 500 + 260);
+                    anim.setToY(332 - 663 + 30);
+                }
+                else if(cardName == "Dryad")
+                {
+                    anim.setToX(224 - 500 + 140);
+                    anim.setToY(332 - 663 + 30);
+                }
+                else if(cardName == "Troll")
+                {
+                    anim.setToX(224 - 500 + 620);
+                    anim.setToY(332 - 663 + 30);
+                }
+
+                anim.setNode(animation);
+                anim.setOnFinished(e -> SwitchFromAnim(dad,animation,id));
+
+
+                dad.getChildren().add(animation);
+                anim.play();
                 // refresh score player
-                ScorePlayer.setText(Integer.toString(human.getScore()));
-                ScoreOpponnent.setText(Integer.toString(aiPlayer.getScore()));
 
-                changeStateGame(-1);
 
             }
         }
@@ -290,6 +349,7 @@ public class BoardViewController implements Initializable{
                 int id = Integer.parseInt(((ImageView) event.getSource()).getId()); // get the card id
                 game.TakeCardOnAdverseHand(human, aiPlayer, id);
                 displayIACards();
+                onylDisplay = true;
                 displayPlayerCards();
 
                 int numberCard = human.getNumberCardSelectedKingdomAdverve();
