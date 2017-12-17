@@ -270,9 +270,9 @@
 
     </AnchorPane>
     <ImageView fx:id="displayCardBigger" fitHeight="450.0" fitWidth="290.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="355.0" AnchorPane.rightAnchor="355.0" AnchorPane.topAnchor="50.0" />
-    <AnchorPane layoutX="20.0" layoutY="431.0" prefHeight="130.0" prefWidth="158.0">
+    <AnchorPane layoutX="25.0" layoutY="452.0" prefHeight="90.0" prefWidth="158.0">
       <children>
-          <ImageView fitHeight="130.0" fitWidth="158.0">
+          <ImageView fitHeight="90.0" fitWidth="158.0">
               <image>
                   <Image url="@../img/fond_instruction.png"/>
               </image>
@@ -284,7 +284,11 @@
               </font>
           </Label>
           <Text fx:id="Instruction" fill="#000" layoutX="12.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0"
-                wrappingWidth="134.20000004768372"/>
+                wrappingWidth="134.20000004768372">
+              <font>
+                  <Font name="System Bold" size="12.0"/>
+              </font>
+          </Text>
       </children>
     </AnchorPane>
 </AnchorPane>
