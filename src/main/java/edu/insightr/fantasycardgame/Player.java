@@ -1,6 +1,7 @@
 package edu.insightr.fantasycardgame;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -65,30 +66,31 @@ public class Player {
 
     public void addACardKingdom(Card card){
         this.listCardsKingdom.add(card);
-        this.score += 1;
+        updateScore(listCardsKingdom);
+    }
+
+    public void updateScore(ArrayList<Card> kingdom)
+    {
+        score += 1;
+
+        List<Card> uniques = new ArrayList<>();
+        for (Card element : kingdom) {
+            if (!uniques.contains(element)) {
+                uniques.add(element);
+            }
+        }
 
         if(!this.has_bonus){
-            boolean newRace = false;
-            if(this.races_in_kingdom.size() == 0){
-                this.races_in_kingdom.add(card.getRace());
+            if(uniques.size() == 6){
+                score += 3;
+                has_bonus = true;
             }
-            else{
-                int count = 0;
-                for(int j=0; j<this.races_in_kingdom.size(); j++){
-                    if(card.getRace() != this.races_in_kingdom.get(j)){
-                        count += 1;
-                    }
-                    if(count == races_in_kingdom.size()){
-                        newRace = true;
-                    }
-                }
-                if(newRace){
-                    this.races_in_kingdom.add(card.getRace());
-                }
-                if(this.races_in_kingdom.size() == 6){
-                    score += 3;
-                    this.has_bonus = true;
-                }
+        }
+        else
+        {
+            if(uniques.size() < 6){
+                score -= 3;
+                has_bonus = false;
             }
         }
     }
