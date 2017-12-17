@@ -135,6 +135,9 @@ public class BoardViewController implements Initializable{
                 break;
         }
 
+        ScorePlayer.setText(Integer.toString(human.getScore()));
+        ScoreOpponnent.setText(Integer.toString(aiPlayer.getScore()));
+
     }
 
 
