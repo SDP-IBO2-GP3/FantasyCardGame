@@ -71,7 +71,7 @@ public class Player {
 
     public void updateScore(ArrayList<Card> kingdom)
     {
-        score += 1;
+        score = kingdom.size();
 
         List<Card> uniques = new ArrayList<>();
         for (Card element : kingdom) {
