@@ -6,22 +6,18 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.util.Duration;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import sun.plugin.javascript.navig4.Anchor;
+import javafx.util.Duration;
 
 import java.net.URL;
 import java.util.Collections;
 import java.util.ResourceBundle;
-import java.util.concurrent.TimeUnit;
 
 
 public class BoardViewController implements Initializable{
@@ -67,7 +63,7 @@ public class BoardViewController implements Initializable{
     private  Text ScoreOpponnent;
 
     @FXML
-    private Label Instruction;
+    private Text Instruction;
 
     //endregion
 
