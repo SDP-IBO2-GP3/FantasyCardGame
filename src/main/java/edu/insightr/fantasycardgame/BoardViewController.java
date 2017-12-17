@@ -99,9 +99,21 @@ public class BoardViewController implements Initializable{
             game.setCurrentState(state);
         }
 
+        if (game.getDeck().getSize() == 0) {
+            deck.setVisible(false);
+            Instruction.setVisible(false);
+
+            if(game.getCurrentState() == Game.DRAW_CARD_FROM_DECK){
+                game.setCurrentState(Game.CHOOSE_CARD_HAND);
+            }
+
+
+        }
+
         switch (game.getCurrentState()){
 
             case Game.IA_PLAY:
+
                 game.playAITurn();
 
                 displayIACards();
@@ -112,6 +124,8 @@ public class BoardViewController implements Initializable{
                 effectSelected(false,OpponentHand);
                 effectSelected(false,KingdomAI);
                 effectSelected(false,PlayerHand);
+
+                changeStateGame(-1);
 
             case Game.DRAW_CARD_FROM_DECK:
                 effectSelected(true,deck);
@@ -229,8 +243,6 @@ public class BoardViewController implements Initializable{
                 int id = Integer.parseInt(((ImageView)event.getSource()).getId()); // get the card id
                 game.playCard(human,aiPlayer,id);
 
-                displayPlayerCards();
-                displayKingdom(human);
 
                 // refresh score player
                 ScorePlayer.setText(Integer.toString(human.getScore()));
@@ -247,10 +259,10 @@ public class BoardViewController implements Initializable{
         public void handle(MouseEvent event) {
             // get information about the current card
             if(game.getCurrentState() == Game.TAKE_CARD_ADVERSE_HAND) {
-                int id = Integer.parseInt(((ImageView) event.getSource()).getId()); // get the card id
+                ImageView imageView = (ImageView) event.getSource();
+                imageView.setVisible(false);
+                int id = Integer.parseInt((imageView).getId()); // get the card id
                 game.TakeCardOnAdverseHand(human, aiPlayer, id);
-                displayIACards();
-                displayPlayerCards();
 
                 int numberCard = human.getNumberCardSelectedKingdomAdverve();
                 numberCard++;
@@ -367,16 +379,15 @@ public class BoardViewController implements Initializable{
     public void getCardFromDeck() {
         if(game.getCurrentState() == Game.DRAW_CARD_FROM_DECK) {
             //if the deck still has a card
-            if (game.getDeck().getSize() > 0) {
-                if (game.playHumanTurn()) {
-                    displayPlayerCards();
-                    changeStateGame(Game.CHOOSE_CARD_HAND);
-                }
+            if (game.playHumanTurn()) {
+
+
+
+                displayPlayerCards();
+                changeStateGame(Game.CHOOSE_CARD_HAND);
             }
-            //if the deck is empty we hide the imageview of the deck
-            else {
-                deck.setVisible(false);
-            }
+
+
         }
     }
 

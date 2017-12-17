@@ -80,11 +80,13 @@ public class Game {
     public boolean playAITurn()
     {
         if(deck.getSize() > 0){
+            currentState = DRAW_CARD_FROM_DECK;
             player2.addACardKingdom(deck.getACard());
         }else{
+            currentState = CHOOSE_CARD_HAND;
             player2.addACardKingdom(player2.getListCardsInHand().get(0));
         }
-        currentState = DRAW_CARD_FROM_DECK;
+
         return true;
     }
 
@@ -158,8 +160,13 @@ public class Game {
                 break;
 
             case Gnome:
-                playerP.addACard(deck.getACard());
-                playerP.addACard(deck.getACard());
+                if(deck.getSize() > 1){
+                    playerP.addACard(deck.getACard());
+                }
+                if(deck.getSize() > 1) {
+                    playerP.addACard(deck.getACard());
+                }
+
                 currentState = IA_PLAY;
                 break;
 
