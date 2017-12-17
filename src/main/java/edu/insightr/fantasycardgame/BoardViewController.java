@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import sun.plugin.javascript.navig4.Anchor;
 
 import java.net.URL;
 import java.util.Collections;
@@ -22,10 +23,10 @@ public class BoardViewController implements Initializable{
     private Game game;
     private Player human;
     private Player aiPlayer;
+
     private static final int LENGTHXALL = 560;
     private static final int LENGTHHEIGHT = 123;
     private static final int LENGTHWIDTH = 76;
-    private boolean firstDraw = true;
 
 
     //endregion
@@ -39,93 +40,31 @@ public class BoardViewController implements Initializable{
     private ImageView deck;
 
     @FXML
-    private ImageView carte1;
+    private AnchorPane PlayerHand;
 
     @FXML
-    private AnchorPane PlayerHand;
+    private AnchorPane KingdomAI;
+
+    @FXML
+    private AnchorPane KingdomPlayer;
 
     @FXML
     private AnchorPane OpponentHand;
 
     @FXML
-    private ImageView KorriganPlace;
-
-    @FXML
-    private Text NbKorrigan;
-
-    @FXML
-    private ImageView GobelinPlace;
-
-    @FXML
-    private Text NbGoblin;
-
-    @FXML
-    private ImageView ElfPlace;
-
-    @FXML
-    private Text NbElf;
-
-    @FXML
-    private  ImageView GnomePlace;
-
-    @FXML
-    private Text NbGnome;
-
-    @FXML
-    private  ImageView DryadPlace;
-
-    @FXML
-    private Text NbDryad;
-
-    @FXML
-    private ImageView TrollPlace;
-
-    @FXML
-    private Text NbTroll;
-
-    @FXML
     private Text ScorePlayer;
 
-    @FXML
-    private ImageView KorriganOpponent;
 
-    @FXML
-    private  Text NbKorriganOpponent;
 
-    @FXML
-    private ImageView ElfOpponent;
 
-    @FXML
-    private Text NbElfOpponent;
-
-    @FXML
-    private ImageView TrollOpponent;
-
-    @FXML
-    private Text NbTrollOpponent;
-
-    @FXML
-    private ImageView GobelinOpponent;
-
-    @FXML
-    private Text NbGobelinOpponent;
-
-    @FXML
-    private ImageView DryadOpponent;
-
-    @FXML
-    private Text NbDryadOpponent;
-
-    @FXML
-    private ImageView GnomeOpponent;
-
-    @FXML
-    private Text NbGnomeOpponent;
 
     @FXML
     private  Text ScoreOpponnent;
 
     //endregion
+
+
+
 
 
     @Override
@@ -142,7 +81,40 @@ public class BoardViewController implements Initializable{
         ScoreOpponnent.setText(Integer.toString(aiPlayer.getScore()));
 
 
+        attributeEventKindomIA();
+
+        ScoreOpponnent.setText(Integer.toString(aiPlayer.getScore()));
+
+
     }
+
+    private void attributeEventKindomIA(){
+        for(int i=0;i<6;i++){
+            KingdomAI.getChildren().get(i).setOnMouseClicked(handleChooseCardKingdomAI);
+        }
+
+    }
+
+
+    // to do : faire dans game un etat de la game
+    private void stateGame(int state){
+        switch (state){
+            case 0 : // IA plays
+                game.playAITurn();
+                displayIACards();
+                //displayIAKingdom();
+                break;
+            case 1 :
+                // chose in hand card AI
+                break;
+
+            case 2 :
+                // chose in kingdom card AI
+                break;
+
+        }
+    }
+
 
     private void displayPlayerCards() {
         int numberCard = game.getPlayer1().getListCardsInHand().size();
@@ -180,6 +152,7 @@ public class BoardViewController implements Initializable{
         @Override
         public void handle(MouseEvent event) {
             ImageView imageViewCurrent = (ImageView) event.getSource();
+            displayCardBigger.setVisible(true);
             displayCardBigger.setImage(imageViewCurrent.getImage());
         }
     };
@@ -190,6 +163,7 @@ public class BoardViewController implements Initializable{
     private EventHandler<? super MouseEvent> handleEmptyCardBigger = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
+            displayCardBigger.setVisible(false);
             displayCardBigger.setImage(null);
         }
     };
@@ -202,10 +176,10 @@ public class BoardViewController implements Initializable{
         public void handle(MouseEvent event) {
             // get information about the current card
             int id = Integer.parseInt(((ImageView)event.getSource()).getId()); // get the card id
-            Card cardRemove = game.playCard(human,aiPlayer,id);
+            game.playCard(human,aiPlayer,id);
 
             displayPlayerCards();
-            displayPlayerKingdom();
+            displayKingdom(human);
 
             // refresh score player
             ScorePlayer.setText(Integer.toString(human.getScore()));
@@ -213,15 +187,42 @@ public class BoardViewController implements Initializable{
             game.playAITurn();
             ScoreOpponnent.setText(Integer.toString(aiPlayer.getScore()));
             displayIACards();
-            displayIAKingdom();
+            displayKingdom(aiPlayer);
+        }
+    };
+
+    private EventHandler<? super MouseEvent> handleChooseCardHandAI = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+            // get information about the current card
+            int id = Integer.parseInt(((ImageView)event.getSource()).getId()); // get the card id
+            game.TakeCardOnAdverseHand(human,aiPlayer,id);
+            displayIACards();
+            displayPlayerCards();
+        }
+    };
+
+    private EventHandler<? super MouseEvent> handleChooseCardKingdomAI = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+            int index = Integer.parseInt(((ImageView)event.getSource()).getId());
+            game.TakeCardOnAdverseKingdom(human,aiPlayer,positionToRaceKingdom(index));
+            displayKingdom(human);
+            displayKingdom(aiPlayer);
         }
     };
 
 
-    private void displayPlayerKingdom(){
+    private void displayKingdom(Player player){
+
+        AnchorPane kingdom = KingdomPlayer;
+        if(player == aiPlayer){
+            kingdom = KingdomAI;
+        }
+
         for (Card.Race race : Card.Race.values()) {
-            int freq = Collections.frequency(human.getListCardsKingdom(), new Card(race));
-            Node[] informationCard = placeRacePlayerKingdom(race);
+            int freq = Collections.frequency(player.getListCardsKingdom(), new Card(race));
+            Node[] informationCard = placeRaceKingdom(kingdom,race);
             Image imageDisplay = new Image(getClass().getResourceAsStream(cardToRessource(new Card(race))));
             if(freq == 0){
                 imageDisplay = new Image(getClass().getResourceAsStream("/img/empty.png"));
@@ -231,18 +232,6 @@ public class BoardViewController implements Initializable{
         }
     }
 
-    private void displayIAKingdom(){
-        for (Card.Race race : Card.Race.values()) {
-            int freq = Collections.frequency(aiPlayer.getListCardsKingdom(), new Card(race));
-            Node[] informationCard = placeRaceAIKingdom(race);
-            Image imageDisplay = new Image(getClass().getResourceAsStream(cardToRessource(new Card(race))));
-            if(freq == 0){
-                imageDisplay = new Image(getClass().getResourceAsStream("/img/empty.png"));
-            }
-            ((ImageView)informationCard[0]).setImage(imageDisplay);
-            ((Text)informationCard[1]).setText(freq+"");
-        }
-    }
 
     private void displayIACards(){
         Image imageIA = new Image(getClass().getResourceAsStream("/img/face_retournee.png"));
@@ -250,97 +239,60 @@ public class BoardViewController implements Initializable{
         OpponentHand.getChildren().clear();
         for(int i=0;i<sizeCardsList;i++){
             ImageView imageViewIA = createImageView(imageIA,72,100);
+            imageViewIA.setOnMouseClicked(handleChooseCardHandAI);
             imageViewIA.setX(450/sizeCardsList * i);
+            imageViewIA.setId("" + i);
             OpponentHand.getChildren().add(imageViewIA);
         }
     }
 
 
-   /* private void playCardFromDeck(Player player,Card card){
-        // get information for displaying card on the kingdom
-        Node[] InformCard = placeRacePlayerKingdom(card.race);
-        ImageView imageViewPlace = (ImageView) InformCard[0];
-        Text textNb = (Text) InformCard[1];
-        imageViewPlace.setImage(((ImageView)event.getSource()).getImage());
-
-        // refresh the current number of kind race put
-        int nbCard = Integer.parseInt(textNb.getText())+1;
-        textNb.setText(nbCard+"");
-
-        // add the card removed on the kingdom list
-        human.addACardKingdom(card);
-
-        // refresh score player
-        ScorePlayer.setText(Integer.toString(player.getScore()));
-    }*/
+   private Node[] accessNodeForACardInKingDom(AnchorPane kingdom,int index){
+        Node imageView = kingdom.getChildren().get(index);
+        Node textView = ((AnchorPane)kingdom.getChildren().get(index+6)).getChildren().get(0);
+       return new Node[]{imageView,textView};
+   }
 
 
-    private Node[] placeRacePlayerKingdom(Card.Race race){
-        ImageView imageView  = null;
-        Text text = null;
+    private Card.Race positionToRaceKingdom(int position){
+        switch (position){
+            case 0:
+                return Card.Race.Korrigan;
+            case 1:
+                return Card.Race.Dryad;
+            case 2:
+                return Card.Race.Elf;
+            case 3:
+                return Card.Race.Goblin;
+            case 4:
+                return Card.Race.Gnome;
+            case 5:
+                return Card.Race.Troll;
+        }
+
+        return null;
+    }
+
+
+    private Node[] placeRaceKingdom(AnchorPane kingdom,Card.Race race){
         switch (race){
             case Korrigan:
-                imageView = KorriganPlace;
-                text = NbKorrigan;
-                break;
+                return  accessNodeForACardInKingDom(kingdom,0);
             case Dryad:
-                imageView = DryadPlace;
-                text = NbDryad;
-                break;
+                return  accessNodeForACardInKingDom(kingdom,1);
             case Elf:
-                imageView = ElfPlace;
-                text = NbElf;
-                break;
+                return  accessNodeForACardInKingDom(kingdom,2);
             case Goblin:
-                imageView = GobelinPlace;
-                text = NbGoblin;
-                break;
+                return  accessNodeForACardInKingDom(kingdom,3);
             case Gnome:
-                imageView = GnomePlace;
-                text = NbGnome;
-                break;
+                return  accessNodeForACardInKingDom(kingdom,4);
             case Troll:
-                imageView = TrollPlace;
-                text = NbTroll;
-                break;
+                return  accessNodeForACardInKingDom(kingdom,5);
         }
 
-        return new Node[]{imageView,text};
+        return null;
     }
 
-    private Node[] placeRaceAIKingdom(Card.Race race)
-    {
-        ImageView imageView  = null;
-        Text text = null;
-        switch(race)
-        {
-            case Korrigan:
-                imageView = KorriganOpponent;
-                text = NbKorriganOpponent;
-                break;
-            case Dryad:
-                imageView = DryadOpponent;
-                text = NbDryadOpponent;
-                break;
-            case Elf:
-                imageView = ElfOpponent;
-                text = NbElfOpponent;
-                break;
-            case Goblin:
-                imageView = GobelinOpponent;
-                text = NbGobelinOpponent;
-                break;
-            case Gnome:
-                imageView = GnomeOpponent;
-                text = NbGnomeOpponent;
-                break;
-            case Troll:
-                imageView = TrollOpponent;
-                text = NbTrollOpponent;
-                break;
-        }
-        return new Node[]{imageView,text};
-    }
 
     public void getCardFromDeck() {
         //if the deck still has a card
@@ -348,7 +300,6 @@ public class BoardViewController implements Initializable{
             if (game.playHumanTurn()) {
                 displayPlayerCards();
             }
-
         }
         //if the deck is empty we hide the imageview of the deck
         else {

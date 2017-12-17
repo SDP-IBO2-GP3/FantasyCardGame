@@ -156,4 +156,22 @@ public class Game {
     }
 
     public Deck getDeck() { return deck; }
+
+
+    public void TakeCardOnAdverseHand(Player playerP,Player player,int id){
+        Card card = player.getHandCard(id);
+        playerP.addACard(card);
+    }
+
+     public void TakeCardOnAdverseKingdom(Player playerP,Player player,Card.Race race){
+        for(int i=0;i<player.getListCardsKingdom().size();i++){
+            if(player.getListCardsKingdom().get(i).race.equals(race)){
+                Card card = player.getKingdomCard(i);
+                playerP.addACardKingdom(card);
+            }
+        }
+     }
+
+
+
 }

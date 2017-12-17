@@ -132,6 +132,12 @@ public class Player {
         return returnValue;
     }
 
+    public Card getKingdomCard(int cardIndextoDelete) {
+        Card returnValue = this.getListCardsKingdom().get(cardIndextoDelete);
+        this.getListCardsKingdom().remove(cardIndextoDelete);
+        return returnValue;
+    }
+
     //Setters
     public void setListCardsKingdom(ArrayList<Card> newKingdom) {
         this.listCardsKingdom = newKingdom;
