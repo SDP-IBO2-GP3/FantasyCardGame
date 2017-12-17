@@ -125,20 +125,30 @@ public class Game {
                 break;
 
             case Elf:
-                if(playerP.isHuman()){
-                    currentState = APPLY_POWER_ADVERSE_KINGDOM;
+                if(player.getListCardsKingdom().size() > 0){
+                    if(playerP.isHuman()){
+                        currentState = APPLY_POWER_ADVERSE_KINGDOM;
+                    }else{
+                        this.applyEffect(playerP, player, player.getRandomKingdomCard(false));
+                    }
                 }else{
-                    this.applyEffect(playerP, player, player.getRandomKingdomCard(false));
+                    currentState = IA_PLAY;
                 }
 
                 break;
 
             case Dryad:
-                if(playerP.isHuman()){
-                    currentState = TAKE_CARD_ADVERSE_KINGDOM;
+                if(player.getListCardsKingdom().size() > 0) {
+                    if (playerP.isHuman()) {
+                        currentState = TAKE_CARD_ADVERSE_KINGDOM;
+                    } else {
+                        playerP.addACardKingdom(player.getRandomKingdomCard(true));
+                    }
                 }else{
-                    playerP.addACardKingdom(player.getRandomKingdomCard(true));
+                    currentState = IA_PLAY;
                 }
+
+
                 break;
 
             case Gnome:
@@ -148,11 +158,15 @@ public class Game {
                 break;
 
             case Korrigan:
-                if(playerP.isHuman()){
-                    currentState = TAKE_CARD_ADVERSE_HAND;
+                if(player.getListCardsInHand().size() > 1){
+                    if(playerP.isHuman()){
+                        currentState = TAKE_CARD_ADVERSE_HAND;
+                    }else{
+                        playerP.addACard(player.getRandomHandCard(true));
+                        playerP.addACard(player.getRandomHandCard(true));
+                    }
                 }else{
-                    playerP.addACard(player.getRandomHandCard(true));
-                    playerP.addACard(player.getRandomHandCard(true));
+                    currentState = IA_PLAY;
                 }
                 break;
 
