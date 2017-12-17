@@ -1,6 +1,7 @@
 package edu.insightr.fantasycardgame;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -42,6 +43,8 @@ public class Player {
      */
     private boolean has_bonus;
 
+    private int numberCardSelectedKingdomAdverve;
+
     private ArrayList<Card.Race> races_in_kingdom = new ArrayList<>();
 
     /**
@@ -53,6 +56,7 @@ public class Player {
         this.listCardsInHand = new ArrayList<Card>();
         this.listCardsKingdom = new ArrayList<Card>();
         this.score = 0;
+        this.numberCardSelectedKingdomAdverve = 0;
         this.has_bonus = false;
     }
 
@@ -62,30 +66,31 @@ public class Player {
 
     public void addACardKingdom(Card card){
         this.listCardsKingdom.add(card);
-        this.score += 1;
+        updateScore(listCardsKingdom);
+    }
+
+    public void updateScore(ArrayList<Card> kingdom)
+    {
+        score = kingdom.size();
+
+        List<Card> uniques = new ArrayList<>();
+        for (Card element : kingdom) {
+            if (!uniques.contains(element)) {
+                uniques.add(element);
+            }
+        }
 
         if(!this.has_bonus){
-            boolean newRace = false;
-            if(this.races_in_kingdom.size() == 0){
-                this.races_in_kingdom.add(card.getRace());
+            if(uniques.size() == 6){
+                score += 3;
+                has_bonus = true;
             }
-            else{
-                int count = 0;
-                for(int j=0; j<this.races_in_kingdom.size(); j++){
-                    if(card.getRace() != this.races_in_kingdom.get(j)){
-                        count += 1;
-                    }
-                    if(count == races_in_kingdom.size()){
-                        newRace = true;
-                    }
-                }
-                if(newRace){
-                    this.races_in_kingdom.add(card.getRace());
-                }
-                if(this.races_in_kingdom.size() == 6){
-                    score += 3;
-                    this.has_bonus = true;
-                }
+        }
+        else
+        {
+            if(uniques.size() < 6){
+                score -= 3;
+                has_bonus = false;
             }
         }
     }
@@ -97,6 +102,10 @@ public class Player {
 
     public ArrayList<Card> getListCardsInHand() {
         return this.listCardsInHand;
+    }
+
+    public int getNumberCardSelectedKingdomAdverve() {
+        return numberCardSelectedKingdomAdverve;
     }
 
     public int getScore(){return this.score;}
@@ -114,6 +123,9 @@ public class Player {
         return returnValue;
     }
 
+    public boolean isHuman() {
+        return isHuman;
+    }
 
     public Card getRandomHandCard(boolean delete) {
         int randomNumber = (int) (Math.random() * (this.listCardsInHand.size()));
@@ -132,6 +144,13 @@ public class Player {
         return returnValue;
     }
 
+    public Card getKingdomCard(int cardIndextoDelete,boolean delete) {
+        Card returnValue = this.getListCardsKingdom().get(cardIndextoDelete);
+        if(delete)
+            this.getListCardsKingdom().remove(cardIndextoDelete);
+        return returnValue;
+    }
+
     //Setters
     public void setListCardsKingdom(ArrayList<Card> newKingdom) {
         this.listCardsKingdom = newKingdom;
@@ -142,6 +161,10 @@ public class Player {
     }
 
     public void setScore(int newScore) { this.score = newScore; }
+
+    public void setNumberCardSelectedKingdomAdverve(int numberCardSelectedKingdomAdverve) {
+        this.numberCardSelectedKingdomAdverve = numberCardSelectedKingdomAdverve;
+    }
 
     public int getSizeOfKingdom() {return listCardsKingdom.size(); }
 
