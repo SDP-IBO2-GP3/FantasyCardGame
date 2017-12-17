@@ -35,7 +35,8 @@ public class BoardViewController implements Initializable{
 
     //endregion
 
-    //region FXML
+    //
+    // region FXML
 
     @FXML
     private ImageView displayCardBigger;
@@ -135,6 +136,7 @@ public class BoardViewController implements Initializable{
             case Game.APPLY_POWER_ADVERSE_KINGDOM:
                 effectSelected(false,PlayerHand);
                 effectSelected(true,KingdomAI);
+                Instruction.setText("Choose a card just \n to apply its power");
                 break;
 
             case Game.TAKE_CARD_ADVERSE_KINGDOM:
