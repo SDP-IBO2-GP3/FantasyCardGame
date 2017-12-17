@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -77,10 +78,15 @@ public class BoardViewController implements Initializable{
         ScoreOpponnent.setText(Integer.toString(aiPlayer.getScore()));
 
 
+
         attributeEventKindomIA();
 
         ScoreOpponnent.setText(Integer.toString(aiPlayer.getScore()));
 
+
+        effectSelected(true,OpponentHand);
+        effectSelected(true,PlayerHand);
+        effectSelected(true,KingdomAI);
 
     }
 
@@ -89,6 +95,15 @@ public class BoardViewController implements Initializable{
             KingdomAI.getChildren().get(i).setOnMouseClicked(handleChooseCardKingdomAI);
         }
 
+    }
+
+
+    private void effectSelected(boolean select,Node node){
+        if(select){
+            node.setEffect(new DropShadow());
+        }else{
+            node.setEffect(null);
+        }
     }
 
 
@@ -127,6 +142,7 @@ public class BoardViewController implements Initializable{
             imageViewCurrent.setOnMouseEntered(handleDisplayCardBigger);
             imageViewCurrent.setOnMouseExited(handleEmptyCardBigger);
             imageViewCurrent.setOnMouseClicked(handleAddCardKing);
+
             imageViewCurrent.setX(spaceCard * i); // Position on the X axis
             imageViewCurrent.setY(applyPolynome(polynome, spaceCard * i + LENGTHWIDTH / 4)); // Position on the Y axis
 

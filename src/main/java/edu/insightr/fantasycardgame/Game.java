@@ -30,6 +30,11 @@ public class Game {
 
     private boolean isAITurn;
 
+    public static final int CHOOSE_CARD_DECK = 0;
+    public static final int CHOOSE_CARD_HAND = 1;
+    public static final int TAKE_CARD_ADVERSE_HAND = 2;
+    public static final int TAKE_CARD_ADVERSE_KINGDOM = 3;
+
     /**
      * Default constructor for our board. By default the first player is human.
      */
