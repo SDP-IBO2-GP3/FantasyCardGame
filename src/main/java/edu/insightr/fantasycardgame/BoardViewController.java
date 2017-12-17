@@ -246,6 +246,8 @@ public class BoardViewController implements Initializable{
                 ScorePlayer.setText(Integer.toString(human.getScore()));
                 ScoreOpponnent.setText(Integer.toString(aiPlayer.getScore()));
 
+                displayKingdom(human);
+
                 changeStateGame(-1);
 
             }
@@ -277,13 +279,19 @@ public class BoardViewController implements Initializable{
         @Override
         public void handle(MouseEvent event) {
             if(game.getCurrentState() == Game.TAKE_CARD_ADVERSE_KINGDOM  || game.getCurrentState() == Game.APPLY_POWER_ADVERSE_KINGDOM  ) {
+
                 int index = Integer.parseInt(((ImageView) event.getSource()).getId());
-                if(game.getCurrentState() == Game.TAKE_CARD_ADVERSE_KINGDOM){
-                    game.TakeCardOnAdverseKingdom(human, aiPlayer, positionToRaceKingdom(index));
-                    changeStateGame(Game.IA_PLAY);
-                }else{
-                    game.applyEffect(human,aiPlayer,new Card(positionToRaceKingdom(index)));
-                    changeStateGame(-1);
+                Text textViewNumber = (Text)((AnchorPane)KingdomAI.getChildren().get(index+6)).getChildren().get(0);
+                int textNumber = Integer.parseInt((textViewNumber).getText());
+
+                if(textNumber !=0) {
+                    if (game.getCurrentState() == Game.TAKE_CARD_ADVERSE_KINGDOM) {
+                        game.TakeCardOnAdverseKingdom(human, aiPlayer, positionToRaceKingdom(index));
+                        changeStateGame(Game.IA_PLAY);
+                    } else {
+                        game.applyEffect(human, aiPlayer, new Card(positionToRaceKingdom(index)));
+                        changeStateGame(-1);
+                    }
                 }
 
 
