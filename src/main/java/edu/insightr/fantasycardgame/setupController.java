@@ -37,14 +37,15 @@ public class setupController implements Initializable {
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/boardView.fxml"));
             Scene scene = new Scene(root, 989, 690);
 
-            primaryStage.setX(primaryScreenBounds.getMinX() + primaryScreenBounds.getWidth() - 1250);
-            primaryStage.setY(primaryScreenBounds.getMinY() + primaryScreenBounds.getHeight() - 815);
+
 
 
             primaryStage.setScene(scene);
             primaryStage.setTitle("FantasyCard");
             primaryStage.setResizable(false);
             primaryStage.show();
+            primaryStage.setX((primaryScreenBounds.getWidth() - primaryStage.getWidth()) / 2);
+            primaryStage.setY((primaryScreenBounds.getHeight() - primaryStage.getHeight()) / 2);
 
         } catch (Exception e) {
             e.printStackTrace();
