@@ -269,5 +269,5 @@
         </children>
 
     </AnchorPane>
-    <ImageView fx:id="displayCardBigger" fitHeight="450.0" fitWidth="290.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="355.0" AnchorPane.rightAnchor="355.0" AnchorPane.topAnchor="50.0" />
+    <ImageView fx:id="displayCardBigger" visible="false" fitHeight="450.0" fitWidth="290.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="355.0" AnchorPane.rightAnchor="355.0" AnchorPane.topAnchor="50.0" />
 </AnchorPane>

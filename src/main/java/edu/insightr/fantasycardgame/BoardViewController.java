@@ -54,10 +54,6 @@ public class BoardViewController implements Initializable{
     @FXML
     private Text ScorePlayer;
 
-
-
-
-
     @FXML
     private  Text ScoreOpponnent;
 
