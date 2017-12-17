@@ -119,9 +119,14 @@ public class BoardViewController implements Initializable{
                 effectSelected(true,PlayerHand);
                 break;
 
-            case Game.TAKE_CARD_ADVERSE_HAND :
+            case Game.TAKE_CARD_ADVERSE_HAND:
                 effectSelected(false,PlayerHand);
                 effectSelected(true,OpponentHand);
+                break;
+
+            case Game.APPLY_POWER_ADVERSE_KINGDOM:
+                effectSelected(false,PlayerHand);
+                effectSelected(true,KingdomAI);
                 break;
 
             case Game.TAKE_CARD_ADVERSE_KINGDOM:
@@ -243,7 +248,6 @@ public class BoardViewController implements Initializable{
                     changeStateGame(Game.IA_PLAY);
                 }
                 human.setNumberCardSelectedKingdomAdverve(numberCard);
-
             }
         }
     };
@@ -251,9 +255,14 @@ public class BoardViewController implements Initializable{
     private EventHandler<? super MouseEvent> handleChooseCardKingdomAI = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
-            if(game.getCurrentState() == Game.TAKE_CARD_ADVERSE_KINGDOM) {
+            if(game.getCurrentState() == Game.TAKE_CARD_ADVERSE_KINGDOM  || game.getCurrentState() == Game.APPLY_POWER_ADVERSE_KINGDOM  ) {
                 int index = Integer.parseInt(((ImageView) event.getSource()).getId());
-                game.TakeCardOnAdverseKingdom(human, aiPlayer, positionToRaceKingdom(index));
+                if(game.getCurrentState() == Game.TAKE_CARD_ADVERSE_KINGDOM){
+                    game.TakeCardOnAdverseKingdom(human, aiPlayer, positionToRaceKingdom(index));
+                }else{
+                    game.applyEffect(human,aiPlayer,new Card(positionToRaceKingdom(index)));
+                }
+
                 displayKingdom(human);
                 displayKingdom(aiPlayer);
 

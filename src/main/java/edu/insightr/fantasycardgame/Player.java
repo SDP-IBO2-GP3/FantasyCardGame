@@ -142,9 +142,10 @@ public class Player {
         return returnValue;
     }
 
-    public Card getKingdomCard(int cardIndextoDelete) {
+    public Card getKingdomCard(int cardIndextoDelete,boolean delete) {
         Card returnValue = this.getListCardsKingdom().get(cardIndextoDelete);
-        this.getListCardsKingdom().remove(cardIndextoDelete);
+        if(delete)
+            this.getListCardsKingdom().remove(cardIndextoDelete);
         return returnValue;
     }
 

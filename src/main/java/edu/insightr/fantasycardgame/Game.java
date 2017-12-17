@@ -35,6 +35,7 @@ public class Game {
     public static final int IA_PLAY = 2;
     public static final int TAKE_CARD_ADVERSE_HAND = 3;
     public static final int TAKE_CARD_ADVERSE_KINGDOM = 4;
+    public static final int APPLY_POWER_ADVERSE_KINGDOM = 5;
 
     private int currentState = -1;
 
@@ -124,8 +125,12 @@ public class Game {
                 break;
 
             case Elf:
-                this.applyEffect(playerP, player, player.getRandomKingdomCard(false));
-                currentState = IA_PLAY;
+                if(playerP.isHuman()){
+                    currentState = APPLY_POWER_ADVERSE_KINGDOM;
+                }else{
+                    this.applyEffect(playerP, player, player.getRandomKingdomCard(false));
+                }
+
                 break;
 
             case Dryad:
@@ -195,11 +200,14 @@ public class Game {
      public void TakeCardOnAdverseKingdom(Player playerP,Player player,Card.Race race){
         for(int i=0;i<player.getListCardsKingdom().size();i++){
             if(player.getListCardsKingdom().get(i).race.equals(race)){
-                Card card = player.getKingdomCard(i);
+                Card card = player.getKingdomCard(i,true);
                 playerP.addACardKingdom(card);
+                break;
             }
         }
      }
+
+
 
 
 
