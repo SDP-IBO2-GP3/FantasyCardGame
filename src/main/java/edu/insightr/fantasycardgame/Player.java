@@ -42,6 +42,8 @@ public class Player {
      */
     private boolean has_bonus;
 
+    private ArrayList<Card.Race> races_in_kingdom = new ArrayList<>();
+
     /**
      * Basic constructor for the player. By default, he got a score of 0
      * @param isHuman Attributes given to know if the player is human or not
@@ -61,20 +63,29 @@ public class Player {
     public void addACardKingdom(Card card){
         this.listCardsKingdom.add(card);
         this.score += 1;
-        int different_cards = 1;
-        Card cardRace = listCardsKingdom.get(0);
 
         if(!this.has_bonus){
-            for(int i=1; i<listCardsKingdom.size(); i++){
-                if(!listCardsKingdom.get(i).toString().equals(cardRace.toString())){
-                    different_cards += 1;
-                    System.out.println((different_cards));
-                }
-                cardRace = listCardsKingdom.get(i);
+            boolean newRace = false;
+            if(this.races_in_kingdom.size() == 0){
+                this.races_in_kingdom.add(card.getRace());
             }
-            if(different_cards == 6){
-                this.score += 3;
-                this.has_bonus = true;
+            else{
+                int count = 0;
+                for(int j=0; j<this.races_in_kingdom.size(); j++){
+                    if(card.getRace() != this.races_in_kingdom.get(j)){
+                        count += 1;
+                    }
+                    if(count == races_in_kingdom.size()){
+                        newRace = true;
+                    }
+                }
+                if(newRace){
+                    this.races_in_kingdom.add(card.getRace());
+                }
+                if(this.races_in_kingdom.size() == 6){
+                    score += 3;
+                    this.has_bonus = true;
+                }
             }
         }
     }
@@ -142,4 +153,5 @@ public class Player {
     public int getSizeOfList() {
         return listCardsInHand.size();
     }
+
 }

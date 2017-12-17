@@ -1,79 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
-
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.insightr.fantasycardgame.BoardViewController">
 
       <AnchorPane prefHeight="661.0" prefWidth="1000.0" AnchorPane.bottomAnchor="39.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <ImageView fitHeight="700.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true">
             <Image url="@../img/parchemin.jpg" />
       </ImageView>
-    <AnchorPane layoutX="356.0" layoutY="14.0" prefHeight="90.0" prefWidth="450.0">
-        <ImageView fitHeight="90.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true">
-            <Image url="@../img/face_retournee.png" />
-        </ImageView>
-        <ImageView fitHeight="90.0" fitWidth="72.0" layoutX="59.0" pickOnBounds="true" preserveRatio="true">
-            <Image url="@../img/face_retournee.png" />
-        </ImageView>
-        <ImageView fitHeight="90.0" fitWidth="72.0" layoutX="118.0" pickOnBounds="true" preserveRatio="true">
-            <Image url="@../img/face_retournee.png" />
-        </ImageView>
-        <ImageView fitHeight="90.0" fitWidth="72.0" layoutX="177.0" pickOnBounds="true" preserveRatio="true">
-            <Image url="@../img/face_retournee.png" />
-        </ImageView>
-        <ImageView fitHeight="90.0" fitWidth="72.0" layoutX="236.0" pickOnBounds="true" preserveRatio="true">
-            <Image url="@../img/face_retournee.png" />
-        </ImageView>
-        <ImageView fitHeight="90.0" fitWidth="72.0" layoutX="295.0" pickOnBounds="true" preserveRatio="true">
-            <Image url="@../img/face_retournee.png" />
-        </ImageView>
-    </AnchorPane>
+    <AnchorPane fx:id="OpponentHand" layoutX="356.0" layoutY="14.0" prefHeight="90.0" prefWidth="450.0" />
     <AnchorPane layoutX="22.0" layoutY="224.0" prefHeight="168.0" prefWidth="119.0">
-        <ImageView fx:id="deck" fitHeight="242.0" fitWidth="119.0" onMouseClicked="#getCardFromDeck" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <ImageView fx:id="deck" fitHeight="242.0" fitWidth="119.0" onMouseClicked="#getCardFromDeck" pickOnBounds="true"
+                   preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                   <Image url="@../img/face_retournee.png" />
             </ImageView>
       </AnchorPane>
     <Separator layoutX="165.0" layoutY="300.0" prefHeight="32.0" prefWidth="831.0" />
     <AnchorPane layoutX="224.0" layoutY="121.0" prefHeight="176.0" prefWidth="710.0">
       <children>
-          <ImageView fitHeight="176.0" fitWidth="126.0" layoutX="60.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0">
+          <ImageView fx:id="KorriganOpponent" fitHeight="176.0" fitWidth="126.0" layoutX="60.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0">
             <image>
-               <Image url="@../img/DRYAD.png" />
+               <Image url="@../img/empty.png" />
             </image>
          </ImageView>
-          <ImageView fitHeight="176.0" fitWidth="120.0" layoutX="180.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="120.0">
-            <image>
-                <Image url="@../img/GNOME.png" />
-            </image>
-         </ImageView>
-          <ImageView fitHeight="176.0" fitWidth="120.0" layoutX="300.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="240.0">
-            <image>
-               <Image url="@../img/TROLL.png" />
-            </image>
-         </ImageView>
-          <ImageView fitHeight="176.0" fitWidth="120.0" layoutX="420.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="360.0">
+          <ImageView fx:id="ElfOpponent" fitHeight="176.0" fitWidth="120.0" layoutX="180.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="120.0">
             <image>
                 <Image url="@../img/empty.png" />
             </image>
          </ImageView>
-          <ImageView fitHeight="176.0" fitWidth="120.0" layoutX="540.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="480.0">
+          <ImageView fx:id="TrollOpponent" fitHeight="176.0" fitWidth="120.0" layoutX="300.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="240.0">
             <image>
-               <Image url="@../img/GOBELIN.png" />
+               <Image url="@../img/empty.png" />
             </image>
          </ImageView>
-          <ImageView fitHeight="176.0" fitWidth="120.0" layoutX="660.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="600.0">
+          <ImageView fx:id="GobelinOpponent" fitHeight="176.0" fitWidth="120.0" layoutX="420.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="360.0">
             <image>
-               <Image url="@../img/ELF.png" />
+                <Image url="@../img/empty.png" />
+            </image>
+         </ImageView>
+          <ImageView fx:id="DryadOpponent" fitHeight="176.0" fitWidth="120.0" layoutX="540.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="480.0">
+            <image>
+               <Image url="@../img/empty.png" />
+            </image>
+         </ImageView>
+          <ImageView fx:id="GnomeOpponent" fitHeight="176.0" fitWidth="120.0" layoutX="660.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="600.0">
+            <image>
+               <Image url="@../img/empty.png" />
             </image>
          </ImageView>
           <AnchorPane maxHeight="38.0" minHeight="38.0" minWidth="24.0" prefHeight="38.0" prefWidth="24.0" style="-fx-background-color: #dddddd61; -fx-background-radius: 7px;" AnchorPane.rightAnchor="612.0" AnchorPane.topAnchor="13.0">
               <children>
-                  <Text fx:id="NbDryad2" fill="#fcefef" layoutX="4.0" layoutY="28.056640625" strokeType="OUTSIDE" strokeWidth="0.0" text="3" textAlignment="CENTER" wrappingWidth="14.955078125" AnchorPane.topAnchor="0.0">
+                  <Text fx:id="NbKorriganOpponent" fill="#fcefef" layoutX="4.0" layoutY="28.056640625" strokeType="OUTSIDE" strokeWidth="0.0" text="1" textAlignment="CENTER" wrappingWidth="14.955078125" AnchorPane.topAnchor="0.0">
                       <font>
                           <Font name="System Bold" size="26.0" />
                       </font>
@@ -82,7 +61,7 @@
           </AnchorPane>
           <AnchorPane maxHeight="38.0" minHeight="38.0" minWidth="24.0" prefHeight="38.0" prefWidth="24.0" style="-fx-background-color: #dddddd61; -fx-background-radius: 7px;" AnchorPane.rightAnchor="493.0" AnchorPane.topAnchor="13.0">
               <children>
-                  <Text fx:id="NbDryad12" fill="#fcefef" layoutX="4.0" layoutY="28.056640625" strokeType="OUTSIDE" strokeWidth="0.0" text="3" textAlignment="CENTER" wrappingWidth="14.955078125" AnchorPane.topAnchor="0.0">
+                  <Text fx:id="NbElfOpponent" fill="#fcefef" layoutX="4.0" layoutY="28.056640625" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="14.955078125" AnchorPane.topAnchor="0.0">
                       <font>
                           <Font name="System Bold" size="26.0" />
                       </font>
@@ -91,7 +70,7 @@
           </AnchorPane>
           <AnchorPane maxHeight="38.0" minHeight="38.0" minWidth="24.0" prefHeight="38.0" prefWidth="24.0" style="-fx-background-color: #dddddd61; -fx-background-radius: 7px;" AnchorPane.rightAnchor="374.0" AnchorPane.topAnchor="13.0">
               <children>
-                  <Text fx:id="NbDryad112" fill="#fcefef" layoutX="4.0" layoutY="28.056640625" strokeType="OUTSIDE" strokeWidth="0.0" text="3" textAlignment="CENTER" wrappingWidth="14.955078125" AnchorPane.topAnchor="0.0">
+                  <Text fx:id="NbTrollOpponent" fill="#fcefef" layoutX="4.0" layoutY="28.056640625" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="14.955078125" AnchorPane.topAnchor="0.0">
                       <font>
                           <Font name="System Bold" size="26.0" />
                       </font>
@@ -100,7 +79,7 @@
           </AnchorPane>
           <AnchorPane maxHeight="38.0" minHeight="38.0" minWidth="24.0" prefHeight="38.0" prefWidth="24.0" style="-fx-background-color: #dddddd61; -fx-background-radius: 7px;" AnchorPane.rightAnchor="255.0" AnchorPane.topAnchor="13.0">
               <children>
-                  <Text fx:id="NbDryad1112" fill="#fcefef" layoutX="4.0" layoutY="28.056640625" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="14.955078125" AnchorPane.topAnchor="0.0">
+                  <Text fx:id="NbGobelinOpponent" fill="#fcefef" layoutX="4.0" layoutY="28.056640625" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="14.955078125" AnchorPane.topAnchor="0.0">
                       <font>
                           <Font name="System Bold" size="26.0" />
                       </font>
@@ -109,7 +88,7 @@
           </AnchorPane>
           <AnchorPane maxHeight="38.0" minHeight="38.0" minWidth="24.0" prefHeight="38.0" prefWidth="24.0" style="-fx-background-color: #dddddd61; -fx-background-radius: 7px;" AnchorPane.rightAnchor="133.0" AnchorPane.topAnchor="13.0">
               <children>
-                  <Text fx:id="NbDryad11112" fill="#fcefef" layoutX="4.0" layoutY="28.056640625" strokeType="OUTSIDE" strokeWidth="0.0" text="3" textAlignment="CENTER" wrappingWidth="14.955078125" AnchorPane.topAnchor="0.0">
+                  <Text fx:id="NbDryadOpponent" fill="#fcefef" layoutX="4.0" layoutY="28.056640625" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="14.955078125" AnchorPane.topAnchor="0.0">
                       <font>
                           <Font name="System Bold" size="26.0" />
                       </font>
@@ -118,7 +97,7 @@
           </AnchorPane>
           <AnchorPane maxHeight="38.0" minHeight="38.0" minWidth="24.0" prefHeight="38.0" prefWidth="24.0" style="-fx-background-color: #dddddd61; -fx-background-radius: 7px;" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="13.0">
               <children>
-                  <Text fx:id="NbDryad111111" fill="#fcefef" layoutX="4.0" layoutY="28.056640625" strokeType="OUTSIDE" strokeWidth="0.0" text="3" textAlignment="CENTER" wrappingWidth="14.955078125" AnchorPane.topAnchor="0.0">
+                  <Text fx:id="NbGnomeOpponent" fill="#fcefef" layoutX="4.0" layoutY="28.056640625" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="14.955078125" AnchorPane.topAnchor="0.0">
                       <font>
                           <Font name="System Bold" size="26.0" />
                       </font>
@@ -186,9 +165,9 @@
                   </Text>
               </children>
           </AnchorPane>
-          <AnchorPane layoutX="325.0" layoutY="24.0" maxHeight="38.0" minHeight="38.0" minWidth="24.0" prefHeight="38.0" prefWidth="24.0" style="-fx-background-color: #dddddd61; -fx-background-radius: 7px;" AnchorPane.rightAnchor="255.0" AnchorPane.topAnchor="13.0">
+          <AnchorPane layoutX="325.0" layoutY="24.0" maxHeight="38.0" minHeight="38.0" minWidth="24.0" prefHeight="38.0" prefWidth="24.0" style="-fx-background-color: #dddddd61; -fx-background-radius: 7px;" AnchorPane.rightAnchor="253.0" AnchorPane.topAnchor="13.0">
               <children>
-                  <Text fx:id="NbGoblin" fill="#fcefef" layoutX="4.0" layoutY="28.056640625" text="0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="14.955078125" AnchorPane.topAnchor="0.0">
+                  <Text fx:id="NbGoblin" fill="#fcefef" layoutX="5.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="14.955078125" AnchorPane.topAnchor="0.943359375">
                       <font>
                           <Font name="System Bold" size="26.0" />
                       </font>
