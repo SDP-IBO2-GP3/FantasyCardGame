@@ -1,14 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="edu.insightr.fantasycardgame.BoardViewController">
+    <AnchorPane fx:id="TheEnd" layoutX="250" layoutY="200" prefHeight="337.0" prefWidth="562.0"
+                style="-fx-background-color: #976f447a;" visible="false">
+        <children>
+            <Pane layoutY="-13.0" prefHeight="205.0" prefWidth="562.0" AnchorPane.topAnchor="0.0">
+                <children>
+                    <Text fill="#a94949" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER"
+                          wrappingWidth="562.0000064373016">
+                        <font>
+                            <Font name="Goudy Stout" size="30.0"/>
+                        </font>
+                    </Text>
+                </children>
+            </Pane>
+            <ButtonBar layoutY="214.0" prefHeight="123.0" prefWidth="562.0" AnchorPane.bottomAnchor="0.0"
+                       AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="214.0">
+                <buttons>
+                    <Button graphicTextGap="8.0" mnemonicParsing="false" prefHeight="40.0"
+                            style="-fx-background-color: #d5bc9ca6; -fx-border-width: 2px; -fx-border-radius: 8px;"
+                            text="Play Again" textAlignment="CENTER" ButtonBar.buttonData="LEFT">
+                        <font>
+                            <Font name="Goudy Stout" size="12.0"/>
+                        </font>
+                    </Button>
+                    <Button mnemonicParsing="false" prefHeight="40.0"
+                            style="-fx-background-color: #d5bc9ca6; -fx-border-width: 2px; -fx-border-radius: 8px;"
+                            text="Quit" textAlignment="CENTER" ButtonBar.buttonData="RIGHT">
+                        <font>
+                            <Font name="Goudy Stout" size="12.0"/>
+                        </font>
+                    </Button>
+                </buttons>
+            </ButtonBar>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.insightr.fantasycardgame.BoardViewController">
+        </children>
+    </AnchorPane>
 <AnchorPane fx:id="Global" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0">
 
       <AnchorPane prefHeight="661.0" prefWidth="1000.0" AnchorPane.bottomAnchor="39.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
@@ -24,7 +56,8 @@
     <Separator layoutX="165.0" layoutY="300.0" prefHeight="32.0" prefWidth="831.0" />
     <AnchorPane fx:id="KingdomAI" layoutX="224.0" layoutY="121.0" prefHeight="176.0" prefWidth="710.0">
       <children>
-          <ImageView id="0" fx:id="KorriganOpponent" fitHeight="176.0" fitWidth="126.0" layoutX="60.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0">
+          <ImageView id="0" fx:id="KorriganOpponent" fitHeight="176.0" fitWidth="126.0" pickOnBounds="true"
+                     preserveRatio="true" AnchorPane.leftAnchor="0.0">
             <image>
                <Image url="@../img/empty.png" />
             </image>
@@ -112,32 +145,38 @@
    </AnchorPane>
     <AnchorPane fx:id="KingdomPlayer" layoutX="224.0" layoutY="332.0" prefHeight="176.0" prefWidth="710.0">
       <children>
-          <ImageView fx:id="KorriganPlace" id="0" fitHeight="176.0" fitWidth="126.0" layoutX="60.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0">
+          <ImageView id="0" fx:id="KorriganPlace" fitHeight="176.0" fitWidth="126.0" layoutX="60.0" pickOnBounds="true"
+                     preserveRatio="true" AnchorPane.leftAnchor="0.0">
             <image>
                <Image url="@../img/empty.png" />
             </image>
          </ImageView>
-          <ImageView fx:id="ElfPlace" id="1" fitHeight="176.0" fitWidth="120.0" layoutX="180.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="120.0">
+          <ImageView id="1" fx:id="ElfPlace" fitHeight="176.0" fitWidth="120.0" layoutX="180.0" pickOnBounds="true"
+                     preserveRatio="true" AnchorPane.leftAnchor="120.0">
             <image>
                <Image url="@../img/empty.png" />
             </image>
          </ImageView>
-          <ImageView fx:id="TrollPlace" id="2" fitHeight="176.0" fitWidth="120.0" layoutX="300.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="240.0">
+          <ImageView id="2" fx:id="TrollPlace" fitHeight="176.0" fitWidth="120.0" layoutX="300.0" pickOnBounds="true"
+                     preserveRatio="true" AnchorPane.leftAnchor="240.0">
             <image>
                <Image url="@../img/empty.png" />
             </image>
          </ImageView>
-          <ImageView fx:id="GobelinPlace" id="3" fitHeight="176.0" fitWidth="120.0" layoutX="420.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="360.0">
+          <ImageView id="3" fx:id="GobelinPlace" fitHeight="176.0" fitWidth="120.0" layoutX="420.0" pickOnBounds="true"
+                     preserveRatio="true" AnchorPane.leftAnchor="360.0">
             <image>
                 <Image url="@../img/empty.png" />
             </image>
          </ImageView>
-          <ImageView fx:id="DryadPlace" id="4" fitHeight="176.0" fitWidth="120.0" layoutX="540.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="480.0">
+          <ImageView id="4" fx:id="DryadPlace" fitHeight="176.0" fitWidth="120.0" layoutX="540.0" pickOnBounds="true"
+                     preserveRatio="true" AnchorPane.leftAnchor="480.0">
             <image>
                <Image url="@../img/empty.png" />
             </image>
          </ImageView>
-          <ImageView fx:id="GnomePlace" id="5" fitHeight="176.0" fitWidth="120.0" layoutX="660.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="600.0">
+          <ImageView id="5" fx:id="GnomePlace" fitHeight="176.0" fitWidth="120.0" layoutX="660.0" pickOnBounds="true"
+                     preserveRatio="true" AnchorPane.leftAnchor="600.0">
             <image>
                <Image url="@../img/empty.png" />
             </image>
@@ -292,8 +331,4 @@
       </children>
     </AnchorPane>
 </AnchorPane>
-    <AnchorPane fx:id="TheEnd" layoutX="250" layoutY="200" prefHeight="337.0" prefWidth="562.0" visible="false">
-      <children>
-         <Label text="Label" />
-      </children></AnchorPane>
 </AnchorPane>
