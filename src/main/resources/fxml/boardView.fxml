@@ -110,32 +110,32 @@
    </AnchorPane>
     <AnchorPane fx:id="KingdomPlayer" layoutX="224.0" layoutY="332.0" prefHeight="176.0" prefWidth="710.0">
       <children>
-          <ImageView fx:id="KorriganPlace" fitHeight="176.0" fitWidth="126.0" layoutX="60.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0">
+          <ImageView fx:id="KorriganPlace" id="0" fitHeight="176.0" fitWidth="126.0" layoutX="60.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0">
             <image>
                <Image url="@../img/empty.png" />
             </image>
          </ImageView>
-          <ImageView fx:id="ElfPlace" fitHeight="176.0" fitWidth="120.0" layoutX="180.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="120.0">
+          <ImageView fx:id="ElfPlace" id="1" fitHeight="176.0" fitWidth="120.0" layoutX="180.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="120.0">
             <image>
                <Image url="@../img/empty.png" />
             </image>
          </ImageView>
-          <ImageView fx:id="TrollPlace" fitHeight="176.0" fitWidth="120.0" layoutX="300.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="240.0">
+          <ImageView fx:id="TrollPlace" id="2" fitHeight="176.0" fitWidth="120.0" layoutX="300.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="240.0">
             <image>
                <Image url="@../img/empty.png" />
             </image>
          </ImageView>
-          <ImageView fx:id="GobelinPlace" fitHeight="176.0" fitWidth="120.0" layoutX="420.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="360.0">
+          <ImageView fx:id="GobelinPlace" id="3" fitHeight="176.0" fitWidth="120.0" layoutX="420.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="360.0">
             <image>
                 <Image url="@../img/empty.png" />
             </image>
          </ImageView>
-          <ImageView fx:id="DryadPlace" fitHeight="176.0" fitWidth="120.0" layoutX="540.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="480.0">
+          <ImageView fx:id="DryadPlace" id="4" fitHeight="176.0" fitWidth="120.0" layoutX="540.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="480.0">
             <image>
                <Image url="@../img/empty.png" />
             </image>
          </ImageView>
-          <ImageView fx:id="GnomePlace" fitHeight="176.0" fitWidth="120.0" layoutX="660.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="600.0">
+          <ImageView fx:id="GnomePlace" id="5" fitHeight="176.0" fitWidth="120.0" layoutX="660.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="600.0">
             <image>
                <Image url="@../img/empty.png" />
             </image>

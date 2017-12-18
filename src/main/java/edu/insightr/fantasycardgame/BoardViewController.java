@@ -81,15 +81,16 @@ public class BoardViewController implements Initializable{
         ScorePlayer.setText(Integer.toString(human.getScore()));
         ScoreOpponnent.setText(Integer.toString(aiPlayer.getScore()));
 
-        attributeEventKindomIA();
+        attributeEventKindom();
 
         changeStateGame(0);
 
     }
 
-    private void attributeEventKindomIA(){
+    private void attributeEventKindom(){
         for(int i=0;i<6;i++){
             KingdomAI.getChildren().get(i).setOnMouseClicked(handleChooseCardKingdomAI);
+            KingdomPlayer.getChildren().get(i).setOnMouseClicked(handleChooseCardKingdomPlayer);
         }
 
     }
@@ -109,6 +110,7 @@ public class BoardViewController implements Initializable{
 
                 effectSelected(false,OpponentHand);
                 effectSelected(false,KingdomAI);
+                effectSelected(false,KingdomPlayer);
                 effectSelected(false,PlayerHand);
 
                 changeStateGame(-1);
@@ -132,7 +134,7 @@ public class BoardViewController implements Initializable{
 
             case Game.APPLY_POWER_ADVERSE_KINGDOM:
                 effectSelected(false,PlayerHand);
-                effectSelected(true,KingdomAI);
+                effectSelected(true,KingdomPlayer);
                 Instruction.setText("Choose a card just \n to apply its power");
                 break;
 
@@ -300,7 +302,6 @@ public class BoardViewController implements Initializable{
                 game.playCard(human,aiPlayer,id);
 
 
-
                 TranslateTransition anim = new TranslateTransition();
                 anim.setDuration(Duration.millis(750));
 
@@ -384,7 +385,7 @@ public class BoardViewController implements Initializable{
     private EventHandler<? super MouseEvent> handleChooseCardKingdomAI = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
-            if(game.getCurrentState() == Game.TAKE_CARD_ADVERSE_KINGDOM  || game.getCurrentState() == Game.APPLY_POWER_ADVERSE_KINGDOM  ) {
+            if(game.getCurrentState() == Game.TAKE_CARD_ADVERSE_KINGDOM) {
 
                 int index = Integer.parseInt(((ImageView) event.getSource()).getId());
                 Text textViewNumber = (Text)((AnchorPane)KingdomAI.getChildren().get(index+6)).getChildren().get(0);
@@ -394,13 +395,25 @@ public class BoardViewController implements Initializable{
                     if (game.getCurrentState() == Game.TAKE_CARD_ADVERSE_KINGDOM) {
                         game.TakeCardOnAdverseKingdom(human, aiPlayer, positionToRaceKingdom(index));
                         changeStateGame(Game.IA_PLAY);
-                    } else {
-                        game.applyEffect(human, aiPlayer, new Card(positionToRaceKingdom(index)));
-                        changeStateGame(-1);
                     }
                 }
+            }
+        }
+    };
 
+    private EventHandler<? super MouseEvent> handleChooseCardKingdomPlayer = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+            if(game.getCurrentState() == Game.APPLY_POWER_ADVERSE_KINGDOM) {
 
+                int index = Integer.parseInt(((ImageView) event.getSource()).getId());
+                Text textViewNumber = (Text)((AnchorPane)KingdomPlayer.getChildren().get(index+6)).getChildren().get(0);
+                int textNumber = Integer.parseInt((textViewNumber).getText());
+
+                if(textNumber !=0) {
+                        game.applyEffect(human, aiPlayer, new Card(positionToRaceKingdom(index)));
+                        changeStateGame(-1);
+                }
             }
         }
     };

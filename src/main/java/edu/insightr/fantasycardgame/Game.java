@@ -93,8 +93,8 @@ public class Game {
 
     public Card playCard(Player playerP, Player player, int cardIndex) {
         Card cardToPlay = playerP.getHandCard(cardIndex);
-        playerP.addACardKingdom(cardToPlay);
         this.applyEffect(playerP, player, cardToPlay);
+        playerP.addACardKingdom(cardToPlay);
         return cardToPlay;
     }
 
@@ -106,6 +106,13 @@ public class Game {
      */
     public void applyEffect(Player playerP, Player player, Card card)
     {
+        if(playerP.isHuman()){
+            currentState = IA_PLAY;
+        }else{
+            currentState = DRAW_CARD_FROM_DECK;
+        }
+
+
         switch(card.getRace()){
             case Troll:
                 //Swap kingdom
@@ -123,25 +130,24 @@ public class Game {
                 playerP.setBonus(player.getBonus());
                 player.setBonus(temp_bonus);
 
-                currentState = IA_PLAY;
+
                 break;
 
             case Goblin:
                 ArrayList<Card> tempHand = playerP.getListCardsInHand();
                 playerP.setListCardsInHand(player.getListCardsInHand());
                 player.setListCardsInHand(tempHand);
-                currentState = IA_PLAY;
+
                 break;
 
             case Elf:
-                if(player.getListCardsKingdom().size() > 0){
+                if(playerP.getListCardsKingdom().size() > 0){
+                    System.out.println("no empty");
                     if(playerP.isHuman()){
                         currentState = APPLY_POWER_ADVERSE_KINGDOM;
                     }else{
-                        this.applyEffect(playerP, player, player.getRandomKingdomCard(false));
+                        this.applyEffect(playerP, player, playerP.getRandomKingdomCard(false));
                     }
-                }else{
-                    currentState = IA_PLAY;
                 }
 
                 break;
@@ -153,11 +159,7 @@ public class Game {
                     } else {
                         playerP.addACardKingdom(player.getRandomKingdomCard(true));
                     }
-                }else{
-                    currentState = IA_PLAY;
                 }
-
-
                 break;
 
             case Gnome:
@@ -168,7 +170,6 @@ public class Game {
                     playerP.addACard(deck.getACard());
                 }
 
-                currentState = IA_PLAY;
                 break;
 
             case Korrigan:
@@ -179,8 +180,6 @@ public class Game {
                         playerP.addACard(player.getRandomHandCard(true));
                         playerP.addACard(player.getRandomHandCard(true));
                     }
-                }else{
-                    currentState = IA_PLAY;
                 }
                 break;
 
