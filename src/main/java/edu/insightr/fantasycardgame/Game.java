@@ -246,7 +246,8 @@ public class Game {
     public boolean endOfGame(){
         if(this.getDeck().getSize() == 0){
             if(player1.getListCardsInHand().size() == 0 || player2.getListCardsInHand().size() == 0){
-                return true;
+                    return true;
+
             }
         }
         return false;
