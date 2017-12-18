@@ -34,8 +34,8 @@ Troll: swap the cards in front of you with the cards in front of your opponent
 ```
 
 
-Screenshots
-------
-![Home](Screenshots/Start_window.png?raw=true)
-![Begin](Screenshots/Game_beginning.png?raw=true)
-![Game](Screenshots/Game_in_process.png?raw=true)
+#Screenshots
+
+![Home](Screenshots/Start_window.png?raw=true "home page")
+![Begin](Screenshots/Game_beginning.png?raw=true "home page")
+![Game](Screenshots/Game_in_process.png?raw=true "home page")
