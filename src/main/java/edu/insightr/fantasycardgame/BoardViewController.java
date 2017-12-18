@@ -108,7 +108,7 @@ public class BoardViewController implements Initializable{
 
         changeStateGame(0);
         Replay.setOnAction(e->startGame());
-
+        Quit.setOnAction(e -> closeGame());
 
     }
 
@@ -134,6 +134,12 @@ public class BoardViewController implements Initializable{
             e.printStackTrace();
         }
 
+    }
+
+    private void closeGame()
+    {
+        Stage stage =  (Stage) Global.getScene().getWindow();
+        stage.close();
     }
 
     private void attributeEventKindom(){
