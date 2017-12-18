@@ -1,6 +1,7 @@
 package edu.insightr.fantasycardgame;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * <b>The Board controller class is going to handle our whole game.</b><br><br>
@@ -148,7 +149,8 @@ public class Game {
                 break;
 
             case Elf:
-                if(playerP.getListCardsKingdom().size() > 0){
+                int numberElf = Collections.frequency(playerP.getListCardsKingdom(), new Card(Card.Race.Elf));
+                if(playerP.getListCardsKingdom().size() > numberElf){
                     System.out.println("no empty");
                     if(playerP.isHuman()){
                         currentState = APPLY_POWER_ADVERSE_KINGDOM;

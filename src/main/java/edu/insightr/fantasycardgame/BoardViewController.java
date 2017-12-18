@@ -423,7 +423,6 @@ public class BoardViewController implements Initializable{
 
 
     private void displayKingdom(Player player){
-
         AnchorPane kingdom = KingdomPlayer;
         if(player == aiPlayer){
             kingdom = KingdomAI;
@@ -479,9 +478,6 @@ public class BoardViewController implements Initializable{
             {
                 OpponentHand.getChildren().add(imageViewIA);
             }
-
-
-
 
         }
         firstAnimation = false;
