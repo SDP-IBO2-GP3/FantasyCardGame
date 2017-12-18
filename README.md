@@ -36,6 +36,6 @@ Troll: swap the cards in front of you with the cards in front of your opponent
 
 Screenshots
 ------
-![alt text](Screenshots/Start_window.png)
-![alt text](Screenshots/Game_beginning.png)
-![alt text](Screenshots/Game_in_process.png)
+![Home](Screenshots/Start_window.png?raw=true)
+![Begin](Screenshots/Game_beginning.png?raw=true)
+![Game](Screenshots/Game_in_process.png?raw=true)
