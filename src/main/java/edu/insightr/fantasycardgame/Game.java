@@ -86,6 +86,7 @@ public class Game {
         }else{
             currentState = CHOOSE_CARD_HAND;
             player2.addACardKingdom(player2.getListCardsInHand().get(0));
+            player2.getListCardsInHand().remove(0);
         }
 
         return true;
