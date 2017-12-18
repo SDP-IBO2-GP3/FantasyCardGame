@@ -79,7 +79,7 @@ public class Game {
      *
      * @return True if the AI could play, false else
      */
-    public boolean playAITurn()
+    public Card playAITurn()
     {
         Card card_to_play;
 
@@ -96,7 +96,8 @@ public class Game {
         }
         applyEffect(player2, player1, card_to_play);
 
-        return true;
+        return card_to_play;
+
     }
 
     public Card playCard(Player playerP, Player player, int cardIndex) {
