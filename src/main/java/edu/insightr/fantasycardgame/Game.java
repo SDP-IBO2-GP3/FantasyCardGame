@@ -1,6 +1,7 @@
 package edu.insightr.fantasycardgame;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * <b>The Board controller class is going to handle our whole game.</b><br><br>
@@ -80,13 +81,20 @@ public class Game {
      */
     public boolean playAITurn()
     {
+        Card card_to_play;
+
         if(deck.getSize() > 0){
             currentState = DRAW_CARD_FROM_DECK;
-            player2.addACardKingdom(deck.getACard());
-        }else{
-            currentState = CHOOSE_CARD_HAND;
-            player2.addACardKingdom(player2.getListCardsInHand().get(0));
+            card_to_play = deck.getACard();
+            player2.addACardKingdom(card_to_play);
         }
+        else{
+            currentState = CHOOSE_CARD_HAND;
+            card_to_play = player2.getListCardsInHand().get(0);
+            player2.addACardKingdom(card_to_play);
+            player2.getListCardsInHand().remove(0);
+        }
+        applyEffect(player2, player1, card_to_play);
 
         return true;
     }
@@ -106,6 +114,13 @@ public class Game {
      */
     public void applyEffect(Player playerP, Player player, Card card)
     {
+        if(playerP.isHuman()){
+            currentState = IA_PLAY;
+        }else{
+            currentState = DRAW_CARD_FROM_DECK;
+        }
+
+
         switch(card.getRace()){
             case Troll:
                 //Swap kingdom
@@ -123,25 +138,25 @@ public class Game {
                 playerP.setBonus(player.getBonus());
                 player.setBonus(temp_bonus);
 
-                currentState = IA_PLAY;
+
                 break;
 
             case Goblin:
                 ArrayList<Card> tempHand = playerP.getListCardsInHand();
                 playerP.setListCardsInHand(player.getListCardsInHand());
                 player.setListCardsInHand(tempHand);
-                currentState = IA_PLAY;
+
                 break;
 
             case Elf:
-                if(player.getListCardsKingdom().size() > 0){
+                int numberElf = Collections.frequency(playerP.getListCardsKingdom(), new Card(Card.Race.Elf));
+                if(playerP.getListCardsKingdom().size() > numberElf){
+                    System.out.println("no empty");
                     if(playerP.isHuman()){
                         currentState = APPLY_POWER_ADVERSE_KINGDOM;
                     }else{
-                        this.applyEffect(playerP, player, player.getRandomKingdomCard(false));
+                        this.applyEffect(playerP, player, playerP.getRandomKingdomCard(false));
                     }
-                }else{
-                    currentState = IA_PLAY;
                 }
 
                 break;
@@ -153,11 +168,7 @@ public class Game {
                     } else {
                         playerP.addACardKingdom(player.getRandomKingdomCard(true));
                     }
-                }else{
-                    currentState = IA_PLAY;
                 }
-
-
                 break;
 
             case Gnome:
@@ -168,7 +179,6 @@ public class Game {
                     playerP.addACard(deck.getACard());
                 }
 
-                currentState = IA_PLAY;
                 break;
 
             case Korrigan:
@@ -179,8 +189,6 @@ public class Game {
                         playerP.addACard(player.getRandomHandCard(true));
                         playerP.addACard(player.getRandomHandCard(true));
                     }
-                }else{
-                    currentState = IA_PLAY;
                 }
                 break;
 

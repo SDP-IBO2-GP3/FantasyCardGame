@@ -17,10 +17,6 @@ Scenario: Korrigan Card Power
     Then Player2 has two cards less in his hand
     And Player1 has two more cards in his hand
 
-
-
-
-#Change random
 #Scenario: Elf Card Power
  #   When Player1 is playing a Elf
   #  Then Player1 copies one card from the player2 kingdom
