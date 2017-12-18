@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
-
-<AnchorPane xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.insightr.fantasycardgame.BoardViewController">
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="edu.insightr.fantasycardgame.BoardViewController">
 <AnchorPane fx:id="Global" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0">
 
       <AnchorPane prefHeight="661.0" prefWidth="1000.0" AnchorPane.bottomAnchor="39.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
@@ -260,7 +255,8 @@
                     <Image url="@../img/fond_score.png" />
                 </image>
             </ImageView>
-            <Text  fx:id="ScorePlayer" fill="#730505" layoutX="33.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="15" wrappingWidth="87.40001225471497">
+            <Text fx:id="ScorePlayer" fill="#730505" layoutX="33.0" layoutY="64.0" strokeType="OUTSIDE"
+                  strokeWidth="0.0" text="15" wrappingWidth="87.40001225471497">
                 <font>
                     <Font name="System Bold" size="54.0" />
                 </font>
@@ -294,20 +290,27 @@
       </children>
     </AnchorPane>
 </AnchorPane>
-    <AnchorPane fx:id="TheEnd" layoutX="250" layoutY="200" prefHeight="337.0" prefWidth="562.0" style="-fx-background-color: #976f447a;" visible="false">
+    <AnchorPane fx:id="TheEnd" layoutX="250" layoutY="200" prefHeight="337.0" prefWidth="562.0"
+                style="-fx-background-color: #605b568c; -fx-border-radius: 10px;" visible="false">
         <children>
-            <Text  fx:id="Message" fill="#000000" text="You Win" textAlignment="CENTER" wrappingWidth="560" AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0">
+            <Text fx:id="Message" fill="#000000" text="You Win" textAlignment="CENTER" wrappingWidth="523.2000122070312"
+                  AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="40.0">
             <font>
                <Font name="Goudy Stout" size="48.0" />
             </font></Text>
-            <ButtonBar layoutY="214.0" prefHeight="123.0" prefWidth="562.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="214.0">
+            <ButtonBar layoutY="214.0" prefHeight="123.0" prefWidth="562.0" AnchorPane.bottomAnchor="10.0"
+                       AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="214.0">
                 <buttons>
-                    <Button fx:id="Replay" graphicTextGap="8.0" mnemonicParsing="false" prefHeight="40.0" style="-fx-background-color: #d5bc9ca6; -fx-border-width: 2px; -fx-border-radius: 8px;" text="Play Again" textAlignment="CENTER" ButtonBar.buttonData="LEFT">
+                    <Button fx:id="Replay" graphicTextGap="8.0" mnemonicParsing="false" prefHeight="40.0"
+                            style="-fx-background-color: #d5b99c; -fx-border-width: 2px; -fx-border-radius: 8px;"
+                            text="Play Again" textAlignment="CENTER" ButtonBar.buttonData="LEFT">
                         <font>
                             <Font name="Goudy Stout" size="12.0" />
                         </font>
                     </Button>
-                    <Button fx:id="Quit" mnemonicParsing="false" prefHeight="40.0" style="-fx-background-color: #d5bc9ca6; -fx-border-width: 2px; -fx-border-radius: 8px;" text="Quit" textAlignment="CENTER" ButtonBar.buttonData="RIGHT">
+                    <Button fx:id="Quit" mnemonicParsing="false" prefHeight="40.0"
+                            style="-fx-background-color: #d5b99c; -fx-border-width: 2px; -fx-border-radius: 8px;"
+                            text="Quit" textAlignment="CENTER" ButtonBar.buttonData="RIGHT">
                         <font>
                             <Font name="Goudy Stout" size="12.0" />
                         </font>
