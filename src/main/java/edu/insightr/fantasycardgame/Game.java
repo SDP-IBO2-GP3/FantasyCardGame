@@ -94,8 +94,8 @@ public class Game {
 
     public Card playCard(Player playerP, Player player, int cardIndex) {
         Card cardToPlay = playerP.getHandCard(cardIndex);
-        this.applyEffect(playerP, player, cardToPlay);
         playerP.addACardKingdom(cardToPlay);
+        this.applyEffect(playerP, player, cardToPlay);
         return cardToPlay;
     }
 
