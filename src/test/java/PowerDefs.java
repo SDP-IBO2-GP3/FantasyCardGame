@@ -120,17 +120,17 @@ public class PowerDefs {
 
         numberOfCardsHandPlayer1 = board.getPlayer1().getListCardsInHand().size();
         numberOfCardsHandPlayer2 = board.getPlayer2().getListCardsInHand().size();
-        board.applyEffect(board.getPlayer1(), board.getPlayer2(), korrigan);
+        board.applyEffect(board.getPlayer2(), board.getPlayer1(), korrigan);
     }
 
     @Then("^Player2 has two cards less in his hand$")
     public void playerHasTwoCardsLessInHisHand() throws Throwable {
-        Assert.assertEquals(numberOfCardsHandPlayer2-2, board.getPlayer2().getListCardsInHand().size());
+        Assert.assertEquals(numberOfCardsHandPlayer1-2, board.getPlayer1().getListCardsInHand().size());
     }
 
     @And("^Player1 has two more cards in his hand$")
     public void playerHasTwoMoreCardsInHisHand() throws Throwable {
-        Assert.assertEquals(numberOfCardsHandPlayer1+2, board.getPlayer1().getListCardsInHand().size());
+        Assert.assertEquals(numberOfCardsHandPlayer2+2, board.getPlayer2().getListCardsInHand().size());
     }
 
     /**
@@ -162,34 +162,35 @@ public class PowerDefs {
         Card dryad = new Card(Card.Race.Dryad);
         sizePlayer1BeforeEffect = board.getPlayer1().getSizeOfKingdom();
         sizePlayer2BeforeEffect = board.getPlayer2().getSizeOfKingdom();
-        board.applyEffect(board.getPlayer1(), board.getPlayer2(), dryad);
+        board.applyEffect(board.getPlayer2(), board.getPlayer1(), dryad);
 
     }
 
     @Then("^Player1 has one more card in his kingdom$")
     public void playerHasOneMoreCardInHisKingdom() throws Throwable {
-        Assert.assertEquals(sizePlayer1BeforeEffect+1,board.getPlayer1().getSizeOfKingdom());
+        Assert.assertEquals(sizePlayer2BeforeEffect+1,board.getPlayer2().getSizeOfKingdom());
     }
 
     @And("^Player2 has one card less in his kingdom$")
     public void playerHasOneCardLessInHisKingdom() throws Throwable {
-        Assert.assertEquals(sizePlayer2BeforeEffect-1, board.getPlayer2().getSizeOfKingdom());
+        Assert.assertEquals(sizePlayer1BeforeEffect-1, board.getPlayer1().getSizeOfKingdom());
     }
+
+    /**
+     * Scenario: Gnome Card Power
+     */
 
     @When("^Player1 is playing the Gnome$")
     public void playerIsPlayingTheGnome() throws Throwable {
         Card gnome = new Card(Card.Race.Gnome);
         board.getPlayer1().addACard(gnome);
-
         numberOfCardsHandPlayer1 = board.getPlayer1().getListCardsInHand().size();
-        scorePlayer1BeforeEffect = board.getPlayer1().getScore();
+        board.applyEffect(board.getPlayer1(), board.getPlayer2(), gnome);
 
-        board.playCard(board.getPlayer1(), board.getPlayer2(), 6);
     }
 
     @Then("^The player1 draw 2 cards$")
     public void thePlayerDrawCards() throws Throwable {
-        org.junit.Assert.assertEquals(scorePlayer1BeforeEffect + 1, board.getPlayer1().getScore());
-        org.junit.Assert.assertEquals(numberOfCardsHandPlayer1 + 1, board.getPlayer1().getListCardsInHand().size());
+        org.junit.Assert.assertEquals(numberOfCardsHandPlayer1 + 2, board.getPlayer1().getListCardsInHand().size());
     }
 }

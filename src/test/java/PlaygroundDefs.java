@@ -30,13 +30,13 @@ public class PlaygroundDefs {
 
     @Then("^Deck is filled$")
     public void deckIsFilled() throws Throwable {
-        org.junit.Assert.assertEquals(48, board.getDeck().getSize());
+        org.junit.Assert.assertEquals(50, board.getDeck().getSize());
     }
 
-    @And("^Players have 6 cards in their hand$")
+    @And("^Players have 5 cards in their hand$")
     public void playerHasCardsInHisHand() throws Throwable {
-        org.junit.Assert.assertEquals(6, board.getPlayer1().getSizeOfList());
-        org.junit.Assert.assertEquals(6, board.getPlayer2().getSizeOfList());
+        org.junit.Assert.assertEquals(5, board.getPlayer1().getSizeOfList());
+        org.junit.Assert.assertEquals(5, board.getPlayer2().getSizeOfList());
     }
 
     @And("^Kingdoms are empty$")
