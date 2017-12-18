@@ -114,9 +114,11 @@ public class BoardViewController implements Initializable{
                 effectSelected(false,PlayerHand);
 
                 changeStateGame(-1);
+                break;
 
             case Game.DRAW_CARD_FROM_DECK:
                 effectSelected(true,deck);
+                System.out.println("Passe ici");
                 Instruction.setText("Pick a card from the deck");
                 break;
 
@@ -147,7 +149,6 @@ public class BoardViewController implements Initializable{
     }
 
     private void changeStateGame(int state){
-        System.out.println(game.endOfGame());
         if(!game.endOfGame())
         {
             if (state != -1) {
@@ -160,6 +161,8 @@ public class BoardViewController implements Initializable{
                     game.setCurrentState(Game.CHOOSE_CARD_HAND);
                 }
             }
+
+            System.out.println("Current State " + game.getCurrentState());
             currentStateGame();
             ScorePlayer.setText(Integer.toString(human.getScore()));
             ScoreOpponnent.setText(Integer.toString(aiPlayer.getScore()));
