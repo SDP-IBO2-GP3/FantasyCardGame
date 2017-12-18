@@ -80,14 +80,20 @@ public class Game {
      */
     public boolean playAITurn()
     {
+        Card card_to_play;
+
         if(deck.getSize() > 0){
             currentState = DRAW_CARD_FROM_DECK;
-            player2.addACardKingdom(deck.getACard());
-        }else{
+            card_to_play = deck.getACard();
+            player2.addACardKingdom(card_to_play);
+        }
+        else{
             currentState = CHOOSE_CARD_HAND;
-            player2.addACardKingdom(player2.getListCardsInHand().get(0));
+            card_to_play = player2.getListCardsInHand().get(0);
+            player2.addACardKingdom(card_to_play);
             player2.getListCardsInHand().remove(0);
         }
+        applyEffect(player2, player1, card_to_play);
 
         return true;
     }
