@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -64,6 +65,12 @@ public class BoardViewController implements Initializable{
 
     @FXML
     private Text Instruction;
+
+    @FXML
+    private AnchorPane Global;
+
+    @FXML
+    private  AnchorPane TheEnd;
 
     //endregion
 
@@ -163,6 +170,8 @@ public class BoardViewController implements Initializable{
             ScoreOpponnent.setText(Integer.toString(aiPlayer.getScore()));
         }
         else{
+            Global.setEffect(new GaussianBlur(20));
+            TheEnd.setVisible(true);
             System.out.println("winner");
             int winner = game.winner(); // 1 = human, -1 = IA, 0 = draw
         }
