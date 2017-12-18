@@ -4,8 +4,13 @@ package edu.insightr.fantasycardgame;
 import javafx.animation.TranslateTransition;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
@@ -14,6 +19,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.stage.Screen;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.net.URL;
@@ -72,6 +79,15 @@ public class BoardViewController implements Initializable{
     @FXML
     private  AnchorPane TheEnd;
 
+    @FXML
+    private Text Message;
+
+    @FXML
+    private Button Replay;
+
+    @FXML
+    private Button Quit;
+
     //endregion
 
     @Override
@@ -91,6 +107,32 @@ public class BoardViewController implements Initializable{
         attributeEventKindom();
 
         changeStateGame(0);
+        Replay.setOnAction(e->startGame());
+
+
+    }
+
+    private void startGame() {
+
+        Stage primaryStage = (Stage) Global.getScene().getWindow();
+        try {
+
+            Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/boardView.fxml"));
+            Scene scene = new Scene(root, 989, 690);
+
+
+
+
+            primaryStage.setScene(scene);
+            primaryStage.setTitle("FantasyCard");
+            primaryStage.setResizable(false);
+            primaryStage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -177,8 +219,23 @@ public class BoardViewController implements Initializable{
         else{
             Global.setEffect(new GaussianBlur(20));
             TheEnd.setVisible(true);
-            System.out.println("winner");
             int winner = game.winner(); // 1 = human, -1 = IA, 0 = draw
+            System.out.println("Winner : " + winner);
+            if(winner == 1)
+            {
+                Message.setText("You Won ! Congrats");
+            }
+            else
+            {
+                if(winner == -1)
+                {
+                    Message.setText("You Lost !");
+                }
+                else
+                {
+                    Message.setText("DRAW ! ");
+                }
+            }
         }
     }
 
