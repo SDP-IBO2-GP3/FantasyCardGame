@@ -131,8 +131,6 @@ public class BoardViewController implements Initializable{
             Scene scene = new Scene(root, 989, 690);
 
 
-
-
             primaryStage.setScene(scene);
             primaryStage.setTitle("FantasyCard");
             primaryStage.setResizable(false);
@@ -162,6 +160,8 @@ public class BoardViewController implements Initializable{
         switch (game.getCurrentState()){
 
             case Game.IA_PLAY:
+                displayIACards();
+
                 Card playedCard = game.playAITurn();
 
                 Image imageIA = new Image(getClass().getResourceAsStream("/img/face_retournee.png"));
@@ -346,7 +346,7 @@ public class BoardViewController implements Initializable{
             }
             else if(function == "SwtichPlayIA")
             {
-                //   anim.setOnFinished(e -> SwitchPlayIA(dad,animation,imageViewCurrent));
+                //anim.setOnFinished(e -> SwitchPlayIA(dad,animation,imageViewCurrent));
 
             }
             anim.setNode(animation);
@@ -367,8 +367,6 @@ public class BoardViewController implements Initializable{
 
 
     private void refreshGameInTermsOfCard(Player playerP,Player player,Card.Race race){
-        displayCardHand(playerP);
-        displayKingdom(playerP);
         switch (race){
             case Troll:
                 displayKingdom(player);
@@ -419,7 +417,7 @@ public class BoardViewController implements Initializable{
             imageViewCurrent.setRotate(angle);
             animation.setRotate(angle);
 
-            if(firstAnimation || (i == numberCard - 1 && onylDisplay == false) )
+            if((firstAnimation || (i == numberCard - 1 && onylDisplay == false) )&&  game.getDeck().getSize() > 0)
             {
                 animation(animation,imageViewCurrent,(int)284 + spaceCard*i,(int)(339 + applyPolynome(polynome,spaceCard*i + LENGTHWIDTH/4)),i*150 + 500,(AnchorPane)PlayerHand.getParent(),"SwitchFromAnim");
             }
@@ -443,8 +441,11 @@ public class BoardViewController implements Initializable{
 
         ScorePlayer.setText(Integer.toString(human.getScore()));
         ScoreOpponnent.setText(Integer.toString(aiPlayer.getScore()));
-        refreshGameInTermsOfCard(aiPlayer,human,race);
+        //refreshGameInTermsOfCard(aiPlayer,human,race);
 
+        displayIACards();
+        displayKingdom(human);
+        displayKingdom(aiPlayer);
 
     }
     public void SwitchFromAnim(AnchorPane dad,ImageView tmp,ImageView imageViewCurrent) {
@@ -455,7 +456,8 @@ public class BoardViewController implements Initializable{
     public void SwitchFromAnim(AnchorPane dad,ImageView tmp,Card.Race race) {
         dad.getChildren().remove(tmp);
         onylDisplay = true;
-
+        displayPlayerCards();
+        displayKingdom(human);
         refreshGameInTermsOfCard(human,aiPlayer,race);
         ScorePlayer.setText(Integer.toString(human.getScore()));
         ScoreOpponnent.setText(Integer.toString(aiPlayer.getScore()));
@@ -467,8 +469,7 @@ public class BoardViewController implements Initializable{
         //PlayerHand.getChildren().add(imageViewCurrent);
         int id = Integer.parseInt((imageViewCurrent).getId()); // get the card id
         game.TakeCardOnAdverseHand(human, aiPlayer, id);
-        onylDisplay = true;
-        displayIACards();
+
         onylDisplay = true;
         displayPlayerCards();
 
@@ -586,7 +587,6 @@ public class BoardViewController implements Initializable{
             // get information about the current card
             if(game.getCurrentState() == Game.TAKE_CARD_ADVERSE_HAND) {
 
-
                 ImageView imageView = (ImageView) event.getSource();
                 imageView.setVisible(false);
 
@@ -630,9 +630,9 @@ public class BoardViewController implements Initializable{
                 int textNumber = Integer.parseInt((textViewNumber).getText());
 
                 if(textNumber !=0) {
-                        game.applyEffect(human, aiPlayer, new Card(positionToRaceKingdom(index)));
-                        refreshGameInTermsOfCard(human,aiPlayer,positionToRaceKingdom(index));
-                        changeStateGame(-1);
+                    game.applyEffect(human, aiPlayer, new Card(positionToRaceKingdom(index)));
+                    refreshGameInTermsOfCard(human,aiPlayer,positionToRaceKingdom(index));
+                    changeStateGame(-1);
                 }
             }
         }
@@ -660,6 +660,7 @@ public class BoardViewController implements Initializable{
 
 
     private void displayIACards() {
+        System.out.println("Call Display IA cards");
         Image imageIA = new Image(getClass().getResourceAsStream("/img/face_retournee.png"));
         int sizeCardsList = aiPlayer.getSizeOfList();
         OpponentHand.getChildren().clear();
@@ -672,8 +673,9 @@ public class BoardViewController implements Initializable{
             imageViewIA.setId("" + i);
             //OpponentHand.getChildren().add(imageViewIA);
 
-            if(firstAnimation || (i == sizeCardsList - 1 && onylDisplay == false) )
+            if((firstAnimation || (i == sizeCardsList - 1 && onylDisplay == false) ) && game.getDeck().getSize() > 0)
             {
+                System.out.println("Animation done");
                 animation.setX(22);
                 animation.setY(224);
 
