@@ -296,7 +296,9 @@ public class BoardViewController implements Initializable{
         }
     }
 
-
+    /**
+     * General function for animation
+     */
     private void animation(ImageView animation, ImageView imageViewCurrent, int xto, int yto,int time,AnchorPane dad, String function )
     {
             TranslateTransition anim = new TranslateTransition();
@@ -392,7 +394,17 @@ public class BoardViewController implements Initializable{
         onlyDisplay = false;
     }
 
-    public void SwitchPlayIA(AnchorPane dad,ImageView tmp,Card.Race race) {
+    /**
+     * At the end of the animation these function are called
+     */
+    /**
+     * When the IA play
+     *
+     * @param dad  main anchor pane
+     * @param tmp  ImageView tmp
+     * @param race Race of the card played by IA
+     */
+    public void SwitchPlayIA(AnchorPane dad, ImageView tmp, Card.Race race) {
         dad.getChildren().remove(tmp);
 
 
@@ -408,11 +420,24 @@ public class BoardViewController implements Initializable{
         displayKingdom(aiPlayer);
     }
 
-    public void SwitchFromAnim(AnchorPane dad,ImageView tmp,ImageView imageViewCurrent) {
+    /**
+     * When the player pick a card from the deck
+     * @param dad main anchor pane
+     * @param tmp ImageView tmp being deleted at the end
+     * @param imageViewCurrent Put the real image
+     */
+    public void SwitchFromAnim(AnchorPane dad, ImageView tmp, ImageView imageViewCurrent) {
         dad.getChildren().remove(tmp);
         PlayerHand.getChildren().add(imageViewCurrent);
     }
-    public void SwitchFromAnim(AnchorPane dad,ImageView tmp,Card.Race race) {
+
+    /**
+     * When the IA play
+     * @param dad main anchor pane
+     * @param tmp ImageView tmp
+     * @param race Race of the card played by IA
+     */
+    public void SwitchFromAnim(AnchorPane dad, ImageView tmp, Card.Race race) {
         dad.getChildren().remove(tmp);
         onlyDisplay = true;
         displayPlayerCards();
@@ -422,7 +447,14 @@ public class BoardViewController implements Initializable{
         ScoreOpponnent.setText(Integer.toString(aiPlayer.getScore()));
         changeStateGame(-1);
     }
-    public void SwitchCardChosen(AnchorPane dad,ImageView tmp,ImageView imageViewCurrent) {
+
+    /**
+     * When the IA play
+     * @param dad main anchor pane
+     * @param tmp ImageView tmp being deleted at the end
+     * @param imageViewCurrent Put the real image
+     */
+    public void SwitchCardChosen(AnchorPane dad, ImageView tmp, ImageView imageViewCurrent) {
         dad.getChildren().remove(tmp);
         //PlayerHand.getChildren().add(imageViewCurrent);
         int id = Integer.parseInt((imageViewCurrent).getId()); // get the card id
@@ -440,6 +472,18 @@ public class BoardViewController implements Initializable{
         human.setNumberCardSelectedKingdomAdverve(numberCard);
     }
 
+    /**
+     * When the IA pick a card from the deck
+     *
+     * @param dad              main anchor pane
+     * @param tmp              ImageView tmp being deleted at the end
+     * @param imageViewCurrent Put the real image
+     */
+
+    public void SwitchForIA(AnchorPane dad, ImageView tmp, ImageView imageViewCurrent) {
+        dad.getChildren().remove(tmp);
+        OpponentHand.getChildren().add(imageViewCurrent);
+    }
     /**
      * When the player over past a card, the card is displayed in big on the center of the game
      */
@@ -466,7 +510,7 @@ public class BoardViewController implements Initializable{
     };
 
     /**
-     * When the player chooses a card in her desk, this card is deleted and added on the kingdom
+     * When the player chooses a card in his hand, this card is deleted and added on the kingdom
      */
     private EventHandler<? super MouseEvent> handleAddCardKing = new EventHandler<MouseEvent>() {
         @Override
@@ -535,11 +579,12 @@ public class BoardViewController implements Initializable{
                 dad.getChildren().add(animation);
 
 
-
             }
         }
     };
-
+    /**
+     * When the IA chooses a card in his hand, this card is deleted and added on the kingdom
+     */
     private EventHandler<? super MouseEvent> handleChooseCardHandAI = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
@@ -559,7 +604,9 @@ public class BoardViewController implements Initializable{
             }
         }
     };
-
+    /**
+     * When the IA has to choose a card in the player's hand
+     */
     private EventHandler<? super MouseEvent> handleChooseCardKingdomAI = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
@@ -578,7 +625,9 @@ public class BoardViewController implements Initializable{
             }
         }
     };
-
+    /**
+     * When the player has to choose a card in the kingdom of his opponent
+     */
     private EventHandler<? super MouseEvent> handleChooseCardKingdomPlayer = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
@@ -656,10 +705,7 @@ public class BoardViewController implements Initializable{
         onlyDisplay = false;
     }
 
-    public void SwitchForIA(AnchorPane dad,ImageView tmp,ImageView imageViewCurrent) {
-        dad.getChildren().remove(tmp);
-        OpponentHand.getChildren().add(imageViewCurrent);
-    }
+
 
     private Node[] accessNodeForACardInKingDom(AnchorPane kingdom, int index){
         Node imageView = kingdom.getChildren().get(index);
