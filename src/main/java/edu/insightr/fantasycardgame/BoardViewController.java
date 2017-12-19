@@ -142,8 +142,6 @@ public class BoardViewController implements Initializable{
 
 
     private void currentStateGameAI() {
-        displayIACards();
-
         Card playedCard = game.playAITurn();
 
         Image imageIA = new Image(getClass().getResourceAsStream("/img/face_retournee.png"));
@@ -404,6 +402,7 @@ public class BoardViewController implements Initializable{
         //refreshGameInTermsOfCard(aiPlayer,human,race);
 
         displayIACards();
+        displayPlayerCards();
         displayKingdom(human);
         displayKingdom(aiPlayer);
     }
