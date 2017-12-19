@@ -264,7 +264,7 @@ public class BoardViewController implements Initializable{
     }
 
     private void changeStateGame(int state){
-        if(!game.endOfGame())
+        if(!(game.endOfGame() && (game.getCurrentState() == Game.DRAW_CARD_FROM_DECK || game.getCurrentState() == Game.IA_PLAY)))
         {
             if (state != -1) {
                 game.setCurrentState(state);
@@ -283,29 +283,32 @@ public class BoardViewController implements Initializable{
             ScoreOpponnent.setText(Integer.toString(aiPlayer.getScore()));
         }
         else{
-            Global.setEffect(new GaussianBlur(20));
-            TheEnd.setVisible(true);
-            System.out.println("winner");
-            int winner = game.winner(); // 1 = human, -1 = IA, 0 = draw
-            System.out.println("Winner : " + winner);
-            if(winner == 1)
-            {
-                Message.setText("You Won ! Congrats");
-            }
-            else
-            {
-                if(winner == -1)
-                {
-                    Message.setText("You Lost !");
-                }
-                else
-                {
-                    Message.setText("DRAW ! ");
-                }
-            }
+            displayEndPopUp();
         }
     }
 
+    private void displayEndPopUp(){
+        Global.setEffect(new GaussianBlur(20));
+        TheEnd.setVisible(true);
+        System.out.println("winner");
+        int winner = game.winner(); // 1 = human, -1 = IA, 0 = draw
+        System.out.println("Winner : " + winner);
+        if(winner == 1)
+        {
+            Message.setText("You Won ! Congrats");
+        }
+        else
+        {
+            if(winner == -1)
+            {
+                Message.setText("You Lost !");
+            }
+            else
+            {
+                Message.setText("DRAW ! ");
+            }
+        }
+    }
 
     private void effectSelected(boolean select,Node node){
         if(select){
