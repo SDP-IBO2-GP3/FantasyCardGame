@@ -393,15 +393,15 @@ public class BoardViewController implements Initializable{
 
     public void SwitchPlayIA(AnchorPane dad,ImageView tmp,Card.Race race) {
         dad.getChildren().remove(tmp);
-        onlyDisplay = true;
-        displayIACards();
-        onlyDisplay = true;
+
 
         ScorePlayer.setText(Integer.toString(human.getScore()));
         ScoreOpponnent.setText(Integer.toString(aiPlayer.getScore()));
         //refreshGameInTermsOfCard(aiPlayer,human,race);
 
+        onlyDisplay = true;
         displayIACards();
+        onlyDisplay = true;
         displayPlayerCards();
         displayKingdom(human);
         displayKingdom(aiPlayer);
