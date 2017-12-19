@@ -5,8 +5,8 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import edu.insightr.fantasycardgame.Card;
 import edu.insightr.fantasycardgame.Deck;
-import org.junit.Assert;
 import edu.insightr.fantasycardgame.Game;
+import org.junit.Assert;
 
 public class PlaygroundDefs {
 
@@ -30,7 +30,7 @@ public class PlaygroundDefs {
 
     @Then("^Deck is filled$")
     public void deckIsFilled() throws Throwable {
-        org.junit.Assert.assertEquals(50, board.getDeck().getSize());
+        org.junit.Assert.assertEquals(38, board.getDeck().getSize());
     }
 
     @And("^Players have 5 cards in their hand$")
