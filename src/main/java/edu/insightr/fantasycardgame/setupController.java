@@ -38,8 +38,6 @@ public class setupController implements Initializable {
             Scene scene = new Scene(root, 989, 690);
 
 
-
-
             primaryStage.setScene(scene);
             primaryStage.setTitle("FantasyCard");
             primaryStage.setResizable(false);

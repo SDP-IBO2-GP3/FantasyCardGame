@@ -162,8 +162,6 @@ public class BoardViewController implements Initializable{
         switch (game.getCurrentState()){
 
             case Game.IA_PLAY:
-
-
                 Card playedCard = game.playAITurn();
 
                 Image imageIA = new Image(getClass().getResourceAsStream("/img/face_retournee.png"));
@@ -172,42 +170,42 @@ public class BoardViewController implements Initializable{
                 animation.setX(500);
                 animation.setY(20);
                 AnchorPane dad = (AnchorPane)PlayerHand.getParent();
-                if(playedCard.race.name() == "Korrigan")
+                if(playedCard.race  == Card.Race.Korrigan)
                 {
                     anim.setToX(224-500);
                     anim.setToY(100);
                     //animation(animation,animation,224-500,100,1500,(AnchorPane)PlayerHand.getParent(),"SwitchPlayIA");
 
                 }
-                else if(playedCard.race.name() == "Gnome")
+                else if(playedCard.race == Card.Race.Gnome)
                 {
                     anim.setToX(224-500 + 480);
                     anim.setToY(100);
                     //animation(animation,animation,224-500 + 480,100,1500,(AnchorPane)PlayerHand.getParent(),"SwitchPlayIA");
 
                 }
-                else if(playedCard.race.name() == "Goblin")
+                else if(playedCard.race == Card.Race.Goblin)
                 {
                     anim.setToX(224-500 + 360);
                     anim.setToY(100);
                     //animation(animation,animation,224-500 + 360,100,1500,(AnchorPane)PlayerHand.getParent(),"SwitchPlayIA");
 
                 }
-                else if(playedCard.race.name() == "Elf")
+                else if(playedCard.race == Card.Race.Elf)
                 {
                     anim.setToX(224-500 + 240);
                     anim.setToY(100);
                   //  animation(animation,animation,224-500+240,100,1500,(AnchorPane)PlayerHand.getParent(),"SwitchPlayIA");
 
                 }
-                else if(playedCard.race.name() == "Dryad")
+                else if(playedCard.race == Card.Race.Dryad)
                 {
                     anim.setToX(224-500 + 120);
                     anim.setToY(100);
                   //  animation(animation,animation,224-500 + 120,100,1500,(AnchorPane)PlayerHand.getParent(),"SwitchPlayIA");
 
                 }
-                else if(playedCard.race.name() == "Troll")
+                else if(playedCard.race == Card.Race.Troll)
                 {
                     anim.setToX(224-500+600);
                     anim.setToY(100);
@@ -216,7 +214,7 @@ public class BoardViewController implements Initializable{
                 }
                 anim.setDuration(Duration.millis(1500));
                 anim.setOnFinished(event ->  {
-                        SwitchPlayIA(dad, animation);
+                        SwitchPlayIA(dad, animation,playedCard.race);
                         changeStateGame(-1);
                 });
                 anim.setNode(animation);
@@ -228,6 +226,7 @@ public class BoardViewController implements Initializable{
                 effectSelected(false,KingdomPlayer);
                 effectSelected(false,PlayerHand);
 
+                //refreshGameInTermsOfCard(aiPlayer,human,playedCard.race);
 
                 break;
 
@@ -357,6 +356,38 @@ public class BoardViewController implements Initializable{
 
     }
 
+
+    private void displayCardHand(Player player){
+        if(player.isHuman()){
+            displayPlayerCards();
+        }else{
+            displayIACards();
+        }
+    }
+
+
+    private void refreshGameInTermsOfCard(Player playerP,Player player,Card.Race race){
+        displayCardHand(playerP);
+        displayKingdom(playerP);
+        switch (race){
+            case Troll:
+                displayKingdom(player);
+                break;
+
+            case Goblin:
+                displayCardHand(player);
+                break;
+
+            case Korrigan:
+                displayCardHand(player);
+                break;
+
+            case Dryad:
+                displayKingdom(player);
+
+        }
+    }
+
     private void displayPlayerCards() {
         int numberCard = game.getPlayer1().getListCardsInHand().size();
         int spaceCard = LENGTHXALL / (numberCard+1);
@@ -403,16 +434,16 @@ public class BoardViewController implements Initializable{
         onylDisplay = false;
     }
 
-    public void SwitchPlayIA(AnchorPane dad,ImageView tmp) {
+    public void SwitchPlayIA(AnchorPane dad,ImageView tmp,Card.Race race) {
 
         dad.getChildren().remove(tmp);
         onylDisplay = true;
         displayIACards();
         onylDisplay = true;
-        displayPlayerCards();
-        displayKingdom(human);
-        displayKingdom(aiPlayer);
 
+        ScorePlayer.setText(Integer.toString(human.getScore()));
+        ScoreOpponnent.setText(Integer.toString(aiPlayer.getScore()));
+        refreshGameInTermsOfCard(aiPlayer,human,race);
 
 
     }
@@ -421,14 +452,13 @@ public class BoardViewController implements Initializable{
         PlayerHand.getChildren().add(imageViewCurrent);
 
     }
-    public void SwitchFromAnim(AnchorPane dad,ImageView tmp,int id) {
+    public void SwitchFromAnim(AnchorPane dad,ImageView tmp,Card.Race race) {
         dad.getChildren().remove(tmp);
         onylDisplay = true;
-        displayPlayerCards();
-        displayKingdom(human);
+
+        refreshGameInTermsOfCard(human,aiPlayer,race);
         ScorePlayer.setText(Integer.toString(human.getScore()));
         ScoreOpponnent.setText(Integer.toString(aiPlayer.getScore()));
-
         changeStateGame(-1);
 
     }
@@ -484,7 +514,7 @@ public class BoardViewController implements Initializable{
         public void handle(MouseEvent event) {
             if(game.getCurrentState() == Game.CHOOSE_CARD_HAND){
                     int id = Integer.parseInt(((ImageView)event.getSource()).getId()); // get the card id
-                    String cardName = human.getListCardsInHand().get(id).getRace().name();
+                    Card.Race cardRace = human.getListCardsInHand().get(id).getRace();
 
                     ImageView animation = createImageView(((ImageView)event.getSource()).getImage(),110,176);
                     AnchorPane dad = (AnchorPane)PlayerHand.getParent();
@@ -499,32 +529,32 @@ public class BoardViewController implements Initializable{
                     animation.setY(663);
 
 
-                    if(cardName == "Korrigan")
+                    if(cardRace == Card.Race.Korrigan)
                     {
                         anim.setToX(224 - 500);
                         anim.setToY(332 - 663);
                     }
-                    else if(cardName == "Gnome")
+                    else if(cardRace == Card.Race.Gnome)
                     {
                         anim.setToX(224 - 500 + 480);
                         anim.setToY(332 - 663);
                     }
-                    else if(cardName == "Goblin")
+                    else if(cardRace == Card.Race.Goblin)
                     {
                         anim.setToX(224 - 500 + 360);
                         anim.setToY(332 - 663);
                     }
-                    else if(cardName == "Elf")
+                    else if(cardRace == Card.Race.Elf)
                     {
                         anim.setToX(224 - 500 + 240);
                         anim.setToY(332 - 663);
                     }
-                    else if(cardName == "Dryad")
+                    else if(cardRace == Card.Race.Dryad)
                     {
                         anim.setToX(224 - 500 + 120);
                         anim.setToY(332 - 663);
                     }
-                    else if(cardName == "Troll")
+                    else if(cardRace == Card.Race.Troll)
                     {
                         anim.setToX(224 - 500 + 600);
                         anim.setToY(332 - 663);
@@ -532,17 +562,9 @@ public class BoardViewController implements Initializable{
 
                     anim.setNode(animation);
 
-                    anim.setOnFinished(event1 -> {
-                        SwitchFromAnim(dad,animation,id);
-                        System.out.println("I wait the animation");
-                       // changeStateGame(-1);
-                    });
-
+                    anim.setOnFinished(e -> SwitchFromAnim(dad,animation,cardRace));
                     //anim.notify();
                     anim.play();
-
-                    anim.setOnFinished(e -> SwitchFromAnim(dad,animation,id));
-
 
                     dad.getChildren().add(animation);
 
@@ -574,7 +596,6 @@ public class BoardViewController implements Initializable{
 
                 animation.setX(500);
                 animation.setY(20);
-                System.out.print("KORiGAN !!!!!");
                 animation(animation,imageView,0,550,2000,dad,"SwtichChosenCard");
             }
         }
@@ -590,10 +611,10 @@ public class BoardViewController implements Initializable{
                 int textNumber = Integer.parseInt((textViewNumber).getText());
 
                 if(textNumber !=0) {
-                    if (game.getCurrentState() == Game.TAKE_CARD_ADVERSE_KINGDOM) {
                         game.TakeCardOnAdverseKingdom(human, aiPlayer, positionToRaceKingdom(index));
+                        displayKingdom(aiPlayer);
+                        displayKingdom(human);
                         changeStateGame(Game.IA_PLAY);
-                    }
                 }
             }
         }
@@ -610,8 +631,7 @@ public class BoardViewController implements Initializable{
 
                 if(textNumber !=0) {
                         game.applyEffect(human, aiPlayer, new Card(positionToRaceKingdom(index)));
-                        displayKingdom(aiPlayer);
-                        displayKingdom(human);
+                        refreshGameInTermsOfCard(human,aiPlayer,positionToRaceKingdom(index));
                         changeStateGame(-1);
                 }
             }

@@ -29,7 +29,7 @@ public class Deck {
      * Default constructor for our deck.
      */
     public Deck() {
-        this.numberOfCards = 12;
+        this.numberOfCards = 20;
         this.listCard = new Stack<Card>();
     }
 
