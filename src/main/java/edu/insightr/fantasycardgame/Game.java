@@ -152,7 +152,6 @@ public class Game {
             case Elf:
                 int numberElf = Collections.frequency(playerP.getListCardsKingdom(), new Card(Card.Race.Elf));
                 if(playerP.getListCardsKingdom().size() > numberElf){
-                    System.out.println("no empty");
                     if(playerP.isHuman()){
                         currentState = APPLY_POWER_ADVERSE_KINGDOM;
                     }else{
@@ -255,8 +254,6 @@ public class Game {
     }
 
     public int winner(){
-        System.out.println("Player 1 : " + player1.getScore());
-        System.out.println("Player 2 : " + player2.getScore());
         if(player1.getScore() > player2.getScore()){
             return 1;
         }

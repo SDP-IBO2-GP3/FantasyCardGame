@@ -144,6 +144,7 @@ public class BoardViewController implements Initializable{
     private void currentStateGameAI() {
         Card playedCard = game.playAITurn();
 
+        displayIACards();
         Image imageIA = new Image(getClass().getResourceAsStream("/img/face_retournee.png"));
         TranslateTransition anim = new TranslateTransition();
         ImageView animation = createImageView(imageIA, 110, 176);
@@ -288,7 +289,7 @@ public class BoardViewController implements Initializable{
             dropShadow.setRadius(5.0);
             dropShadow.setOffsetX(10.0);
             dropShadow.setOffsetY(10.0);
-            dropShadow.setColor(Color.color(0.4, 0.5, 0.5));
+            dropShadow.setColor(Color.color(0.6, 0.6, 0.8));
             node.setEffect(dropShadow);
         }else{
             node.setEffect(null);
@@ -416,7 +417,7 @@ public class BoardViewController implements Initializable{
         onlyDisplay = true;
         displayPlayerCards();
         displayKingdom(human);
-        refreshGameInTermsOfCard(human,aiPlayer,race);
+        //refreshGameInTermsOfCard(human,aiPlayer,race);
         ScorePlayer.setText(Integer.toString(human.getScore()));
         ScoreOpponnent.setText(Integer.toString(aiPlayer.getScore()));
         changeStateGame(-1);
@@ -520,20 +521,21 @@ public class BoardViewController implements Initializable{
 
                     anim.setNode(animation);
 
-                    anim.setOnFinished(e -> SwitchFromAnim(dad,animation,cardRace));
+                anim.setOnFinished(e -> {
+                    SwitchFromAnim(dad, animation, cardRace);
+                    if (cardRace.name() == "Troll") {
+                        displayKingdom(aiPlayer);
+                        displayKingdom(human);
+                    }
+                });
                     //anim.notify();
                     anim.play();
 
-                    dad.getChildren().add(animation);
 
-                    // refresh score player
-                    //anim.setDelay(Duration.millis(750));
-                   /* try {
-                        anim.notify();
-                    } catch (InterruptedException e) {
+                dad.getChildren().add(animation);
 
-                    }
-                    changeStateGame(-1);*/
+
+
             }
         }
     };
